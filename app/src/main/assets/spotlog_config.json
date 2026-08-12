@@ -1,0 +1,37 @@
+{
+  "active_source": "overpass",
+  "sources": [
+    {
+      "name": "overpass",
+      "display_name": "Overpass API",
+      "mirrors": [
+        "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+        "https://overpass.osm.rambler.ru/cgi/interpreter",
+        "https://overpass.private.coffee/api/interpreter",
+        "https://z.overpass-api.de/api/interpreter"
+      ],
+      "query_template": "[out:json];(node[\"name\"](around:500,{lat},{lon});way[\"name\"](around:500,{lat},{lon});node[\"place\"~\"city|town|village\"][\"name\"](around:500,{lat},{lon});node[\"railway\"=\"station\"][\"name\"](around:500,{lat},{lon}););out center;",
+      "response_mapping": {
+        "elements_array": "elements",
+        "name_field": "tags.name",
+        "lat_field": "lat",
+        "lon_field": "lon",
+        "category_field": "tags.amenity"
+      },
+      "requires_user_agent": true,
+      "notes": "Зеркала перебираются автоматически при ошибках 429/504"
+    }
+  ],
+  "filters": {
+    "exclude_keys": ["highway", "waterway", "boundary", "power", "entrance"],
+    "exclude_tags": {
+      "public_transport": ["stop_position"],
+      "highway": ["bus_stop"]
+    },
+    "include_place_nodes": true,
+    "place_values": ["city", "town", "village"],
+    "include_buildings_with_name": true,
+    "include_offices": true,
+    "include_industrial": true
+  }
+}

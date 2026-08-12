@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- photoFile создаётся в context.cacheDir (см. AddVisitDialog.kt) —
+         cache-path обязателен, иначе FileProvider.getUriForFile() падает
+         с IllegalArgumentException: "Failed to find configured root". -->
+    <cache-path name="camera_photos" path="." />
+</paths>

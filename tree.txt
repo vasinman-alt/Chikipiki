@@ -1,0 +1,3337 @@
+﻿Структура папок тома Windows
+Серийный номер тома: 844D-AC56
+C:.
+│   .gitignore
+│   build.gradle.kts
+│   gradle.properties
+│   gradlew
+│   gradlew.bat
+│   local.properties
+│   settings.gradle.kts
+│   tree.txt
+│   
+├───.gradle
+│   │   file-system.probe
+│   │   
+│   ├───9.4.1
+│   │   │   gc.properties
+│   │   │   
+│   │   ├───checksums
+│   │   │       checksums.lock
+│   │   │       md5-checksums.bin
+│   │   │       sha1-checksums.bin
+│   │   │       
+│   │   ├───executionHistory
+│   │   │       executionHistory.bin
+│   │   │       executionHistory.lock
+│   │   │       
+│   │   ├───expanded
+│   │   ├───fileChanges
+│   │   │       last-build.bin
+│   │   │       
+│   │   ├───fileHashes
+│   │   │       fileHashes.bin
+│   │   │       fileHashes.lock
+│   │   │       resourceHashesCache.bin
+│   │   │       
+│   │   └───vcsMetadata
+│   ├───buildOutputCleanup
+│   │       buildOutputCleanup.lock
+│   │       cache.properties
+│   │       outputFiles.bin
+│   │       
+│   ├───configuration-cache
+│   │   │   configuration-cache.lock
+│   │   │   gc.properties
+│   │   │   
+│   │   ├───019ac5dd-b572-42c7-bce2-c3cea9a41049
+│   │   ├───01bb8b32-f725-4355-9a24-40fe8d66999b
+│   │   ├───0af6aa27-bbe0-4c15-9986-27390fa977db
+│   │   ├───0f9bf6eb-4509-447d-9b6f-a350c8a2bd9b
+│   │   ├───138b57ff-ab3a-44c6-a638-287264e7729b
+│   │   ├───1a1c9446-bb51-4f00-a1ea-e946968934be
+│   │   ├───26065889-02be-445e-8624-ce7484fcfec5
+│   │   ├───2a7a38b4-b797-4ad3-aba1-7daa72c31e27
+│   │   │       .globals.work.bin
+│   │   │       .strings.work.bin
+│   │   │       buildfingerprint.bin
+│   │   │       classloaderscopes.bin
+│   │   │       entry.bin
+│   │   │       projectfingerprint.bin
+│   │   │       work.bin
+│   │   │       _app.work.bin
+│   │   │       
+│   │   ├───2d6a66f4-0d9b-46f7-a843-5b5f3d505306
+│   │   ├───319332b3-e5ef-4e62-b9d1-39c05936878e
+│   │   ├───34cce2c8-0cfb-4e3e-bdaf-f18a23013fbc
+│   │   ├───39c89aba-897e-412c-8c45-450436efdad6
+│   │   ├───3bi1r781xju67lkxhhk2urj59
+│   │   │       candidates.bin
+│   │   │       
+│   │   ├───41f07f0e-7fae-4b03-a343-ded6acccafcc
+│   │   ├───4f791c16-9dd7-4230-8b72-a110f3b57a25
+│   │   ├───524158fb-460e-48aa-87e3-deeea621bcbb
+│   │   ├───5b12cec4-1aa0-45ce-9949-777a58a48026
+│   │   ├───5dfb126c-c13b-4d26-b04d-da7b22f6076c
+│   │   ├───5e2559ae-5c49-495e-84f3-7cd790950b6a
+│   │   │       .globals.work.bin
+│   │   │       .strings.work.bin
+│   │   │       buildfingerprint.bin
+│   │   │       classloaderscopes.bin
+│   │   │       entry.bin
+│   │   │       projectfingerprint.bin
+│   │   │       work.bin
+│   │   │       _app.work.bin
+│   │   │       
+│   │   ├───5e5f70f0-65d9-4445-afd8-27fe57d9bfdc
+│   │   ├───68e024ba-06a2-46b5-b8c2-1a7c848cd0cb
+│   │   ├───6ce96bcc-9f86-45da-bf20-bd1132698aeb
+│   │   ├───7bd55a8b-848d-4b59-802d-0fb0867930bd
+│   │   ├───814c0ee2-47f4-4b73-921b-69ec49652a32
+│   │   ├───83806585-d6ad-487c-a7fa-9c835ed9c042
+│   │   ├───93a3ee0b-b222-4660-9018-78ec7f81f6a8
+│   │   ├───96652edd-3efb-45ad-8622-d2dbd079c23f
+│   │   ├───a08239fc-6e80-448d-a5b4-a2363aab90b0
+│   │   ├───a1bfda14-126a-4c1b-b9ae-51bdbda5b647
+│   │   ├───a8927a7f-8143-48cf-b696-6c0ac733f548
+│   │   ├───b5755053-f1f6-493d-9efa-5a3989bcecda
+│   │   ├───bb15abea-90c3-4216-af24-edc856d91b4a
+│   │   ├───c1a69631-34bc-4c31-8201-5bd55b612b8c
+│   │   ├───c88e9a1c-4293-44fd-af8c-eb48db4edcdc
+│   │   ├───ca0f8475-a474-4fc8-8996-d88501840c9c
+│   │   ├───ca802e1b-121d-450a-98d7-2672b6b6f6e1
+│   │   ├───d172fb50-752e-49cf-834e-82470adafc60
+│   │   ├───d57f2beb-a097-4096-a660-452076f9e131
+│   │   ├───d8b41039-1afc-4cab-bc74-b1f9addc3e00
+│   │   ├───dgzrenq9etv9qkomwku7r1vgx
+│   │   │       candidates.bin
+│   │   │       
+│   │   ├───dvnoyhbackyxtfrk01195an9p
+│   │   │       candidates.bin
+│   │   │       
+│   │   ├───e0b6c043-89d6-4559-b98c-dfdec69fe7b0
+│   │   │       .globals.work.bin
+│   │   │       .strings.work.bin
+│   │   │       build.work.bin
+│   │   │       buildfingerprint.bin
+│   │   │       classloaderscopes.bin
+│   │   │       entry.bin
+│   │   │       projectfingerprint.bin
+│   │   │       work.bin
+│   │   │       _app.work.bin
+│   │   │       
+│   │   ├───e1753c34-63c5-40da-ba59-e7a17478e5f2
+│   │   ├───e5de5b19-fea7-49f1-a94e-b53a4adbcdc6
+│   │   ├───e69e53b7-2b1f-4995-ad31-f5b635109e83
+│   │   ├───f13ee956-0191-4bc1-bc39-1956f429c87a
+│   │   ├───f14d43b5-f893-4bea-893e-87cf9f865561
+│   │   ├───f6d528f9-155e-4ad3-b103-589bd5fdeffe
+│   │   │       .globals.work.bin
+│   │   │       .strings.work.bin
+│   │   │       classloaderscopes3378915520499269224.tmp
+│   │   │       work.bin
+│   │   │       _app.work.bin
+│   │   │       
+│   │   ├───f7d997ac-911b-4e10-a538-18ad3947c078
+│   │   └───ffbe757d-d020-45d3-9676-e47723e55cde
+│   ├───kotlin
+│   │   └───errors
+│   └───vcs-1
+│           gc.properties
+│           
+├───.idea
+│   │   .gitignore
+│   │   AndroidProjectSystem.xml
+│   │   assetWizardSettings.xml
+│   │   compiler.xml
+│   │   deploymentTargetSelector.xml
+│   │   deviceManager.xml
+│   │   gradle.xml
+│   │   misc.xml
+│   │   modules.xml
+│   │   runConfigurations.xml
+│   │   workspace.xml
+│   │   
+│   ├───caches
+│   │       deviceStreaming.xml
+│   │       
+│   ├───codeStyles
+│   │       codeStyleConfig.xml
+│   │       Project.xml
+│   │       
+│   ├───inspectionProfiles
+│   │       Project_Default.xml
+│   │       
+│   └───modules
+│       └───app
+│               SpotLog.app.main.iml
+│               
+├───.kotlin
+│   └───sessions
+├───app
+│   │   .gitignore
+│   │   build.gradle.kts
+│   │   
+│   ├───build
+│   │   ├───generated
+│   │   │   ├───ksp
+│   │   │   │   └───debug
+│   │   │   │       └───kotlin
+│   │   │   │           └───com
+│   │   │   │               └───spotlog
+│   │   │   │                   └───data
+│   │   │   │                       │   AppDatabase_Impl.kt
+│   │   │   │                       │   
+│   │   │   │                       └───dao
+│   │   │   │                               GeocodeCacheDao_Impl.kt
+│   │   │   │                               PhotoDao_Impl.kt
+│   │   │   │                               PlaceDao_Impl.kt
+│   │   │   │                               VisitDao_Impl.kt
+│   │   │   │                               
+│   │   │   ├───res
+│   │   │   │   ├───pngs
+│   │   │   │   │   └───debug
+│   │   │   │   └───resValues
+│   │   │   │       ├───androidTest
+│   │   │   │       │   └───debug
+│   │   │   │       └───debug
+│   │   │   └───updated_navigation_xml
+│   │   │       ├───debug
+│   │   │       └───debugAndroidTest
+│   │   ├───intermediates
+│   │   │   ├───aar_metadata_check
+│   │   │   │   ├───debug
+│   │   │   │   │   └───checkDebugAarMetadata
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───checkDebugAndroidTestAarMetadata
+│   │   │   ├───android_res_source_set_path_map
+│   │   │   │   ├───debug
+│   │   │   │   │   └───mapDebugSourceSetPaths
+│   │   │   │   │           file-map.txt
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───mapDebugAndroidTestSourceSetPaths
+│   │   │   │               file-map.txt
+│   │   │   │               
+│   │   │   ├───annotation_processor_list
+│   │   │   │   ├───debug
+│   │   │   │   │   └───javaPreCompileDebug
+│   │   │   │   │           annotationProcessors.json
+│   │   │   │   │           
+│   │   │   │   ├───debugAndroidTest
+│   │   │   │   │   └───javaPreCompileDebugAndroidTest
+│   │   │   │   │           annotationProcessors.json
+│   │   │   │   │           
+│   │   │   │   └───debugUnitTest
+│   │   │   │       └───javaPreCompileDebugUnitTest
+│   │   │   │               annotationProcessors.json
+│   │   │   │               
+│   │   │   ├───apk
+│   │   │   │   └───debug
+│   │   │   │           app-debug.apk
+│   │   │   │           output-metadata.json
+│   │   │   │           
+│   │   │   ├───apk_ide_redirect_file
+│   │   │   │   ├───debug
+│   │   │   │   │   └───createDebugApkListingFileRedirect
+│   │   │   │   │           redirect.txt
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───createDebugAndroidTestApkListingFileRedirect
+│   │   │   │               redirect.txt
+│   │   │   │               
+│   │   │   ├───app_metadata
+│   │   │   │   └───debug
+│   │   │   │       └───writeDebugAppMetadata
+│   │   │   │               app-metadata.properties
+│   │   │   │               
+│   │   │   ├───assets
+│   │   │   │   ├───debug
+│   │   │   │   │   └───mergeDebugAssets
+│   │   │   │   │           moscow_poi.json
+│   │   │   │   │           spotlog_config.json
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───mergeDebugAndroidTestAssets
+│   │   │   ├───compatible_screen_manifest
+│   │   │   │   └───debug
+│   │   │   │       └───createDebugCompatibleScreenManifests
+│   │   │   │               output-metadata.json
+│   │   │   │               
+│   │   │   ├───compiled_navigation_res
+│   │   │   │   ├───debug
+│   │   │   │   │   └───compileDebugNavigationResources
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───compileDebugAndroidTestNavigationResources
+│   │   │   ├───compile_and_runtime_r_class_jar
+│   │   │   │   ├───debug
+│   │   │   │   │   └───processDebugResources
+│   │   │   │   │           R.jar
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───processDebugAndroidTestResources
+│   │   │   │               R.jar
+│   │   │   │               
+│   │   │   ├───compile_app_classes_jar
+│   │   │   │   └───debug
+│   │   │   │       └───bundleDebugClassesToCompileJar
+│   │   │   │               classes.jar
+│   │   │   │               
+│   │   │   ├───compressed_assets
+│   │   │   │   ├───debug
+│   │   │   │   │   └───compressDebugAssets
+│   │   │   │   │       └───out
+│   │   │   │   │           └───assets
+│   │   │   │   │                   moscow_poi.json.jar
+│   │   │   │   │                   spotlog_config.json.jar
+│   │   │   │   │                   
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───compressDebugAndroidTestAssets
+│   │   │   │           └───out
+│   │   │   ├───data_binding_layout_info_type_merge
+│   │   │   │   ├───debug
+│   │   │   │   │   └───mergeDebugResources
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───mergeDebugAndroidTestResources
+│   │   │   │           └───out
+│   │   │   ├───data_binding_layout_info_type_package
+│   │   │   │   └───debug
+│   │   │   │       └───packageDebugResources
+│   │   │   │           └───out
+│   │   │   ├───desugar_graph
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   │           ├───currentProject
+│   │   │   │   │           │   ├───dirs_bucket_0
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───dirs_bucket_1
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───dirs_bucket_2
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───dirs_bucket_3
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───jar_0c11da5cbcf35a68ac30ee19301c001bcefde2dcfd32d3f5433c2160d6385f4d_bucket_0
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───jar_0c11da5cbcf35a68ac30ee19301c001bcefde2dcfd32d3f5433c2160d6385f4d_bucket_1
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───jar_0c11da5cbcf35a68ac30ee19301c001bcefde2dcfd32d3f5433c2160d6385f4d_bucket_2
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   └───jar_0c11da5cbcf35a68ac30ee19301c001bcefde2dcfd32d3f5433c2160d6385f4d_bucket_3
+│   │   │   │   │           │           graph.bin
+│   │   │   │   │           │           
+│   │   │   │   │           ├───externalLibs
+│   │   │   │   │           │   ├───dirs_bucket_0
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───dirs_bucket_1
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───dirs_bucket_2
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   └───dirs_bucket_3
+│   │   │   │   │           │           graph.bin
+│   │   │   │   │           │           
+│   │   │   │   │           ├───mixedScopes
+│   │   │   │   │           │   ├───dirs_bucket_0
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───dirs_bucket_1
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   ├───dirs_bucket_2
+│   │   │   │   │           │   │       graph.bin
+│   │   │   │   │           │   │       
+│   │   │   │   │           │   └───dirs_bucket_3
+│   │   │   │   │           │           graph.bin
+│   │   │   │   │           │           
+│   │   │   │   │           └───otherProjects
+│   │   │   │   │               ├───dirs_bucket_0
+│   │   │   │   │               │       graph.bin
+│   │   │   │   │               │       
+│   │   │   │   │               ├───dirs_bucket_1
+│   │   │   │   │               │       graph.bin
+│   │   │   │   │               │       
+│   │   │   │   │               ├───dirs_bucket_2
+│   │   │   │   │               │       graph.bin
+│   │   │   │   │               │       
+│   │   │   │   │               └───dirs_bucket_3
+│   │   │   │   │                       graph.bin
+│   │   │   │   │                       
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   │               ├───currentProject
+│   │   │   │               │   ├───dirs_bucket_0
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───dirs_bucket_1
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───dirs_bucket_2
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───dirs_bucket_3
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───jar_5a784ff37e441bc66987ad68db291bb8ca5f052e6233bc97587d8271e7d742b9_bucket_0
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───jar_5a784ff37e441bc66987ad68db291bb8ca5f052e6233bc97587d8271e7d742b9_bucket_1
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───jar_5a784ff37e441bc66987ad68db291bb8ca5f052e6233bc97587d8271e7d742b9_bucket_2
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   └───jar_5a784ff37e441bc66987ad68db291bb8ca5f052e6233bc97587d8271e7d742b9_bucket_3
+│   │   │   │               │           graph.bin
+│   │   │   │               │           
+│   │   │   │               ├───externalLibs
+│   │   │   │               │   ├───dirs_bucket_0
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───dirs_bucket_1
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───dirs_bucket_2
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   └───dirs_bucket_3
+│   │   │   │               │           graph.bin
+│   │   │   │               │           
+│   │   │   │               ├───mixedScopes
+│   │   │   │               │   ├───dirs_bucket_0
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───dirs_bucket_1
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   ├───dirs_bucket_2
+│   │   │   │               │   │       graph.bin
+│   │   │   │               │   │       
+│   │   │   │               │   └───dirs_bucket_3
+│   │   │   │               │           graph.bin
+│   │   │   │               │           
+│   │   │   │               └───otherProjects
+│   │   │   │                   ├───dirs_bucket_0
+│   │   │   │                   │       graph.bin
+│   │   │   │                   │       
+│   │   │   │                   ├───dirs_bucket_1
+│   │   │   │                   │       graph.bin
+│   │   │   │                   │       
+│   │   │   │                   ├───dirs_bucket_2
+│   │   │   │                   │       graph.bin
+│   │   │   │                   │       
+│   │   │   │                   └───dirs_bucket_3
+│   │   │   │                           graph.bin
+│   │   │   │                           
+│   │   │   ├───dex
+│   │   │   │   ├───debug
+│   │   │   │   │   ├───mergeExtDexDebug
+│   │   │   │   │   │       classes.dex
+│   │   │   │   │   │       classes2.dex
+│   │   │   │   │   │       classes3.dex
+│   │   │   │   │   │       
+│   │   │   │   │   ├───mergeLibDexDebug
+│   │   │   │   │   │   ├───0
+│   │   │   │   │   │   ├───1
+│   │   │   │   │   │   ├───10
+│   │   │   │   │   │   ├───11
+│   │   │   │   │   │   ├───12
+│   │   │   │   │   │   ├───13
+│   │   │   │   │   │   ├───14
+│   │   │   │   │   │   ├───15
+│   │   │   │   │   │   ├───2
+│   │   │   │   │   │   ├───3
+│   │   │   │   │   │   ├───4
+│   │   │   │   │   │   ├───5
+│   │   │   │   │   │   ├───6
+│   │   │   │   │   │   ├───7
+│   │   │   │   │   │   ├───8
+│   │   │   │   │   │   └───9
+│   │   │   │   │   └───mergeProjectDexDebug
+│   │   │   │   │       ├───0
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       ├───1
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       ├───10
+│   │   │   │   │       ├───11
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       ├───12
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       ├───13
+│   │   │   │   │       ├───14
+│   │   │   │   │       ├───15
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       ├───2
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       ├───3
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       ├───4
+│   │   │   │   │       ├───5
+│   │   │   │   │       ├───6
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       ├───7
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       ├───8
+│   │   │   │   │       │       classes.dex
+│   │   │   │   │       │       
+│   │   │   │   │       └───9
+│   │   │   │   │               classes.dex
+│   │   │   │   │               
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       ├───mergeExtDexDebugAndroidTest
+│   │   │   │       │       classes.dex
+│   │   │   │       │       
+│   │   │   │       ├───mergeLibDexDebugAndroidTest
+│   │   │   │       │   ├───0
+│   │   │   │       │   ├───1
+│   │   │   │       │   ├───10
+│   │   │   │       │   ├───11
+│   │   │   │       │   ├───12
+│   │   │   │       │   ├───13
+│   │   │   │       │   ├───14
+│   │   │   │       │   ├───15
+│   │   │   │       │   ├───2
+│   │   │   │       │   ├───3
+│   │   │   │       │   ├───4
+│   │   │   │       │   ├───5
+│   │   │   │       │   ├───6
+│   │   │   │       │   ├───7
+│   │   │   │       │   ├───8
+│   │   │   │       │   └───9
+│   │   │   │       └───mergeProjectDexDebugAndroidTest
+│   │   │   │           ├───0
+│   │   │   │           │       classes.dex
+│   │   │   │           │       
+│   │   │   │           ├───1
+│   │   │   │           ├───10
+│   │   │   │           ├───11
+│   │   │   │           ├───12
+│   │   │   │           ├───13
+│   │   │   │           ├───14
+│   │   │   │           ├───15
+│   │   │   │           ├───2
+│   │   │   │           ├───3
+│   │   │   │           │       classes.dex
+│   │   │   │           │       
+│   │   │   │           ├───4
+│   │   │   │           ├───5
+│   │   │   │           ├───6
+│   │   │   │           ├───7
+│   │   │   │           ├───8
+│   │   │   │           └───9
+│   │   │   ├───dex_archive_input_jar_hashes
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │           out
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │               out
+│   │   │   │               
+│   │   │   ├───dex_number_of_buckets_file
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │           out
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │               out
+│   │   │   │               
+│   │   │   ├───duplicate_classes_check
+│   │   │   │   ├───debug
+│   │   │   │   │   └───checkDebugDuplicateClasses
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───checkDebugAndroidTestDuplicateClasses
+│   │   │   ├───external_file_lib_dex_archives
+│   │   │   │   ├───debug
+│   │   │   │   │   └───desugarDebugFileDependencies
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───desugarDebugAndroidTestFileDependencies
+│   │   │   ├───external_libs_dex_archive
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   ├───external_libs_dex_archive_with_artifact_transforms
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   ├───global_synthetics_dex
+│   │   │   │   ├───debug
+│   │   │   │   │   └───generateDebugGlobalSynthetics
+│   │   │   │   │           classes.dex
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───generateDebugAndroidTestGlobalSynthetics
+│   │   │   │               classes.dex
+│   │   │   │               
+│   │   │   ├───global_synthetics_external_lib
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   ├───global_synthetics_external_libs_artifact_transform
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   ├───global_synthetics_file_lib
+│   │   │   │   ├───debug
+│   │   │   │   │   └───desugarDebugFileDependencies
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───desugarDebugAndroidTestFileDependencies
+│   │   │   ├───global_synthetics_mixed_scope
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   ├───global_synthetics_project
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   ├───global_synthetics_subproject
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   ├───incremental
+│   │   │   │   ├───debug
+│   │   │   │   │   ├───mergeDebugResources
+│   │   │   │   │   │   │   compile-file-map.properties
+│   │   │   │   │   │   │   merger.xml
+│   │   │   │   │   │   │   
+│   │   │   │   │   │   ├───merged.dir
+│   │   │   │   │   │   │   ├───values
+│   │   │   │   │   │   │   │       values.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-af
+│   │   │   │   │   │   │   │       values-af.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-am
+│   │   │   │   │   │   │   │       values-am.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ar
+│   │   │   │   │   │   │   │       values-ar.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-as
+│   │   │   │   │   │   │   │       values-as.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-az
+│   │   │   │   │   │   │   │       values-az.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-b+sr+Latn
+│   │   │   │   │   │   │   │       values-b+sr+Latn.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-be
+│   │   │   │   │   │   │   │       values-be.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-bg
+│   │   │   │   │   │   │   │       values-bg.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-bn
+│   │   │   │   │   │   │   │       values-bn.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-bs
+│   │   │   │   │   │   │   │       values-bs.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ca
+│   │   │   │   │   │   │   │       values-ca.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-cs
+│   │   │   │   │   │   │   │       values-cs.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-da
+│   │   │   │   │   │   │   │       values-da.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-de
+│   │   │   │   │   │   │   │       values-de.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-el
+│   │   │   │   │   │   │   │       values-el.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-en-rAU
+│   │   │   │   │   │   │   │       values-en-rAU.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-en-rCA
+│   │   │   │   │   │   │   │       values-en-rCA.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-en-rGB
+│   │   │   │   │   │   │   │       values-en-rGB.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-en-rIN
+│   │   │   │   │   │   │   │       values-en-rIN.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-en-rXC
+│   │   │   │   │   │   │   │       values-en-rXC.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-es
+│   │   │   │   │   │   │   │       values-es.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-es-rUS
+│   │   │   │   │   │   │   │       values-es-rUS.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-et
+│   │   │   │   │   │   │   │       values-et.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-eu
+│   │   │   │   │   │   │   │       values-eu.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-fa
+│   │   │   │   │   │   │   │       values-fa.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-fi
+│   │   │   │   │   │   │   │       values-fi.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-fr
+│   │   │   │   │   │   │   │       values-fr.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-fr-rCA
+│   │   │   │   │   │   │   │       values-fr-rCA.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-gl
+│   │   │   │   │   │   │   │       values-gl.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-gu
+│   │   │   │   │   │   │   │       values-gu.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-hi
+│   │   │   │   │   │   │   │       values-hi.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-hr
+│   │   │   │   │   │   │   │       values-hr.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-hu
+│   │   │   │   │   │   │   │       values-hu.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-hy
+│   │   │   │   │   │   │   │       values-hy.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-in
+│   │   │   │   │   │   │   │       values-in.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-is
+│   │   │   │   │   │   │   │       values-is.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-it
+│   │   │   │   │   │   │   │       values-it.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-iw
+│   │   │   │   │   │   │   │       values-iw.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ja
+│   │   │   │   │   │   │   │       values-ja.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ka
+│   │   │   │   │   │   │   │       values-ka.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-kk
+│   │   │   │   │   │   │   │       values-kk.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-km
+│   │   │   │   │   │   │   │       values-km.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-kn
+│   │   │   │   │   │   │   │       values-kn.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ko
+│   │   │   │   │   │   │   │       values-ko.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ky
+│   │   │   │   │   │   │   │       values-ky.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-lo
+│   │   │   │   │   │   │   │       values-lo.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-lt
+│   │   │   │   │   │   │   │       values-lt.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-lv
+│   │   │   │   │   │   │   │       values-lv.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-mk
+│   │   │   │   │   │   │   │       values-mk.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ml
+│   │   │   │   │   │   │   │       values-ml.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-mn
+│   │   │   │   │   │   │   │       values-mn.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-mr
+│   │   │   │   │   │   │   │       values-mr.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ms
+│   │   │   │   │   │   │   │       values-ms.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-my
+│   │   │   │   │   │   │   │       values-my.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-nb
+│   │   │   │   │   │   │   │       values-nb.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ne
+│   │   │   │   │   │   │   │       values-ne.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-nl
+│   │   │   │   │   │   │   │       values-nl.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-or
+│   │   │   │   │   │   │   │       values-or.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-pa
+│   │   │   │   │   │   │   │       values-pa.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-pl
+│   │   │   │   │   │   │   │       values-pl.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-pt
+│   │   │   │   │   │   │   │       values-pt.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-pt-rBR
+│   │   │   │   │   │   │   │       values-pt-rBR.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-pt-rPT
+│   │   │   │   │   │   │   │       values-pt-rPT.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ro
+│   │   │   │   │   │   │   │       values-ro.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ru
+│   │   │   │   │   │   │   │       values-ru.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-si
+│   │   │   │   │   │   │   │       values-si.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-sk
+│   │   │   │   │   │   │   │       values-sk.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-sl
+│   │   │   │   │   │   │   │       values-sl.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-sq
+│   │   │   │   │   │   │   │       values-sq.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-sr
+│   │   │   │   │   │   │   │       values-sr.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-sv
+│   │   │   │   │   │   │   │       values-sv.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-sw
+│   │   │   │   │   │   │   │       values-sw.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ta
+│   │   │   │   │   │   │   │       values-ta.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-te
+│   │   │   │   │   │   │   │       values-te.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-th
+│   │   │   │   │   │   │   │       values-th.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-tl
+│   │   │   │   │   │   │   │       values-tl.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-tr
+│   │   │   │   │   │   │   │       values-tr.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-uk
+│   │   │   │   │   │   │   │       values-uk.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-ur
+│   │   │   │   │   │   │   │       values-ur.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-uz
+│   │   │   │   │   │   │   │       values-uz.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-v21
+│   │   │   │   │   │   │   │       values-v21.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-v30
+│   │   │   │   │   │   │   │       values-v30.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-vi
+│   │   │   │   │   │   │   │       values-vi.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-zh-rCN
+│   │   │   │   │   │   │   │       values-zh-rCN.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-zh-rHK
+│   │   │   │   │   │   │   │       values-zh-rHK.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   ├───values-zh-rTW
+│   │   │   │   │   │   │   │       values-zh-rTW.xml
+│   │   │   │   │   │   │   │       
+│   │   │   │   │   │   │   └───values-zu
+│   │   │   │   │   │   │           values-zu.xml
+│   │   │   │   │   │   │           
+│   │   │   │   │   │   └───stripped.dir
+│   │   │   │   │   └───packageDebugResources
+│   │   │   │   │       │   compile-file-map.properties
+│   │   │   │   │       │   merger.xml
+│   │   │   │   │       │   
+│   │   │   │   │       ├───merged.dir
+│   │   │   │   │       │   └───values
+│   │   │   │   │       │           values.xml
+│   │   │   │   │       │           
+│   │   │   │   │       └───stripped.dir
+│   │   │   │   ├───debug-mergeJavaRes
+│   │   │   │   │   │   merge-state
+│   │   │   │   │   │   
+│   │   │   │   │   └───zip-cache
+│   │   │   │   │           +gt+34fUGzrvUM0zNDV3xA==
+│   │   │   │   │           +MwyevXurtZLauYIWWetEg==
+│   │   │   │   │           01evcmQiTCYAUGUQHFBhQA==
+│   │   │   │   │           1Y91HIDjqxm8HhsQep0GOw==
+│   │   │   │   │           1yozmXmnpDcNV6Gk9O0vTg==
+│   │   │   │   │           2amF6TUlQccx7e6gZ8I9gg==
+│   │   │   │   │           2paxCTcQcGPUHGixfYzfdw==
+│   │   │   │   │           3Z9v8O5+3WSjeuVhRBtC9Q==
+│   │   │   │   │           5qUGEo1YKfvJ0Bkc8wZ3sw==
+│   │   │   │   │           61Geg8KI_1CVWd533plv3A==
+│   │   │   │   │           6CaAh7Zj0f9Zyspl9Lvc2g==
+│   │   │   │   │           7EA4C81zfnZ5wST51Kp6YA==
+│   │   │   │   │           7KpFR_J1w01Y6tQ9qO4OBg==
+│   │   │   │   │           7LR_2htm1lVi1jtJHN6gxQ==
+│   │   │   │   │           7zCc_zDlAUcHONtxr6vnJA==
+│   │   │   │   │           8iK8ywv6OLjTy1IS3LtsHQ==
+│   │   │   │   │           8Krp+BHtnoWwJke0eHo1YQ==
+│   │   │   │   │           8X4QdWM8kXab9tZ66rGVdQ==
+│   │   │   │   │           95Vnn3QPwzVa_AyblulI8g==
+│   │   │   │   │           9DTv5YR7O7ujhHLKAFercQ==
+│   │   │   │   │           9I8PaUWkqahG9ar9Ud_OPA==
+│   │   │   │   │           aCwW7DLTcZCewYirYKxVnw==
+│   │   │   │   │           AH+Q5JAo9FYEwx_6Bsfgkw==
+│   │   │   │   │           AnpRL+ghJID1az3UJLPWoQ==
+│   │   │   │   │           Auf13u2+vnmWcMgYSM0J2Q==
+│   │   │   │   │           AUl67n2tzsQMX2F3B_4WLw==
+│   │   │   │   │           AVZD+QFdOPN4b4cFfvNlJQ==
+│   │   │   │   │           BnlG7+tZKIDQvnePszOYTA==
+│   │   │   │   │           bWE6Rk2ZurR2_K4HrjNECA==
+│   │   │   │   │           CdJsHYLHoWnjPiCbz1NXxQ==
+│   │   │   │   │           Cz2y4swuDA47TjI_dwj_iw==
+│   │   │   │   │           DLmPqCHTz212kmv5kjBF0A==
+│   │   │   │   │           DMIbQpt4CGcHTi0ZPrFB2A==
+│   │   │   │   │           dMRn5AvqOi8vAGz6gWuENA==
+│   │   │   │   │           doIVWoQ8D5qOJ+qVbWIvSw==
+│   │   │   │   │           dqJeBk1gEpOcGxiRrF0+8Q==
+│   │   │   │   │           Dss6xYMlXrQtit8f8Ev0uA==
+│   │   │   │   │           EE5UKXdg_dMFBx1VsbZ_iA==
+│   │   │   │   │           Em_KJ4HhsFnGkUbm6sJLjw==
+│   │   │   │   │           fpnnezTBlXv0mCC0ew26rA==
+│   │   │   │   │           FVWNU_TbUsOmPPq6ROIBOg==
+│   │   │   │   │           fxoo8_Gj0nJYtuQYQYRIpQ==
+│   │   │   │   │           G4pq3MHUwUL+dbVxiIvn3Q==
+│   │   │   │   │           GcfzhIKhaMe2cLuB1REcpQ==
+│   │   │   │   │           GK8FWUsIVX05CfpvIA8cKg==
+│   │   │   │   │           Gr5We2NqRIM7TLK+pAX94g==
+│   │   │   │   │           gX4w7Ahx6eoopxaXEfmkJQ==
+│   │   │   │   │           hxoQwBEeAAwF3m568bSYew==
+│   │   │   │   │           hZ9k5HySZGwiNH+iX6vR8w==
+│   │   │   │   │           I001SeORlZXNH3NJT2PvKQ==
+│   │   │   │   │           icTirU4VvPerWSf1mIRENg==
+│   │   │   │   │           IQF6fSw6yh5SGn_NGakE6Q==
+│   │   │   │   │           IQIoQer9WKGYn7Lt3l4b2Q==
+│   │   │   │   │           ISVzW2SgRoudLHFJBsuO6Q==
+│   │   │   │   │           ixhv4snJz1yWXf6wfjQomA==
+│   │   │   │   │           iz+o+uiyT8CFKdq_X0YGhA==
+│   │   │   │   │           jafNfkmAkgqbB2fWw_7IcA==
+│   │   │   │   │           Jq0dEhnKZ_HUFOu0STE0uA==
+│   │   │   │   │           JqQWGe488++jfrEHFnW56A==
+│   │   │   │   │           Ju+1umZHi7P8MOQYPycN1g==
+│   │   │   │   │           jV0KtdGWQZpdFIr8VEE1FA==
+│   │   │   │   │           kDkTHdprd_VTkmgZHfc9kA==
+│   │   │   │   │           KykvCKiBJUTJXHVNQdfTug==
+│   │   │   │   │           lBsZR9wHz5O61KsOcpGo3A==
+│   │   │   │   │           LkP1aEd1qSSgvALZjIIyow==
+│   │   │   │   │           Lv2Wrbo+d+wnYs_Y2ndKow==
+│   │   │   │   │           lXnIIUK+1BYAFTOmLB9ObQ==
+│   │   │   │   │           mioqq4zpgZ1rZV3qtxkH8w==
+│   │   │   │   │           MkOrZC6PVye+jWi9Pt3DTw==
+│   │   │   │   │           mMc_5xXh7ulc8byJCahATA==
+│   │   │   │   │           n+fMiZio_pwq262VXbewuQ==
+│   │   │   │   │           NXuE7Ui8nU721ZDE7vC_zw==
+│   │   │   │   │           o3yicnX7mZ0ZXR7HYJmwWw==
+│   │   │   │   │           oPzw36pLeWHt8safl1rong==
+│   │   │   │   │           OSk4WPOfMZTieOm+tJiWAQ==
+│   │   │   │   │           oUlxeSSZOQ8491qGydODjw==
+│   │   │   │   │           O_A_MhRfOymaXBXHvDrEig==
+│   │   │   │   │           pFTDUhniPNagnm7SVuQ22w==
+│   │   │   │   │           PjDK9njrsCrY4toC+YOEvA==
+│   │   │   │   │           PmQQyrNmc3g4oy1G4CGJjg==
+│   │   │   │   │           ps0l5QlWxjlP7Yv94qRiyA==
+│   │   │   │   │           RjFL4bml0e5FNVOaYJe7ZA==
+│   │   │   │   │           RKWYEzGHc5lK5FDCcBeChg==
+│   │   │   │   │           rWmKne3Bef9muesUt_HOHQ==
+│   │   │   │   │           rxOF+iDSqoxmhBSwnB8XwQ==
+│   │   │   │   │           S8TWZrBu3s_Yg4BWMysLYA==
+│   │   │   │   │           sYMi4KCTYXgXEOM+nY1vyA==
+│   │   │   │   │           TGxaegBK2DhO7vMvfpdoqA==
+│   │   │   │   │           TIcuWJMAs+O7sjXvykGnRw==
+│   │   │   │   │           tmOzSCiMUucXfy28MS1cPA==
+│   │   │   │   │           u1tmuktZWFhDvLXyR9LHgw==
+│   │   │   │   │           U5hnmy9oEGWPOGG19Xrw2A==
+│   │   │   │   │           u8ojvUC_Q6YKkJ6SQuIdNw==
+│   │   │   │   │           UmwI2jYrfc51c1ZQwQIAJw==
+│   │   │   │   │           vb0EtVw4E+KaTanff3BwRg==
+│   │   │   │   │           VMFnpZGmZMfPiqP7_ubEnw==
+│   │   │   │   │           VNbYnfPbikBEZHFaZfAA9Q==
+│   │   │   │   │           vRwUYhGlv_7PlvxDkt4gWA==
+│   │   │   │   │           vsh07gfx8HsvqMtcuXtmow==
+│   │   │   │   │           vw5BDuG3tEJd7PaL6yD9aQ==
+│   │   │   │   │           vzWqhU5_ubhnqLSZLfmR5w==
+│   │   │   │   │           w4F1JvQ60RY02qMzUWaYlQ==
+│   │   │   │   │           w9j3zg7AgFH4tBGMrkA9zQ==
+│   │   │   │   │           wtWf1x4wf5CUjxpftsB3Kw==
+│   │   │   │   │           WvPbY6Z2reu2OeiYr9E1Hg==
+│   │   │   │   │           X+raBBgWyEozAosBx2PQkw==
+│   │   │   │   │           xd2YmWwSkch2Hl0tLq_Y+w==
+│   │   │   │   │           Xu4IDDkm7zFcVvFiZjmq9g==
+│   │   │   │   │           yJY1ZR3tAqPeYtlrQO0WFA==
+│   │   │   │   │           YpbQQjbNBBGsFpkMEBvSyQ==
+│   │   │   │   │           YzLBs1EIrvS5XJpB6CT52g==
+│   │   │   │   │           zQ25Rsn8XW9YNJZdJOypZg==
+│   │   │   │   │           zv2msU_4hYgDuTvFsMUE1w==
+│   │   │   │   │           zwbGy1muRk1oHsHJuGpaqw==
+│   │   │   │   │           ZWS0f4XvF7L57zzFsixiLQ==
+│   │   │   │   │           _8mN7uwa_a3PHP2n2lOo_Q==
+│   │   │   │   │           _gCNWvihV65l63ICcmGCFA==
+│   │   │   │   │           _sUBJw9oWuO_qvDlKPosVA==
+│   │   │   │   │           
+│   │   │   │   ├───debugAndroidTest
+│   │   │   │   │   └───mergeDebugAndroidTestResources
+│   │   │   │   │       │   compile-file-map.properties
+│   │   │   │   │       │   merger.xml
+│   │   │   │   │       │   
+│   │   │   │   │       ├───merged.dir
+│   │   │   │   │       │   ├───values
+│   │   │   │   │       │   │       values.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-af
+│   │   │   │   │       │   │       values-af.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-am
+│   │   │   │   │       │   │       values-am.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ar
+│   │   │   │   │       │   │       values-ar.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-as
+│   │   │   │   │       │   │       values-as.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-az
+│   │   │   │   │       │   │       values-az.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-b+sr+Latn
+│   │   │   │   │       │   │       values-b+sr+Latn.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-be
+│   │   │   │   │       │   │       values-be.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-bg
+│   │   │   │   │       │   │       values-bg.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-bn
+│   │   │   │   │       │   │       values-bn.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-bs
+│   │   │   │   │       │   │       values-bs.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ca
+│   │   │   │   │       │   │       values-ca.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-cs
+│   │   │   │   │       │   │       values-cs.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-da
+│   │   │   │   │       │   │       values-da.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-de
+│   │   │   │   │       │   │       values-de.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-el
+│   │   │   │   │       │   │       values-el.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-en-rAU
+│   │   │   │   │       │   │       values-en-rAU.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-en-rCA
+│   │   │   │   │       │   │       values-en-rCA.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-en-rGB
+│   │   │   │   │       │   │       values-en-rGB.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-en-rIN
+│   │   │   │   │       │   │       values-en-rIN.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-en-rXC
+│   │   │   │   │       │   │       values-en-rXC.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-es
+│   │   │   │   │       │   │       values-es.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-es-rUS
+│   │   │   │   │       │   │       values-es-rUS.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-et
+│   │   │   │   │       │   │       values-et.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-eu
+│   │   │   │   │       │   │       values-eu.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-fa
+│   │   │   │   │       │   │       values-fa.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-fi
+│   │   │   │   │       │   │       values-fi.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-fr
+│   │   │   │   │       │   │       values-fr.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-fr-rCA
+│   │   │   │   │       │   │       values-fr-rCA.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-gl
+│   │   │   │   │       │   │       values-gl.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-gu
+│   │   │   │   │       │   │       values-gu.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-hi
+│   │   │   │   │       │   │       values-hi.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-hr
+│   │   │   │   │       │   │       values-hr.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-hu
+│   │   │   │   │       │   │       values-hu.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-hy
+│   │   │   │   │       │   │       values-hy.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-in
+│   │   │   │   │       │   │       values-in.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-is
+│   │   │   │   │       │   │       values-is.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-it
+│   │   │   │   │       │   │       values-it.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-iw
+│   │   │   │   │       │   │       values-iw.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ja
+│   │   │   │   │       │   │       values-ja.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ka
+│   │   │   │   │       │   │       values-ka.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-kk
+│   │   │   │   │       │   │       values-kk.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-km
+│   │   │   │   │       │   │       values-km.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-kn
+│   │   │   │   │       │   │       values-kn.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ko
+│   │   │   │   │       │   │       values-ko.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ky
+│   │   │   │   │       │   │       values-ky.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-lo
+│   │   │   │   │       │   │       values-lo.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-lt
+│   │   │   │   │       │   │       values-lt.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-lv
+│   │   │   │   │       │   │       values-lv.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-mk
+│   │   │   │   │       │   │       values-mk.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ml
+│   │   │   │   │       │   │       values-ml.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-mn
+│   │   │   │   │       │   │       values-mn.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-mr
+│   │   │   │   │       │   │       values-mr.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ms
+│   │   │   │   │       │   │       values-ms.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-my
+│   │   │   │   │       │   │       values-my.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-nb
+│   │   │   │   │       │   │       values-nb.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ne
+│   │   │   │   │       │   │       values-ne.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-nl
+│   │   │   │   │       │   │       values-nl.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-or
+│   │   │   │   │       │   │       values-or.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-pa
+│   │   │   │   │       │   │       values-pa.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-pl
+│   │   │   │   │       │   │       values-pl.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-pt
+│   │   │   │   │       │   │       values-pt.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-pt-rBR
+│   │   │   │   │       │   │       values-pt-rBR.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-pt-rPT
+│   │   │   │   │       │   │       values-pt-rPT.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ro
+│   │   │   │   │       │   │       values-ro.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ru
+│   │   │   │   │       │   │       values-ru.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-si
+│   │   │   │   │       │   │       values-si.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-sk
+│   │   │   │   │       │   │       values-sk.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-sl
+│   │   │   │   │       │   │       values-sl.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-sq
+│   │   │   │   │       │   │       values-sq.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-sr
+│   │   │   │   │       │   │       values-sr.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-sv
+│   │   │   │   │       │   │       values-sv.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-sw
+│   │   │   │   │       │   │       values-sw.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ta
+│   │   │   │   │       │   │       values-ta.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-te
+│   │   │   │   │       │   │       values-te.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-th
+│   │   │   │   │       │   │       values-th.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-tl
+│   │   │   │   │       │   │       values-tl.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-tr
+│   │   │   │   │       │   │       values-tr.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-uk
+│   │   │   │   │       │   │       values-uk.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-ur
+│   │   │   │   │       │   │       values-ur.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-uz
+│   │   │   │   │       │   │       values-uz.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-v18
+│   │   │   │   │       │   │       values-v18.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-v21
+│   │   │   │   │       │   │       values-v21.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-v28
+│   │   │   │   │       │   │       values-v28.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-vi
+│   │   │   │   │       │   │       values-vi.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-zh-rCN
+│   │   │   │   │       │   │       values-zh-rCN.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-zh-rHK
+│   │   │   │   │       │   │       values-zh-rHK.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   ├───values-zh-rTW
+│   │   │   │   │       │   │       values-zh-rTW.xml
+│   │   │   │   │       │   │       
+│   │   │   │   │       │   └───values-zu
+│   │   │   │   │       │           values-zu.xml
+│   │   │   │   │       │           
+│   │   │   │   │       └───stripped.dir
+│   │   │   │   ├───debugAndroidTest-mergeJavaRes
+│   │   │   │   │   │   merge-state
+│   │   │   │   │   │   
+│   │   │   │   │   └───zip-cache
+│   │   │   │   │           1SH1c0TgZY5XN7v18iJ8xA==
+│   │   │   │   │           3jdhaw4xMpgr4KCMhqDiFw==
+│   │   │   │   │           49Xq8_kVPhBEe65CPKa4XA==
+│   │   │   │   │           4Ygvpf5rqgd4bHVBmQ2hnA==
+│   │   │   │   │           6TEujkjDZ5AZxoVltrcCRw==
+│   │   │   │   │           9DmaBmXPxc+PTDuH3PYvoA==
+│   │   │   │   │           9zENwr7HMF2SyEYU4uBUIQ==
+│   │   │   │   │           D5UxeqAM5gekgPbRUnuFSQ==
+│   │   │   │   │           DeJgOnk1MXkl8iHfVEnFcQ==
+│   │   │   │   │           FiHfW0s9ClB5puP+CZze4A==
+│   │   │   │   │           GTQooArRUxshny3P2r8fbw==
+│   │   │   │   │           GZij953LNMis+MGI+EULYg==
+│   │   │   │   │           LdVjhhGeg_OxQnianStItg==
+│   │   │   │   │           n5chOSzIjM7OZeKtwFWENg==
+│   │   │   │   │           sqZlTeKp6N4msGprBMBDgw==
+│   │   │   │   │           Ui3rkymR1PhRZ8TmYro4_g==
+│   │   │   │   │           UiZ0auDcGMAYWZK+yecTuQ==
+│   │   │   │   │           WBM0RGLgNECpyJfR+T1aTw==
+│   │   │   │   │           
+│   │   │   │   ├───mergeDebugAndroidTestAssets
+│   │   │   │   │       merger.xml
+│   │   │   │   │       
+│   │   │   │   ├───mergeDebugAndroidTestJniLibFolders
+│   │   │   │   │       merger.xml
+│   │   │   │   │       
+│   │   │   │   ├───mergeDebugAssets
+│   │   │   │   │       merger.xml
+│   │   │   │   │       
+│   │   │   │   ├───mergeDebugJniLibFolders
+│   │   │   │   │       merger.xml
+│   │   │   │   │       
+│   │   │   │   ├───packageDebug
+│   │   │   │   │   └───tmp
+│   │   │   │   │       └───debug
+│   │   │   │   │           │   dex-renamer-state.txt
+│   │   │   │   │           │   
+│   │   │   │   │           └───zip-cache
+│   │   │   │   │                   androidResources
+│   │   │   │   │                   javaResources0
+│   │   │   │   │                   
+│   │   │   │   └───packageDebugAndroidTest
+│   │   │   │       └───tmp
+│   │   │   │           └───debugAndroidTest
+│   │   │   │               │   dex-renamer-state.txt
+│   │   │   │               │   
+│   │   │   │               └───zip-cache
+│   │   │   │                       androidResources
+│   │   │   │                       javaResources0
+│   │   │   │                       
+│   │   │   ├───java_res
+│   │   │   │   ├───debug
+│   │   │   │   │   └───processDebugJavaRes
+│   │   │   │   │       └───out
+│   │   │   │   │           ├───com
+│   │   │   │   │           │   └───spotlog
+│   │   │   │   │           │       ├───config
+│   │   │   │   │           │       ├───data
+│   │   │   │   │           │       │   ├───dao
+│   │   │   │   │           │       │   ├───entity
+│   │   │   │   │           │       │   └───repository
+│   │   │   │   │           │       ├───location
+│   │   │   │   │           │       ├───map
+│   │   │   │   │           │       ├───model
+│   │   │   │   │           │       ├───navigation
+│   │   │   │   │           │       ├───premium
+│   │   │   │   │           │       ├───theme
+│   │   │   │   │           │       ├───ui
+│   │   │   │   │           │       ├───util
+│   │   │   │   │           │       └───viewmodel
+│   │   │   │   │           └───META-INF
+│   │   │   │   │                   app_debug.kotlin_module
+│   │   │   │   │                   
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───processDebugAndroidTestJavaRes
+│   │   │   │           └───out
+│   │   │   │               ├───com
+│   │   │   │               │   └───spotlog
+│   │   │   │               └───META-INF
+│   │   │   │                       app_debugAndroidTest.kotlin_module
+│   │   │   │                       
+│   │   │   ├───linked_resources_binary_format
+│   │   │   │   ├───debug
+│   │   │   │   │   └───processDebugResources
+│   │   │   │   │           linked-resources-binary-format-debug.ap_
+│   │   │   │   │           output-metadata.json
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───processDebugAndroidTestResources
+│   │   │   │               linked-resources-binary-format.ap_
+│   │   │   │               output-metadata.json
+│   │   │   │               
+│   │   │   ├───local_only_symbol_list
+│   │   │   │   └───debug
+│   │   │   │       └───parseDebugLocalResources
+│   │   │   │               R-def.txt
+│   │   │   │               
+│   │   │   ├───manifest_merge_blame_file
+│   │   │   │   ├───debug
+│   │   │   │   │   └───processDebugMainManifest
+│   │   │   │   │           manifest-merger-blame-debug-report.txt
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───processDebugAndroidTestManifest
+│   │   │   │               manifest-merger-blame-debug-androidTest-report.txt
+│   │   │   │               
+│   │   │   ├───merged_java_res
+│   │   │   │   ├───debug
+│   │   │   │   │   └───mergeDebugJavaResource
+│   │   │   │   │           base.jar
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───mergeDebugAndroidTestJavaResource
+│   │   │   │               feature-app.jar
+│   │   │   │               
+│   │   │   ├───merged_jni_libs
+│   │   │   │   ├───debug
+│   │   │   │   │   └───mergeDebugJniLibFolders
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───mergeDebugAndroidTestJniLibFolders
+│   │   │   │           └───out
+│   │   │   ├───merged_manifest
+│   │   │   │   └───debug
+│   │   │   │       └───processDebugMainManifest
+│   │   │   │               AndroidManifest.xml
+│   │   │   │               
+│   │   │   ├───merged_manifests
+│   │   │   │   └───debug
+│   │   │   │       └───processDebugManifest
+│   │   │   │               AndroidManifest.xml
+│   │   │   │               output-metadata.json
+│   │   │   │               
+│   │   │   ├───merged_native_libs
+│   │   │   │   └───debug
+│   │   │   │       └───mergeDebugNativeLibs
+│   │   │   │           └───out
+│   │   │   │               └───lib
+│   │   │   │                   ├───arm64-v8a
+│   │   │   │                   │       libandroidx.graphics.path.so
+│   │   │   │                   │       libdatastore_shared_counter.so
+│   │   │   │                   │       
+│   │   │   │                   ├───armeabi-v7a
+│   │   │   │                   │       libandroidx.graphics.path.so
+│   │   │   │                   │       libdatastore_shared_counter.so
+│   │   │   │                   │       
+│   │   │   │                   ├───x86
+│   │   │   │                   │       libandroidx.graphics.path.so
+│   │   │   │                   │       libdatastore_shared_counter.so
+│   │   │   │                   │       
+│   │   │   │                   └───x86_64
+│   │   │   │                           libandroidx.graphics.path.so
+│   │   │   │                           libdatastore_shared_counter.so
+│   │   │   │                           
+│   │   │   ├───merged_res
+│   │   │   │   ├───debug
+│   │   │   │   │   └───mergeDebugResources
+│   │   │   │   │           drawable_ic_launcher_background.xml.flat
+│   │   │   │   │           drawable_ic_launcher_foreground.xml.flat
+│   │   │   │   │           drawable_ic_map_pin.xml.flat
+│   │   │   │   │           drawable_splash_icon.xml.flat
+│   │   │   │   │           drawable_splash_logo.png.flat
+│   │   │   │   │           font_nunito_sans_bold.ttf.flat
+│   │   │   │   │           font_nunito_sans_extrabold.ttf.flat
+│   │   │   │   │           font_nunito_sans_light.ttf.flat
+│   │   │   │   │           font_nunito_sans_regular.ttf.flat
+│   │   │   │   │           font_nunito_sans_semibold.ttf.flat
+│   │   │   │   │           mipmap-anydpi-v26_ic_launcher.xml.flat
+│   │   │   │   │           mipmap-anydpi-v26_ic_launcher_round.xml.flat
+│   │   │   │   │           mipmap-hdpi_ic_launcher.webp.flat
+│   │   │   │   │           mipmap-hdpi_ic_launcher_foreground.webp.flat
+│   │   │   │   │           mipmap-hdpi_ic_launcher_round.webp.flat
+│   │   │   │   │           mipmap-mdpi_ic_launcher.webp.flat
+│   │   │   │   │           mipmap-mdpi_ic_launcher_foreground.webp.flat
+│   │   │   │   │           mipmap-mdpi_ic_launcher_round.webp.flat
+│   │   │   │   │           mipmap-xhdpi_ic_launcher.webp.flat
+│   │   │   │   │           mipmap-xhdpi_ic_launcher_foreground.webp.flat
+│   │   │   │   │           mipmap-xhdpi_ic_launcher_round.webp.flat
+│   │   │   │   │           mipmap-xxhdpi_ic_launcher.webp.flat
+│   │   │   │   │           mipmap-xxhdpi_ic_launcher_foreground.webp.flat
+│   │   │   │   │           mipmap-xxhdpi_ic_launcher_round.webp.flat
+│   │   │   │   │           mipmap-xxxhdpi_ic_launcher.webp.flat
+│   │   │   │   │           mipmap-xxxhdpi_ic_launcher_foreground.webp.flat
+│   │   │   │   │           mipmap-xxxhdpi_ic_launcher_round.webp.flat
+│   │   │   │   │           values-af_values-af.arsc.flat
+│   │   │   │   │           values-am_values-am.arsc.flat
+│   │   │   │   │           values-ar_values-ar.arsc.flat
+│   │   │   │   │           values-as_values-as.arsc.flat
+│   │   │   │   │           values-az_values-az.arsc.flat
+│   │   │   │   │           values-b+sr+Latn_values-b+sr+Latn.arsc.flat
+│   │   │   │   │           values-be_values-be.arsc.flat
+│   │   │   │   │           values-bg_values-bg.arsc.flat
+│   │   │   │   │           values-bn_values-bn.arsc.flat
+│   │   │   │   │           values-bs_values-bs.arsc.flat
+│   │   │   │   │           values-ca_values-ca.arsc.flat
+│   │   │   │   │           values-cs_values-cs.arsc.flat
+│   │   │   │   │           values-da_values-da.arsc.flat
+│   │   │   │   │           values-de_values-de.arsc.flat
+│   │   │   │   │           values-el_values-el.arsc.flat
+│   │   │   │   │           values-en-rAU_values-en-rAU.arsc.flat
+│   │   │   │   │           values-en-rCA_values-en-rCA.arsc.flat
+│   │   │   │   │           values-en-rGB_values-en-rGB.arsc.flat
+│   │   │   │   │           values-en-rIN_values-en-rIN.arsc.flat
+│   │   │   │   │           values-en-rXC_values-en-rXC.arsc.flat
+│   │   │   │   │           values-es-rUS_values-es-rUS.arsc.flat
+│   │   │   │   │           values-es_values-es.arsc.flat
+│   │   │   │   │           values-et_values-et.arsc.flat
+│   │   │   │   │           values-eu_values-eu.arsc.flat
+│   │   │   │   │           values-fa_values-fa.arsc.flat
+│   │   │   │   │           values-fi_values-fi.arsc.flat
+│   │   │   │   │           values-fr-rCA_values-fr-rCA.arsc.flat
+│   │   │   │   │           values-fr_values-fr.arsc.flat
+│   │   │   │   │           values-gl_values-gl.arsc.flat
+│   │   │   │   │           values-gu_values-gu.arsc.flat
+│   │   │   │   │           values-hi_values-hi.arsc.flat
+│   │   │   │   │           values-hr_values-hr.arsc.flat
+│   │   │   │   │           values-hu_values-hu.arsc.flat
+│   │   │   │   │           values-hy_values-hy.arsc.flat
+│   │   │   │   │           values-in_values-in.arsc.flat
+│   │   │   │   │           values-is_values-is.arsc.flat
+│   │   │   │   │           values-it_values-it.arsc.flat
+│   │   │   │   │           values-iw_values-iw.arsc.flat
+│   │   │   │   │           values-ja_values-ja.arsc.flat
+│   │   │   │   │           values-ka_values-ka.arsc.flat
+│   │   │   │   │           values-kk_values-kk.arsc.flat
+│   │   │   │   │           values-km_values-km.arsc.flat
+│   │   │   │   │           values-kn_values-kn.arsc.flat
+│   │   │   │   │           values-ko_values-ko.arsc.flat
+│   │   │   │   │           values-ky_values-ky.arsc.flat
+│   │   │   │   │           values-lo_values-lo.arsc.flat
+│   │   │   │   │           values-lt_values-lt.arsc.flat
+│   │   │   │   │           values-lv_values-lv.arsc.flat
+│   │   │   │   │           values-mk_values-mk.arsc.flat
+│   │   │   │   │           values-ml_values-ml.arsc.flat
+│   │   │   │   │           values-mn_values-mn.arsc.flat
+│   │   │   │   │           values-mr_values-mr.arsc.flat
+│   │   │   │   │           values-ms_values-ms.arsc.flat
+│   │   │   │   │           values-my_values-my.arsc.flat
+│   │   │   │   │           values-nb_values-nb.arsc.flat
+│   │   │   │   │           values-ne_values-ne.arsc.flat
+│   │   │   │   │           values-nl_values-nl.arsc.flat
+│   │   │   │   │           values-or_values-or.arsc.flat
+│   │   │   │   │           values-pa_values-pa.arsc.flat
+│   │   │   │   │           values-pl_values-pl.arsc.flat
+│   │   │   │   │           values-pt-rBR_values-pt-rBR.arsc.flat
+│   │   │   │   │           values-pt-rPT_values-pt-rPT.arsc.flat
+│   │   │   │   │           values-pt_values-pt.arsc.flat
+│   │   │   │   │           values-ro_values-ro.arsc.flat
+│   │   │   │   │           values-ru_values-ru.arsc.flat
+│   │   │   │   │           values-si_values-si.arsc.flat
+│   │   │   │   │           values-sk_values-sk.arsc.flat
+│   │   │   │   │           values-sl_values-sl.arsc.flat
+│   │   │   │   │           values-sq_values-sq.arsc.flat
+│   │   │   │   │           values-sr_values-sr.arsc.flat
+│   │   │   │   │           values-sv_values-sv.arsc.flat
+│   │   │   │   │           values-sw_values-sw.arsc.flat
+│   │   │   │   │           values-ta_values-ta.arsc.flat
+│   │   │   │   │           values-te_values-te.arsc.flat
+│   │   │   │   │           values-th_values-th.arsc.flat
+│   │   │   │   │           values-tl_values-tl.arsc.flat
+│   │   │   │   │           values-tr_values-tr.arsc.flat
+│   │   │   │   │           values-uk_values-uk.arsc.flat
+│   │   │   │   │           values-ur_values-ur.arsc.flat
+│   │   │   │   │           values-uz_values-uz.arsc.flat
+│   │   │   │   │           values-v21_values-v21.arsc.flat
+│   │   │   │   │           values-v30_values-v30.arsc.flat
+│   │   │   │   │           values-vi_values-vi.arsc.flat
+│   │   │   │   │           values-zh-rCN_values-zh-rCN.arsc.flat
+│   │   │   │   │           values-zh-rHK_values-zh-rHK.arsc.flat
+│   │   │   │   │           values-zh-rTW_values-zh-rTW.arsc.flat
+│   │   │   │   │           values-zu_values-zu.arsc.flat
+│   │   │   │   │           values_values.arsc.flat
+│   │   │   │   │           xml_backup_rules.xml.flat
+│   │   │   │   │           xml_data_extraction_rules.xml.flat
+│   │   │   │   │           xml_file_paths.xml.flat
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───mergeDebugAndroidTestResources
+│   │   │   │               values-af_values-af.arsc.flat
+│   │   │   │               values-am_values-am.arsc.flat
+│   │   │   │               values-ar_values-ar.arsc.flat
+│   │   │   │               values-as_values-as.arsc.flat
+│   │   │   │               values-az_values-az.arsc.flat
+│   │   │   │               values-b+sr+Latn_values-b+sr+Latn.arsc.flat
+│   │   │   │               values-be_values-be.arsc.flat
+│   │   │   │               values-bg_values-bg.arsc.flat
+│   │   │   │               values-bn_values-bn.arsc.flat
+│   │   │   │               values-bs_values-bs.arsc.flat
+│   │   │   │               values-ca_values-ca.arsc.flat
+│   │   │   │               values-cs_values-cs.arsc.flat
+│   │   │   │               values-da_values-da.arsc.flat
+│   │   │   │               values-de_values-de.arsc.flat
+│   │   │   │               values-el_values-el.arsc.flat
+│   │   │   │               values-en-rAU_values-en-rAU.arsc.flat
+│   │   │   │               values-en-rCA_values-en-rCA.arsc.flat
+│   │   │   │               values-en-rGB_values-en-rGB.arsc.flat
+│   │   │   │               values-en-rIN_values-en-rIN.arsc.flat
+│   │   │   │               values-en-rXC_values-en-rXC.arsc.flat
+│   │   │   │               values-es-rUS_values-es-rUS.arsc.flat
+│   │   │   │               values-es_values-es.arsc.flat
+│   │   │   │               values-et_values-et.arsc.flat
+│   │   │   │               values-eu_values-eu.arsc.flat
+│   │   │   │               values-fa_values-fa.arsc.flat
+│   │   │   │               values-fi_values-fi.arsc.flat
+│   │   │   │               values-fr-rCA_values-fr-rCA.arsc.flat
+│   │   │   │               values-fr_values-fr.arsc.flat
+│   │   │   │               values-gl_values-gl.arsc.flat
+│   │   │   │               values-gu_values-gu.arsc.flat
+│   │   │   │               values-hi_values-hi.arsc.flat
+│   │   │   │               values-hr_values-hr.arsc.flat
+│   │   │   │               values-hu_values-hu.arsc.flat
+│   │   │   │               values-hy_values-hy.arsc.flat
+│   │   │   │               values-in_values-in.arsc.flat
+│   │   │   │               values-is_values-is.arsc.flat
+│   │   │   │               values-it_values-it.arsc.flat
+│   │   │   │               values-iw_values-iw.arsc.flat
+│   │   │   │               values-ja_values-ja.arsc.flat
+│   │   │   │               values-ka_values-ka.arsc.flat
+│   │   │   │               values-kk_values-kk.arsc.flat
+│   │   │   │               values-km_values-km.arsc.flat
+│   │   │   │               values-kn_values-kn.arsc.flat
+│   │   │   │               values-ko_values-ko.arsc.flat
+│   │   │   │               values-ky_values-ky.arsc.flat
+│   │   │   │               values-lo_values-lo.arsc.flat
+│   │   │   │               values-lt_values-lt.arsc.flat
+│   │   │   │               values-lv_values-lv.arsc.flat
+│   │   │   │               values-mk_values-mk.arsc.flat
+│   │   │   │               values-ml_values-ml.arsc.flat
+│   │   │   │               values-mn_values-mn.arsc.flat
+│   │   │   │               values-mr_values-mr.arsc.flat
+│   │   │   │               values-ms_values-ms.arsc.flat
+│   │   │   │               values-my_values-my.arsc.flat
+│   │   │   │               values-nb_values-nb.arsc.flat
+│   │   │   │               values-ne_values-ne.arsc.flat
+│   │   │   │               values-nl_values-nl.arsc.flat
+│   │   │   │               values-or_values-or.arsc.flat
+│   │   │   │               values-pa_values-pa.arsc.flat
+│   │   │   │               values-pl_values-pl.arsc.flat
+│   │   │   │               values-pt-rBR_values-pt-rBR.arsc.flat
+│   │   │   │               values-pt-rPT_values-pt-rPT.arsc.flat
+│   │   │   │               values-pt_values-pt.arsc.flat
+│   │   │   │               values-ro_values-ro.arsc.flat
+│   │   │   │               values-ru_values-ru.arsc.flat
+│   │   │   │               values-si_values-si.arsc.flat
+│   │   │   │               values-sk_values-sk.arsc.flat
+│   │   │   │               values-sl_values-sl.arsc.flat
+│   │   │   │               values-sq_values-sq.arsc.flat
+│   │   │   │               values-sr_values-sr.arsc.flat
+│   │   │   │               values-sv_values-sv.arsc.flat
+│   │   │   │               values-sw_values-sw.arsc.flat
+│   │   │   │               values-ta_values-ta.arsc.flat
+│   │   │   │               values-te_values-te.arsc.flat
+│   │   │   │               values-th_values-th.arsc.flat
+│   │   │   │               values-tl_values-tl.arsc.flat
+│   │   │   │               values-tr_values-tr.arsc.flat
+│   │   │   │               values-uk_values-uk.arsc.flat
+│   │   │   │               values-ur_values-ur.arsc.flat
+│   │   │   │               values-uz_values-uz.arsc.flat
+│   │   │   │               values-v18_values-v18.arsc.flat
+│   │   │   │               values-v21_values-v21.arsc.flat
+│   │   │   │               values-v28_values-v28.arsc.flat
+│   │   │   │               values-vi_values-vi.arsc.flat
+│   │   │   │               values-zh-rCN_values-zh-rCN.arsc.flat
+│   │   │   │               values-zh-rHK_values-zh-rHK.arsc.flat
+│   │   │   │               values-zh-rTW_values-zh-rTW.arsc.flat
+│   │   │   │               values-zu_values-zu.arsc.flat
+│   │   │   │               values_values.arsc.flat
+│   │   │   │               
+│   │   │   ├───merged_res_blame_folder
+│   │   │   │   ├───debug
+│   │   │   │   │   └───mergeDebugResources
+│   │   │   │   │       └───out
+│   │   │   │   │           ├───multi-v2
+│   │   │   │   │           │       mergeDebugResources.json
+│   │   │   │   │           │       values-af.json
+│   │   │   │   │           │       values-am.json
+│   │   │   │   │           │       values-ar.json
+│   │   │   │   │           │       values-as.json
+│   │   │   │   │           │       values-az.json
+│   │   │   │   │           │       values-b+sr+Latn.json
+│   │   │   │   │           │       values-be.json
+│   │   │   │   │           │       values-bg.json
+│   │   │   │   │           │       values-bn.json
+│   │   │   │   │           │       values-bs.json
+│   │   │   │   │           │       values-ca.json
+│   │   │   │   │           │       values-cs.json
+│   │   │   │   │           │       values-da.json
+│   │   │   │   │           │       values-de.json
+│   │   │   │   │           │       values-el.json
+│   │   │   │   │           │       values-en-rAU.json
+│   │   │   │   │           │       values-en-rCA.json
+│   │   │   │   │           │       values-en-rGB.json
+│   │   │   │   │           │       values-en-rIN.json
+│   │   │   │   │           │       values-en-rXC.json
+│   │   │   │   │           │       values-es-rUS.json
+│   │   │   │   │           │       values-es.json
+│   │   │   │   │           │       values-et.json
+│   │   │   │   │           │       values-eu.json
+│   │   │   │   │           │       values-fa.json
+│   │   │   │   │           │       values-fi.json
+│   │   │   │   │           │       values-fr-rCA.json
+│   │   │   │   │           │       values-fr.json
+│   │   │   │   │           │       values-gl.json
+│   │   │   │   │           │       values-gu.json
+│   │   │   │   │           │       values-hi.json
+│   │   │   │   │           │       values-hr.json
+│   │   │   │   │           │       values-hu.json
+│   │   │   │   │           │       values-hy.json
+│   │   │   │   │           │       values-in.json
+│   │   │   │   │           │       values-is.json
+│   │   │   │   │           │       values-it.json
+│   │   │   │   │           │       values-iw.json
+│   │   │   │   │           │       values-ja.json
+│   │   │   │   │           │       values-ka.json
+│   │   │   │   │           │       values-kk.json
+│   │   │   │   │           │       values-km.json
+│   │   │   │   │           │       values-kn.json
+│   │   │   │   │           │       values-ko.json
+│   │   │   │   │           │       values-ky.json
+│   │   │   │   │           │       values-lo.json
+│   │   │   │   │           │       values-lt.json
+│   │   │   │   │           │       values-lv.json
+│   │   │   │   │           │       values-mk.json
+│   │   │   │   │           │       values-ml.json
+│   │   │   │   │           │       values-mn.json
+│   │   │   │   │           │       values-mr.json
+│   │   │   │   │           │       values-ms.json
+│   │   │   │   │           │       values-my.json
+│   │   │   │   │           │       values-nb.json
+│   │   │   │   │           │       values-ne.json
+│   │   │   │   │           │       values-nl.json
+│   │   │   │   │           │       values-or.json
+│   │   │   │   │           │       values-pa.json
+│   │   │   │   │           │       values-pl.json
+│   │   │   │   │           │       values-pt-rBR.json
+│   │   │   │   │           │       values-pt-rPT.json
+│   │   │   │   │           │       values-pt.json
+│   │   │   │   │           │       values-ro.json
+│   │   │   │   │           │       values-ru.json
+│   │   │   │   │           │       values-si.json
+│   │   │   │   │           │       values-sk.json
+│   │   │   │   │           │       values-sl.json
+│   │   │   │   │           │       values-sq.json
+│   │   │   │   │           │       values-sr.json
+│   │   │   │   │           │       values-sv.json
+│   │   │   │   │           │       values-sw.json
+│   │   │   │   │           │       values-ta.json
+│   │   │   │   │           │       values-te.json
+│   │   │   │   │           │       values-th.json
+│   │   │   │   │           │       values-tl.json
+│   │   │   │   │           │       values-tr.json
+│   │   │   │   │           │       values-uk.json
+│   │   │   │   │           │       values-ur.json
+│   │   │   │   │           │       values-uz.json
+│   │   │   │   │           │       values-v21.json
+│   │   │   │   │           │       values-v30.json
+│   │   │   │   │           │       values-vi.json
+│   │   │   │   │           │       values-zh-rCN.json
+│   │   │   │   │           │       values-zh-rHK.json
+│   │   │   │   │           │       values-zh-rTW.json
+│   │   │   │   │           │       values-zu.json
+│   │   │   │   │           │       values.json
+│   │   │   │   │           │       
+│   │   │   │   │           └───single
+│   │   │   │   │                   mergeDebugResources.json
+│   │   │   │   │                   
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───mergeDebugAndroidTestResources
+│   │   │   │           └───out
+│   │   │   │               └───multi-v2
+│   │   │   │                       mergeDebugAndroidTestResources.json
+│   │   │   │                       values-af.json
+│   │   │   │                       values-am.json
+│   │   │   │                       values-ar.json
+│   │   │   │                       values-as.json
+│   │   │   │                       values-az.json
+│   │   │   │                       values-b+sr+Latn.json
+│   │   │   │                       values-be.json
+│   │   │   │                       values-bg.json
+│   │   │   │                       values-bn.json
+│   │   │   │                       values-bs.json
+│   │   │   │                       values-ca.json
+│   │   │   │                       values-cs.json
+│   │   │   │                       values-da.json
+│   │   │   │                       values-de.json
+│   │   │   │                       values-el.json
+│   │   │   │                       values-en-rAU.json
+│   │   │   │                       values-en-rCA.json
+│   │   │   │                       values-en-rGB.json
+│   │   │   │                       values-en-rIN.json
+│   │   │   │                       values-en-rXC.json
+│   │   │   │                       values-es-rUS.json
+│   │   │   │                       values-es.json
+│   │   │   │                       values-et.json
+│   │   │   │                       values-eu.json
+│   │   │   │                       values-fa.json
+│   │   │   │                       values-fi.json
+│   │   │   │                       values-fr-rCA.json
+│   │   │   │                       values-fr.json
+│   │   │   │                       values-gl.json
+│   │   │   │                       values-gu.json
+│   │   │   │                       values-hi.json
+│   │   │   │                       values-hr.json
+│   │   │   │                       values-hu.json
+│   │   │   │                       values-hy.json
+│   │   │   │                       values-in.json
+│   │   │   │                       values-is.json
+│   │   │   │                       values-it.json
+│   │   │   │                       values-iw.json
+│   │   │   │                       values-ja.json
+│   │   │   │                       values-ka.json
+│   │   │   │                       values-kk.json
+│   │   │   │                       values-km.json
+│   │   │   │                       values-kn.json
+│   │   │   │                       values-ko.json
+│   │   │   │                       values-ky.json
+│   │   │   │                       values-lo.json
+│   │   │   │                       values-lt.json
+│   │   │   │                       values-lv.json
+│   │   │   │                       values-mk.json
+│   │   │   │                       values-ml.json
+│   │   │   │                       values-mn.json
+│   │   │   │                       values-mr.json
+│   │   │   │                       values-ms.json
+│   │   │   │                       values-my.json
+│   │   │   │                       values-nb.json
+│   │   │   │                       values-ne.json
+│   │   │   │                       values-nl.json
+│   │   │   │                       values-or.json
+│   │   │   │                       values-pa.json
+│   │   │   │                       values-pl.json
+│   │   │   │                       values-pt-rBR.json
+│   │   │   │                       values-pt-rPT.json
+│   │   │   │                       values-pt.json
+│   │   │   │                       values-ro.json
+│   │   │   │                       values-ru.json
+│   │   │   │                       values-si.json
+│   │   │   │                       values-sk.json
+│   │   │   │                       values-sl.json
+│   │   │   │                       values-sq.json
+│   │   │   │                       values-sr.json
+│   │   │   │                       values-sv.json
+│   │   │   │                       values-sw.json
+│   │   │   │                       values-ta.json
+│   │   │   │                       values-te.json
+│   │   │   │                       values-th.json
+│   │   │   │                       values-tl.json
+│   │   │   │                       values-tr.json
+│   │   │   │                       values-uk.json
+│   │   │   │                       values-ur.json
+│   │   │   │                       values-uz.json
+│   │   │   │                       values-v18.json
+│   │   │   │                       values-v21.json
+│   │   │   │                       values-v28.json
+│   │   │   │                       values-vi.json
+│   │   │   │                       values-zh-rCN.json
+│   │   │   │                       values-zh-rHK.json
+│   │   │   │                       values-zh-rTW.json
+│   │   │   │                       values-zu.json
+│   │   │   │                       values.json
+│   │   │   │                       
+│   │   │   ├───merged_test_only_native_libs
+│   │   │   │   └───debug
+│   │   │   │       └───mergeDebugNativeLibs
+│   │   │   │           └───out
+│   │   │   ├───mixed_scope_dex_archive
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   ├───navigation_json
+│   │   │   │   └───debug
+│   │   │   │       └───extractDeepLinksDebug
+│   │   │   │               navigation.json
+│   │   │   │               
+│   │   │   ├───nested_resources_validation_report
+│   │   │   │   ├───debug
+│   │   │   │   │   └───generateDebugResources
+│   │   │   │   │           nestedResourcesValidationReport.txt
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───generateDebugAndroidTestResources
+│   │   │   │               nestedResourcesValidationReport.txt
+│   │   │   │               
+│   │   │   ├───packaged_manifests
+│   │   │   │   ├───debug
+│   │   │   │   │   └───processDebugManifestForPackage
+│   │   │   │   │           AndroidManifest.xml
+│   │   │   │   │           output-metadata.json
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───processDebugAndroidTestManifest
+│   │   │   │               AndroidManifest.xml
+│   │   │   │               output-metadata.json
+│   │   │   │               
+│   │   │   ├───packaged_res
+│   │   │   │   └───debug
+│   │   │   │       └───packageDebugResources
+│   │   │   │           ├───drawable
+│   │   │   │           │       ic_launcher_background.xml
+│   │   │   │           │       ic_launcher_foreground.xml
+│   │   │   │           │       ic_map_pin.xml
+│   │   │   │           │       splash_icon.xml
+│   │   │   │           │       splash_logo.png
+│   │   │   │           │       
+│   │   │   │           ├───font
+│   │   │   │           │       nunito_sans_bold.ttf
+│   │   │   │           │       nunito_sans_extrabold.ttf
+│   │   │   │           │       nunito_sans_light.ttf
+│   │   │   │           │       nunito_sans_regular.ttf
+│   │   │   │           │       nunito_sans_semibold.ttf
+│   │   │   │           │       
+│   │   │   │           ├───mipmap-anydpi-v26
+│   │   │   │           │       ic_launcher.xml
+│   │   │   │           │       ic_launcher_round.xml
+│   │   │   │           │       
+│   │   │   │           ├───mipmap-hdpi-v4
+│   │   │   │           │       ic_launcher.webp
+│   │   │   │           │       ic_launcher_foreground.webp
+│   │   │   │           │       ic_launcher_round.webp
+│   │   │   │           │       
+│   │   │   │           ├───mipmap-mdpi-v4
+│   │   │   │           │       ic_launcher.webp
+│   │   │   │           │       ic_launcher_foreground.webp
+│   │   │   │           │       ic_launcher_round.webp
+│   │   │   │           │       
+│   │   │   │           ├───mipmap-xhdpi-v4
+│   │   │   │           │       ic_launcher.webp
+│   │   │   │           │       ic_launcher_foreground.webp
+│   │   │   │           │       ic_launcher_round.webp
+│   │   │   │           │       
+│   │   │   │           ├───mipmap-xxhdpi-v4
+│   │   │   │           │       ic_launcher.webp
+│   │   │   │           │       ic_launcher_foreground.webp
+│   │   │   │           │       ic_launcher_round.webp
+│   │   │   │           │       
+│   │   │   │           ├───mipmap-xxxhdpi-v4
+│   │   │   │           │       ic_launcher.webp
+│   │   │   │           │       ic_launcher_foreground.webp
+│   │   │   │           │       ic_launcher_round.webp
+│   │   │   │           │       
+│   │   │   │           ├───values
+│   │   │   │           │       values.xml
+│   │   │   │           │       
+│   │   │   │           └───xml
+│   │   │   │                   backup_rules.xml
+│   │   │   │                   data_extraction_rules.xml
+│   │   │   │                   file_paths.xml
+│   │   │   │                   
+│   │   │   ├───project_dex_archive
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   │           │   39f7e6fb791fea6caa0bd6a508222a6d323bff0f745d6db19e13bf3224c516f4_0.jar
+│   │   │   │   │           │   39f7e6fb791fea6caa0bd6a508222a6d323bff0f745d6db19e13bf3224c516f4_1.jar
+│   │   │   │   │           │   39f7e6fb791fea6caa0bd6a508222a6d323bff0f745d6db19e13bf3224c516f4_2.jar
+│   │   │   │   │           │   39f7e6fb791fea6caa0bd6a508222a6d323bff0f745d6db19e13bf3224c516f4_3.jar
+│   │   │   │   │           │   
+│   │   │   │   │           └───com
+│   │   │   │   │               └───spotlog
+│   │   │   │   │                   │   ComposableSingletons$MainActivityKt.dex
+│   │   │   │   │                   │   MainActivity.dex
+│   │   │   │   │                   │   
+│   │   │   │   │                   ├───config
+│   │   │   │   │                   │       ConfigManager$Companion.dex
+│   │   │   │   │                   │       ConfigManager.dex
+│   │   │   │   │                   │       
+│   │   │   │   │                   ├───data
+│   │   │   │   │                   │   │   AppDatabase$Companion.dex
+│   │   │   │   │                   │   │   AppDatabase.dex
+│   │   │   │   │                   │   │   AppDatabaseKt$MIGRATION_3_4$1.dex
+│   │   │   │   │                   │   │   AppDatabaseKt$MIGRATION_4_5$1.dex
+│   │   │   │   │                   │   │   AppDatabaseKt$MIGRATION_5_6$1.dex
+│   │   │   │   │                   │   │   AppDatabaseKt.dex
+│   │   │   │   │                   │   │   AppDatabase_Impl$createOpenDelegate$_openDelegate$1.dex
+│   │   │   │   │                   │   │   AppDatabase_Impl.dex
+│   │   │   │   │                   │   │   ImportParser.dex
+│   │   │   │   │                   │   │   ImportResult$Error.dex
+│   │   │   │   │                   │   │   ImportResult$PartialSuccess.dex
+│   │   │   │   │                   │   │   ImportResult$Success.dex
+│   │   │   │   │                   │   │   ImportResult.dex
+│   │   │   │   │                   │   │   ImportValidationError$EmptyPlaceName.dex
+│   │   │   │   │                   │   │   ImportValidationError$InvalidCoordinates.dex
+│   │   │   │   │                   │   │   ImportValidationError$InvalidJson.dex
+│   │   │   │   │                   │   │   ImportValidationError$InvalidTimestamp.dex
+│   │   │   │   │                   │   │   ImportValidationError$UnsupportedVersion.dex
+│   │   │   │   │                   │   │   ImportValidationError.dex
+│   │   │   │   │                   │   │   ImportVisit.dex
+│   │   │   │   │                   │   │   NominatimGeocoder$fetchReverseGeocode$2.dex
+│   │   │   │   │                   │   │   NominatimGeocoder$reverseGeocode$1.dex
+│   │   │   │   │                   │   │   NominatimGeocoder.dex
+│   │   │   │   │                   │   │   PoiRepository$fetchPoiJson$2.dex
+│   │   │   │   │                   │   │   PoiRepository$getNearby$1.dex
+│   │   │   │   │                   │   │   PoiRepository$getNearby$json$1.dex
+│   │   │   │   │                   │   │   PoiRepository$logDebug$2.dex
+│   │   │   │   │                   │   │   PoiRepository.dex
+│   │   │   │   │                   │   │   SettingsDataStore$Companion.dex
+│   │   │   │   │                   │   │   SettingsDataStore$setAskPhotoOnVisit$2.dex
+│   │   │   │   │                   │   │   SettingsDataStore$special$$inlined$map$1$2$1.dex
+│   │   │   │   │                   │   │   SettingsDataStore$special$$inlined$map$1$2.dex
+│   │   │   │   │                   │   │   SettingsDataStore$special$$inlined$map$1.dex
+│   │   │   │   │                   │   │   SettingsDataStore.dex
+│   │   │   │   │                   │   │   SettingsDataStoreKt.dex
+│   │   │   │   │                   │   │   ValidatedImportPlace.dex
+│   │   │   │   │                   │   │   
+│   │   │   │   │                   │   ├───dao
+│   │   │   │   │                   │   │       CountryStatRaw.dex
+│   │   │   │   │                   │   │       GeocodeCacheDao.dex
+│   │   │   │   │                   │   │       GeocodeCacheDao_Impl$1.dex
+│   │   │   │   │                   │   │       GeocodeCacheDao_Impl$Companion.dex
+│   │   │   │   │                   │   │       GeocodeCacheDao_Impl.dex
+│   │   │   │   │                   │   │       PhotoDao.dex
+│   │   │   │   │                   │   │       PhotoDao_Impl$1.dex
+│   │   │   │   │                   │   │       PhotoDao_Impl$Companion.dex
+│   │   │   │   │                   │   │       PhotoDao_Impl$WhenMappings.dex
+│   │   │   │   │                   │   │       PhotoDao_Impl.dex
+│   │   │   │   │                   │   │       PlaceCardWithCover.dex
+│   │   │   │   │                   │   │       PlaceDao.dex
+│   │   │   │   │                   │   │       PlaceDao_Impl$1.dex
+│   │   │   │   │                   │   │       PlaceDao_Impl$Companion.dex
+│   │   │   │   │                   │   │       PlaceDao_Impl.dex
+│   │   │   │   │                   │   │       RegionStatRaw.dex
+│   │   │   │   │                   │   │       VisitDao.dex
+│   │   │   │   │                   │   │       VisitDao_Impl$1.dex
+│   │   │   │   │                   │   │       VisitDao_Impl$2.dex
+│   │   │   │   │                   │   │       VisitDao_Impl$Companion.dex
+│   │   │   │   │                   │   │       VisitDao_Impl$WhenMappings.dex
+│   │   │   │   │                   │   │       VisitDao_Impl.dex
+│   │   │   │   │                   │   │       VisitWithPlace.dex
+│   │   │   │   │                   │   │       
+│   │   │   │   │                   │   ├───entity
+│   │   │   │   │                   │   │       GeocodeCacheEntity.dex
+│   │   │   │   │                   │   │       PhotoEntity.dex
+│   │   │   │   │                   │   │       PhotoSource.dex
+│   │   │   │   │                   │   │       PlaceEntity.dex
+│   │   │   │   │                   │   │       VisitEntity.dex
+│   │   │   │   │                   │   │       VisitSource.dex
+│   │   │   │   │                   │   │       
+│   │   │   │   │                   │   └───repository
+│   │   │   │   │                   │           ImportRepository$importFromFile$2.dex
+│   │   │   │   │                   │           ImportRepository$importValidatedPlaces$2.dex
+│   │   │   │   │                   │           ImportRepository.dex
+│   │   │   │   │                   │           PlaceRepository$addHistoricalVisitToExistingPlace$2.dex
+│   │   │   │   │                   │           PlaceRepository$addManualCheckin$2$placeId$1.dex
+│   │   │   │   │                   │           PlaceRepository$addManualCheckin$2.dex
+│   │   │   │   │                   │           PlaceRepository$addPhotoToPlace$2.dex
+│   │   │   │   │                   │           PlaceRepository$addPhotoToVisit$2.dex
+│   │   │   │   │                   │           PlaceRepository$clearCoverPhoto$2.dex
+│   │   │   │   │                   │           PlaceRepository$deletePhoto$2.dex
+│   │   │   │   │                   │           PlaceRepository$deleteVisit$2.dex
+│   │   │   │   │                   │           PlaceRepository$ensureCountryForPlace$2.dex
+│   │   │   │   │                   │           PlaceRepository$fillAllMissingCountries$2.dex
+│   │   │   │   │                   │           PlaceRepository$getPlaceById$2.dex
+│   │   │   │   │                   │           PlaceRepository$getPlaceFlow$2.dex
+│   │   │   │   │                   │           PlaceRepository$setCoverPhoto$2$1.dex
+│   │   │   │   │                   │           PlaceRepository$setCoverPhoto$2.dex
+│   │   │   │   │                   │           PlaceRepository$updateCheckinDetails$2$1.dex
+│   │   │   │   │                   │           PlaceRepository$updateCheckinDetails$2.dex
+│   │   │   │   │                   │           PlaceRepository$updatePlaceCountry$2.dex
+│   │   │   │   │                   │           PlaceRepository$updatePlaceInfo$2$1.dex
+│   │   │   │   │                   │           PlaceRepository$updatePlaceInfo$2.dex
+│   │   │   │   │                   │           PlaceRepository.dex
+│   │   │   │   │                   │           
+│   │   │   │   │                   ├───location
+│   │   │   │   │                   │       LocationProvider$Companion.dex
+│   │   │   │   │                   │       LocationProvider$refresh$1.dex
+│   │   │   │   │                   │       LocationProvider$refreshInternal$2$location$1.dex
+│   │   │   │   │                   │       LocationProvider$refreshInternal$2.dex
+│   │   │   │   │                   │       LocationProvider.dex
+│   │   │   │   │                   │       
+│   │   │   │   │                   ├───map
+│   │   │   │   │                   │       MapUtilsKt.dex
+│   │   │   │   │                   │       MarkerFactory.dex
+│   │   │   │   │                   │       
+│   │   │   │   │                   ├───model
+│   │   │   │   │                   │       MarkerData.dex
+│   │   │   │   │                   │       PoiData.dex
+│   │   │   │   │                   │       
+│   │   │   │   │                   ├───navigation
+│   │   │   │   │                   │       BottomNavItem.dex
+│   │   │   │   │                   │       NavGraphKt.dex
+│   │   │   │   │                   │       Routes.dex
+│   │   │   │   │                   │       
+│   │   │   │   │                   ├───premium
+│   │   │   │   │                   │       Feature.dex
+│   │   │   │   │                   │       FeatureGate.dex
+│   │   │   │   │                   │       PremiumFeatureGate$WhenMappings.dex
+│   │   │   │   │                   │       PremiumFeatureGate.dex
+│   │   │   │   │                   │       PremiumManager$special$$inlined$map$1$2$1.dex
+│   │   │   │   │                   │       PremiumManager$special$$inlined$map$1$2.dex
+│   │   │   │   │                   │       PremiumManager$special$$inlined$map$1.dex
+│   │   │   │   │                   │       PremiumManager.dex
+│   │   │   │   │                   │       PremiumManagerKt.dex
+│   │   │   │   │                   │       
+│   │   │   │   │                   ├───theme
+│   │   │   │   │                   │       ColorKt.dex
+│   │   │   │   │                   │       ShapeKt.dex
+│   │   │   │   │                   │       Spacing.dex
+│   │   │   │   │                   │       ThemeKt.dex
+│   │   │   │   │                   │       TypeKt.dex
+│   │   │   │   │                   │       
+│   │   │   │   │                   ├───ui
+│   │   │   │   │                   │       AddHistoricalVisitDialogKt$WhenMappings.dex
+│   │   │   │   │                   │       AddHistoricalVisitDialogKt.dex
+│   │   │   │   │                   │       AddOldPlaceFormKt$AddOldPlaceForm$1$1.dex
+│   │   │   │   │                   │       AddOldPlaceFormKt$AddOldPlaceForm$2$4$1$2$1$1$1$1.dex
+│   │   │   │   │                   │       AddOldPlaceFormKt$AddOldPlaceForm$2$4$1$2$1.dex
+│   │   │   │   │                   │       AddOldPlaceFormKt$AddOldPlaceForm$lambda$57$lambda$46$lambda$45$$inlined$items$default$1.dex
+│   │   │   │   │                   │       AddOldPlaceFormKt$AddOldPlaceForm$lambda$57$lambda$46$lambda$45$$inlined$items$default$2.dex
+│   │   │   │   │                   │       AddOldPlaceFormKt$AddOldPlaceForm$lambda$57$lambda$46$lambda$45$$inlined$items$default$3.dex
+│   │   │   │   │                   │       AddOldPlaceFormKt$AddOldPlaceForm$lambda$57$lambda$46$lambda$45$$inlined$items$default$4.dex
+│   │   │   │   │                   │       AddOldPlaceFormKt.dex
+│   │   │   │   │                   │       AddVisitDialogKt.dex
+│   │   │   │   │                   │       ComposableSingletons$AddHistoricalVisitDialogKt.dex
+│   │   │   │   │                   │       ComposableSingletons$AddOldPlaceFormKt.dex
+│   │   │   │   │                   │       ComposableSingletons$AddVisitDialogKt.dex
+│   │   │   │   │                   │       ComposableSingletons$EditPlaceDialogKt.dex
+│   │   │   │   │                   │       ComposableSingletons$FullScreenPhotoViewerKt.dex
+│   │   │   │   │                   │       ComposableSingletons$ImportScreenKt.dex
+│   │   │   │   │                   │       ComposableSingletons$MapScreenKt.dex
+│   │   │   │   │                   │       ComposableSingletons$PhotoGalleryScreenKt.dex
+│   │   │   │   │                   │       ComposableSingletons$PlaceDetailScreenKt.dex
+│   │   │   │   │                   │       ComposableSingletons$PlacesScreenKt.dex
+│   │   │   │   │                   │       ComposableSingletons$SettingsScreenKt.dex
+│   │   │   │   │                   │       ComposableSingletons$StatisticsScreenKt.dex
+│   │   │   │   │                   │       EditPlaceDialogKt.dex
+│   │   │   │   │                   │       FullScreenPhotoViewerKt$ZoomableImage$2$1.dex
+│   │   │   │   │                   │       FullScreenPhotoViewerKt.dex
+│   │   │   │   │                   │       HistoricalVisitStep.dex
+│   │   │   │   │                   │       ImportScreenKt$ImportScreen$1$1.dex
+│   │   │   │   │                   │       ImportScreenKt.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$10$1$1$2$1$2$1$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$10$1$1$2$1$2$2.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$10$1$1$4$1$2$1$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$10$1$1$4$1$2$2.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$14$1$1$1$1$eventsReceiver$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$3$1$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$3$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$5$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$6$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$7$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$8$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$lambda$33$lambda$32$$inlined$onDispose$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$52$lambda$51$$inlined$items$default$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$52$lambda$51$$inlined$items$default$2.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$52$lambda$51$$inlined$items$default$3.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$52$lambda$51$$inlined$items$default$4.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$58$lambda$57$$inlined$items$default$1.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$58$lambda$57$$inlined$items$default$2.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$58$lambda$57$$inlined$items$default$3.dex
+│   │   │   │   │                   │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$58$lambda$57$$inlined$items$default$4.dex
+│   │   │   │   │                   │       MapScreenKt$WhenMappings.dex
+│   │   │   │   │                   │       MapScreenKt.dex
+│   │   │   │   │                   │       PendingVisit.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$1$1$1.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$1$1.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$4$1$1$2$1$1$1.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$4$1$1$2$1$2$1$1.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$4$1$1$2$1$2$2.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$4$1$1$2$1$2$3$1.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$lambda$27$lambda$17$lambda$16$$inlined$itemsIndexed$default$1.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$lambda$27$lambda$17$lambda$16$$inlined$itemsIndexed$default$2.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$lambda$27$lambda$17$lambda$16$$inlined$itemsIndexed$default$3.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt$PhotoGalleryScreen$lambda$27$lambda$17$lambda$16$$inlined$itemsIndexed$default$4.dex
+│   │   │   │   │                   │       PhotoGalleryScreenKt.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$1$1$1.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$1$1.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$2$1$1.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$2$1.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$3$1.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$8$1$1$5$1$3$1.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$8$1$1$5$1$4$1.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$lambda$87$lambda$86$lambda$85$$inlined$itemsIndexed$default$1.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$lambda$87$lambda$86$lambda$85$$inlined$itemsIndexed$default$2.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt$PlaceDetailScreen$lambda$87$lambda$86$lambda$85$$inlined$itemsIndexed$default$3.dex
+│   │   │   │   │                   │       PlaceDetailScreenKt.dex
+│   │   │   │   │                   │       PlacesScreenKt$PlacesScreen$3$3$1$2$1$1.dex
+│   │   │   │   │                   │       PlacesScreenKt$PlacesScreen$lambda$25$lambda$24$lambda$23$$inlined$items$default$1.dex
+│   │   │   │   │                   │       PlacesScreenKt$PlacesScreen$lambda$25$lambda$24$lambda$23$$inlined$items$default$2.dex
+│   │   │   │   │                   │       PlacesScreenKt$PlacesScreen$lambda$25$lambda$24$lambda$23$$inlined$items$default$3.dex
+│   │   │   │   │                   │       PlacesScreenKt$PlacesScreen$lambda$25$lambda$24$lambda$23$$inlined$items$default$4.dex
+│   │   │   │   │                   │       PlacesScreenKt.dex
+│   │   │   │   │                   │       SettingsScreenKt$SettingsScreen$1$1$1.dex
+│   │   │   │   │                   │       SettingsScreenKt$SettingsScreen$1$1.dex
+│   │   │   │   │                   │       SettingsScreenKt$SettingsScreen$3$1$1$1$1$1$2$1$1.dex
+│   │   │   │   │                   │       SettingsScreenKt.dex
+│   │   │   │   │                   │       StatisticsScreenKt$StatisticsScreen$1$1$1.dex
+│   │   │   │   │                   │       StatisticsScreenKt$StatisticsScreen$1$1.dex
+│   │   │   │   │                   │       StatisticsScreenKt$StatisticsScreen$lambda$17$lambda$16$lambda$15$lambda$14$$inlined$items$default$1.dex
+│   │   │   │   │                   │       StatisticsScreenKt$StatisticsScreen$lambda$17$lambda$16$lambda$15$lambda$14$$inlined$items$default$2.dex
+│   │   │   │   │                   │       StatisticsScreenKt$StatisticsScreen$lambda$17$lambda$16$lambda$15$lambda$14$$inlined$items$default$3.dex
+│   │   │   │   │                   │       StatisticsScreenKt$StatisticsScreen$lambda$17$lambda$16$lambda$15$lambda$14$$inlined$items$default$4.dex
+│   │   │   │   │                   │       StatisticsScreenKt.dex
+│   │   │   │   │                   │       VisitDialogStep.dex
+│   │   │   │   │                   │       
+│   │   │   │   │                   ├───util
+│   │   │   │   │                   │       Categories.dex
+│   │   │   │   │                   │       Category.dex
+│   │   │   │   │                   │       ConstantsKt.dex
+│   │   │   │   │                   │       CrashLogger.dex
+│   │   │   │   │                   │       DistanceKt.dex
+│   │   │   │   │                   │       OsmInitializer.dex
+│   │   │   │   │                   │       PhotoProcessor$processAndStore$2.dex
+│   │   │   │   │                   │       PhotoProcessor.dex
+│   │   │   │   │                   │       PhotoStorage$copyToInternalStorage$2.dex
+│   │   │   │   │                   │       PhotoStorage.dex
+│   │   │   │   │                   │       SafeCallKt$safeCall$1.dex
+│   │   │   │   │                   │       SafeCallKt.dex
+│   │   │   │   │                   │       
+│   │   │   │   │                   └───viewmodel
+│   │   │   │   │                           CategoryFilter$Companion.dex
+│   │   │   │   │                           CategoryFilter.dex
+│   │   │   │   │                           CountryStat.dex
+│   │   │   │   │                           ImportViewModel$addManualOldPlace$1.dex
+│   │   │   │   │                           ImportViewModel$importFromFile$1$tempFile$1.dex
+│   │   │   │   │                           ImportViewModel$importFromFile$1.dex
+│   │   │   │   │                           ImportViewModel.dex
+│   │   │   │   │                           MapViewModel$1$1.dex
+│   │   │   │   │                           MapViewModel$1.dex
+│   │   │   │   │                           MapViewModel$2$1.dex
+│   │   │   │   │                           MapViewModel$2.dex
+│   │   │   │   │                           MapViewModel$addManualVisit$1.dex
+│   │   │   │   │                           MapViewModel$addPlaceFromPoi$1.dex
+│   │   │   │   │                           MapViewModel$fetchCurrentLocation$2$newFix$1$invokeSuspend$$inlined$filter$1$2$1.dex
+│   │   │   │   │                           MapViewModel$fetchCurrentLocation$2$newFix$1$invokeSuspend$$inlined$filter$1$2.dex
+│   │   │   │   │                           MapViewModel$fetchCurrentLocation$2$newFix$1$invokeSuspend$$inlined$filter$1.dex
+│   │   │   │   │                           MapViewModel$fetchCurrentLocation$2$newFix$1.dex
+│   │   │   │   │                           MapViewModel$fetchCurrentLocation$2.dex
+│   │   │   │   │                           MapViewModel$filteredSearchResults$1.dex
+│   │   │   │   │                           MapViewModel$searchNearby$1.dex
+│   │   │   │   │                           MapViewModel.dex
+│   │   │   │   │                           PhotoGalleryViewModel$deletePhoto$1.dex
+│   │   │   │   │                           PhotoGalleryViewModel$loadPhotos$1$1.dex
+│   │   │   │   │                           PhotoGalleryViewModel$loadPhotos$1.dex
+│   │   │   │   │                           PhotoGalleryViewModel$setCoverPhoto$1.dex
+│   │   │   │   │                           PhotoGalleryViewModel$toggleCoverPhoto$1.dex
+│   │   │   │   │                           PhotoGalleryViewModel.dex
+│   │   │   │   │                           PlaceCardUi.dex
+│   │   │   │   │                           PlaceDetailViewModel$addHistoricalVisit$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$addPhotoToPlace$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$addVisit$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$canCheckin$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$deletePhoto$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$deleteVisit$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$loadPhotos$1$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$loadPhotos$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$setCoverPhoto$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$special$$inlined$flatMapLatest$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$special$$inlined$flatMapLatest$2.dex
+│   │   │   │   │                           PlaceDetailViewModel$tickerFlow$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$updatePlaceDetails$1.dex
+│   │   │   │   │                           PlaceDetailViewModel$updateVisitComment$1.dex
+│   │   │   │   │                           PlaceDetailViewModel.dex
+│   │   │   │   │                           PlacesViewModel$1.dex
+│   │   │   │   │                           PlacesViewModel$2.dex
+│   │   │   │   │                           PlacesViewModel$allCards$1.dex
+│   │   │   │   │                           PlacesViewModel$allCards$2.dex
+│   │   │   │   │                           PlacesViewModel$placeCards$1.dex
+│   │   │   │   │                           PlacesViewModel.dex
+│   │   │   │   │                           RegionStat.dex
+│   │   │   │   │                           StatisticsViewModel$countries$1.dex
+│   │   │   │   │                           StatisticsViewModel$countries$2.dex
+│   │   │   │   │                           StatisticsViewModel$countries$3.dex
+│   │   │   │   │                           StatisticsViewModel$retryMissingGeocoding$1.dex
+│   │   │   │   │                           StatisticsViewModel.dex
+│   │   │   │   │                           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   │               │   13c727d19a632fa74efb7dcc6956cfa91671b4afd8640913ad67207c171540b0_1.jar
+│   │   │   │               │   13c727d19a632fa74efb7dcc6956cfa91671b4afd8640913ad67207c171540b0_2.jar
+│   │   │   │               │   13c727d19a632fa74efb7dcc6956cfa91671b4afd8640913ad67207c171540b0_3.jar
+│   │   │   │               │   
+│   │   │   │               └───com
+│   │   │   │                   └───spotlog
+│   │   │   │                           ExampleInstrumentedTest.dex
+│   │   │   │                           
+│   │   │   ├───runtime_symbol_list
+│   │   │   │   ├───debug
+│   │   │   │   │   └───processDebugResources
+│   │   │   │   │           R.txt
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───processDebugAndroidTestResources
+│   │   │   │               R.txt
+│   │   │   │               
+│   │   │   ├───signing_config_versions
+│   │   │   │   ├───debug
+│   │   │   │   │   └───writeDebugSigningConfigVersions
+│   │   │   │   │           signing-config-versions.json
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───writeDebugAndroidTestSigningConfigVersions
+│   │   │   │               signing-config-versions.json
+│   │   │   │               
+│   │   │   ├───stable_resource_ids_file
+│   │   │   │   ├───debug
+│   │   │   │   │   └───processDebugResources
+│   │   │   │   │           stableIds.txt
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───processDebugAndroidTestResources
+│   │   │   │               stableIds.txt
+│   │   │   │               
+│   │   │   ├───stripped_native_libs
+│   │   │   │   └───debug
+│   │   │   │       └───stripDebugDebugSymbols
+│   │   │   │           └───out
+│   │   │   │               └───lib
+│   │   │   │                   ├───arm64-v8a
+│   │   │   │                   │       libandroidx.graphics.path.so
+│   │   │   │                   │       libdatastore_shared_counter.so
+│   │   │   │                   │       
+│   │   │   │                   ├───armeabi-v7a
+│   │   │   │                   │       libandroidx.graphics.path.so
+│   │   │   │                   │       libdatastore_shared_counter.so
+│   │   │   │                   │       
+│   │   │   │                   ├───x86
+│   │   │   │                   │       libandroidx.graphics.path.so
+│   │   │   │                   │       libdatastore_shared_counter.so
+│   │   │   │                   │       
+│   │   │   │                   └───x86_64
+│   │   │   │                           libandroidx.graphics.path.so
+│   │   │   │                           libdatastore_shared_counter.so
+│   │   │   │                           
+│   │   │   ├───sub_project_dex_archive
+│   │   │   │   ├───debug
+│   │   │   │   │   └───dexBuilderDebug
+│   │   │   │   │       └───out
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───dexBuilderDebugAndroidTest
+│   │   │   │           └───out
+│   │   │   ├───symbol_list_with_package_name
+│   │   │   │   ├───debug
+│   │   │   │   │   └───processDebugResources
+│   │   │   │   │           package-aware-r.txt
+│   │   │   │   │           
+│   │   │   │   └───debugAndroidTest
+│   │   │   │       └───processDebugAndroidTestResources
+│   │   │   │               package-aware-r.txt
+│   │   │   │               
+│   │   │   ├───tmp
+│   │   │   │   └───manifest
+│   │   │   │       └───androidTest
+│   │   │   │           └───debug
+│   │   │   └───validate_signing_config
+│   │   │       ├───debug
+│   │   │       │   └───validateSigningDebug
+│   │   │       └───debugAndroidTest
+│   │   │           └───validateSigningDebugAndroidTest
+│   │   ├───kotlin
+│   │   │   ├───compileDebugAndroidTestKotlin
+│   │   │   │   ├───cacheable
+│   │   │   │   │   │   last-build.bin
+│   │   │   │   │   │   
+│   │   │   │   │   └───caches-jvm
+│   │   │   │   │       ├───inputs
+│   │   │   │   │       │       source-to-output.tab
+│   │   │   │   │       │       source-to-output.tab.keystream
+│   │   │   │   │       │       source-to-output.tab.keystream.len
+│   │   │   │   │       │       source-to-output.tab.len
+│   │   │   │   │       │       source-to-output.tab.values.at
+│   │   │   │   │       │       source-to-output.tab_i
+│   │   │   │   │       │       source-to-output.tab_i.len
+│   │   │   │   │       │       
+│   │   │   │   │       ├───jvm
+│   │   │   │   │       │   └───kotlin
+│   │   │   │   │       │           class-attributes.tab
+│   │   │   │   │       │           class-attributes.tab.keystream
+│   │   │   │   │       │           class-attributes.tab.keystream.len
+│   │   │   │   │       │           class-attributes.tab.len
+│   │   │   │   │       │           class-attributes.tab.values.at
+│   │   │   │   │       │           class-attributes.tab_i
+│   │   │   │   │       │           class-attributes.tab_i.len
+│   │   │   │   │       │           class-fq-name-to-source.tab
+│   │   │   │   │       │           class-fq-name-to-source.tab.keystream
+│   │   │   │   │       │           class-fq-name-to-source.tab.keystream.len
+│   │   │   │   │       │           class-fq-name-to-source.tab.len
+│   │   │   │   │       │           class-fq-name-to-source.tab.values.at
+│   │   │   │   │       │           class-fq-name-to-source.tab_i
+│   │   │   │   │       │           class-fq-name-to-source.tab_i.len
+│   │   │   │   │       │           internal-name-to-source.tab
+│   │   │   │   │       │           internal-name-to-source.tab.keystream
+│   │   │   │   │       │           internal-name-to-source.tab.keystream.len
+│   │   │   │   │       │           internal-name-to-source.tab.len
+│   │   │   │   │       │           internal-name-to-source.tab.values.at
+│   │   │   │   │       │           internal-name-to-source.tab_i
+│   │   │   │   │       │           internal-name-to-source.tab_i.len
+│   │   │   │   │       │           proto.tab
+│   │   │   │   │       │           proto.tab.keystream
+│   │   │   │   │       │           proto.tab.keystream.len
+│   │   │   │   │       │           proto.tab.len
+│   │   │   │   │       │           proto.tab.values.at
+│   │   │   │   │       │           proto.tab_i
+│   │   │   │   │       │           proto.tab_i.len
+│   │   │   │   │       │           source-to-classes.tab
+│   │   │   │   │       │           source-to-classes.tab.keystream
+│   │   │   │   │       │           source-to-classes.tab.keystream.len
+│   │   │   │   │       │           source-to-classes.tab.len
+│   │   │   │   │       │           source-to-classes.tab.values.at
+│   │   │   │   │       │           source-to-classes.tab_i
+│   │   │   │   │       │           source-to-classes.tab_i.len
+│   │   │   │   │       │           
+│   │   │   │   │       └───lookups
+│   │   │   │   │               counters.tab
+│   │   │   │   │               file-to-id.tab
+│   │   │   │   │               file-to-id.tab.keystream
+│   │   │   │   │               file-to-id.tab.keystream.len
+│   │   │   │   │               file-to-id.tab.len
+│   │   │   │   │               file-to-id.tab.values.at
+│   │   │   │   │               file-to-id.tab_i
+│   │   │   │   │               file-to-id.tab_i.len
+│   │   │   │   │               id-to-file.tab
+│   │   │   │   │               id-to-file.tab.keystream
+│   │   │   │   │               id-to-file.tab.keystream.len
+│   │   │   │   │               id-to-file.tab.len
+│   │   │   │   │               id-to-file.tab.values.at
+│   │   │   │   │               id-to-file.tab_i.len
+│   │   │   │   │               lookups.tab
+│   │   │   │   │               lookups.tab.keystream
+│   │   │   │   │               lookups.tab.keystream.len
+│   │   │   │   │               lookups.tab.len
+│   │   │   │   │               lookups.tab.values.at
+│   │   │   │   │               lookups.tab_i
+│   │   │   │   │               lookups.tab_i.len
+│   │   │   │   │               
+│   │   │   │   ├───classpath-snapshot
+│   │   │   │   │       shrunk-classpath-snapshot.bin
+│   │   │   │   │       
+│   │   │   │   └───local-state
+│   │   │   ├───compileDebugKotlin
+│   │   │   │   ├───cacheable
+│   │   │   │   │   │   last-build.bin
+│   │   │   │   │   │   
+│   │   │   │   │   └───caches-jvm
+│   │   │   │   │       ├───inputs
+│   │   │   │   │       │       source-to-output.tab
+│   │   │   │   │       │       source-to-output.tab.keystream
+│   │   │   │   │       │       source-to-output.tab.keystream.len
+│   │   │   │   │       │       source-to-output.tab.len
+│   │   │   │   │       │       source-to-output.tab.values
+│   │   │   │   │       │       source-to-output.tab.values.at
+│   │   │   │   │       │       source-to-output.tab.values.s
+│   │   │   │   │       │       source-to-output.tab_i
+│   │   │   │   │       │       source-to-output.tab_i.len
+│   │   │   │   │       │       
+│   │   │   │   │       ├───jvm
+│   │   │   │   │       │   └───kotlin
+│   │   │   │   │       │           class-attributes.tab
+│   │   │   │   │       │           class-attributes.tab.keystream
+│   │   │   │   │       │           class-attributes.tab.keystream.len
+│   │   │   │   │       │           class-attributes.tab.len
+│   │   │   │   │       │           class-attributes.tab.values.at
+│   │   │   │   │       │           class-attributes.tab_i
+│   │   │   │   │       │           class-attributes.tab_i.len
+│   │   │   │   │       │           class-fq-name-to-source.tab
+│   │   │   │   │       │           class-fq-name-to-source.tab.keystream
+│   │   │   │   │       │           class-fq-name-to-source.tab.keystream.len
+│   │   │   │   │       │           class-fq-name-to-source.tab.len
+│   │   │   │   │       │           class-fq-name-to-source.tab.values.at
+│   │   │   │   │       │           class-fq-name-to-source.tab_i
+│   │   │   │   │       │           class-fq-name-to-source.tab_i.len
+│   │   │   │   │       │           constants.tab
+│   │   │   │   │       │           constants.tab.keystream
+│   │   │   │   │       │           constants.tab.keystream.len
+│   │   │   │   │       │           constants.tab.len
+│   │   │   │   │       │           constants.tab.values.at
+│   │   │   │   │       │           constants.tab_i
+│   │   │   │   │       │           constants.tab_i.len
+│   │   │   │   │       │           inline-functions.tab
+│   │   │   │   │       │           inline-functions.tab.keystream
+│   │   │   │   │       │           inline-functions.tab.keystream.len
+│   │   │   │   │       │           inline-functions.tab.len
+│   │   │   │   │       │           inline-functions.tab.values.at
+│   │   │   │   │       │           inline-functions.tab_i
+│   │   │   │   │       │           inline-functions.tab_i.len
+│   │   │   │   │       │           internal-name-to-source.tab
+│   │   │   │   │       │           internal-name-to-source.tab.keystream
+│   │   │   │   │       │           internal-name-to-source.tab.keystream.len
+│   │   │   │   │       │           internal-name-to-source.tab.len
+│   │   │   │   │       │           internal-name-to-source.tab.values.at
+│   │   │   │   │       │           internal-name-to-source.tab_i
+│   │   │   │   │       │           internal-name-to-source.tab_i.len
+│   │   │   │   │       │           package-parts.tab
+│   │   │   │   │       │           package-parts.tab.keystream
+│   │   │   │   │       │           package-parts.tab.keystream.len
+│   │   │   │   │       │           package-parts.tab.len
+│   │   │   │   │       │           package-parts.tab.values.at
+│   │   │   │   │       │           package-parts.tab_i
+│   │   │   │   │       │           package-parts.tab_i.len
+│   │   │   │   │       │           proto.tab
+│   │   │   │   │       │           proto.tab.keystream
+│   │   │   │   │       │           proto.tab.keystream.len
+│   │   │   │   │       │           proto.tab.len
+│   │   │   │   │       │           proto.tab.values
+│   │   │   │   │       │           proto.tab.values.at
+│   │   │   │   │       │           proto.tab.values.s
+│   │   │   │   │       │           proto.tab_i
+│   │   │   │   │       │           proto.tab_i.len
+│   │   │   │   │       │           source-to-classes.tab
+│   │   │   │   │       │           source-to-classes.tab.keystream
+│   │   │   │   │       │           source-to-classes.tab.keystream.len
+│   │   │   │   │       │           source-to-classes.tab.len
+│   │   │   │   │       │           source-to-classes.tab.values.at
+│   │   │   │   │       │           source-to-classes.tab_i
+│   │   │   │   │       │           source-to-classes.tab_i.len
+│   │   │   │   │       │           subtypes.tab
+│   │   │   │   │       │           subtypes.tab.keystream
+│   │   │   │   │       │           subtypes.tab.keystream.len
+│   │   │   │   │       │           subtypes.tab.len
+│   │   │   │   │       │           subtypes.tab.values.at
+│   │   │   │   │       │           subtypes.tab_i
+│   │   │   │   │       │           subtypes.tab_i.len
+│   │   │   │   │       │           supertypes.tab
+│   │   │   │   │       │           supertypes.tab.keystream
+│   │   │   │   │       │           supertypes.tab.keystream.len
+│   │   │   │   │       │           supertypes.tab.len
+│   │   │   │   │       │           supertypes.tab.values.at
+│   │   │   │   │       │           supertypes.tab_i
+│   │   │   │   │       │           supertypes.tab_i.len
+│   │   │   │   │       │           
+│   │   │   │   │       └───lookups
+│   │   │   │   │               counters.tab
+│   │   │   │   │               file-to-id.tab
+│   │   │   │   │               file-to-id.tab.keystream
+│   │   │   │   │               file-to-id.tab.keystream.len
+│   │   │   │   │               file-to-id.tab.len
+│   │   │   │   │               file-to-id.tab.values.at
+│   │   │   │   │               file-to-id.tab_i
+│   │   │   │   │               file-to-id.tab_i.len
+│   │   │   │   │               id-to-file.tab
+│   │   │   │   │               id-to-file.tab.keystream
+│   │   │   │   │               id-to-file.tab.keystream.len
+│   │   │   │   │               id-to-file.tab.len
+│   │   │   │   │               id-to-file.tab.values.at
+│   │   │   │   │               id-to-file.tab_i
+│   │   │   │   │               id-to-file.tab_i.len
+│   │   │   │   │               lookups.tab
+│   │   │   │   │               lookups.tab.keystream
+│   │   │   │   │               lookups.tab.keystream.len
+│   │   │   │   │               lookups.tab.len
+│   │   │   │   │               lookups.tab.values
+│   │   │   │   │               lookups.tab.values.at
+│   │   │   │   │               lookups.tab.values.s
+│   │   │   │   │               lookups.tab_i
+│   │   │   │   │               lookups.tab_i.len
+│   │   │   │   │               
+│   │   │   │   ├───classpath-snapshot
+│   │   │   │   │       shrunk-classpath-snapshot.bin
+│   │   │   │   │       
+│   │   │   │   └───local-state
+│   │   │   └───compileDebugUnitTestKotlin
+│   │   │       ├───cacheable
+│   │   │       │   │   last-build.bin
+│   │   │       │   │   
+│   │   │       │   └───caches-jvm
+│   │   │       │       ├───inputs
+│   │   │       │       │       source-to-output.tab
+│   │   │       │       │       source-to-output.tab.keystream
+│   │   │       │       │       source-to-output.tab.keystream.len
+│   │   │       │       │       source-to-output.tab.len
+│   │   │       │       │       source-to-output.tab.values.at
+│   │   │       │       │       source-to-output.tab_i
+│   │   │       │       │       source-to-output.tab_i.len
+│   │   │       │       │       
+│   │   │       │       ├───jvm
+│   │   │       │       │   └───kotlin
+│   │   │       │       │           class-attributes.tab
+│   │   │       │       │           class-attributes.tab.keystream
+│   │   │       │       │           class-attributes.tab.keystream.len
+│   │   │       │       │           class-attributes.tab.len
+│   │   │       │       │           class-attributes.tab.values.at
+│   │   │       │       │           class-attributes.tab_i
+│   │   │       │       │           class-attributes.tab_i.len
+│   │   │       │       │           class-fq-name-to-source.tab
+│   │   │       │       │           class-fq-name-to-source.tab.keystream
+│   │   │       │       │           class-fq-name-to-source.tab.keystream.len
+│   │   │       │       │           class-fq-name-to-source.tab.len
+│   │   │       │       │           class-fq-name-to-source.tab.values.at
+│   │   │       │       │           class-fq-name-to-source.tab_i
+│   │   │       │       │           class-fq-name-to-source.tab_i.len
+│   │   │       │       │           internal-name-to-source.tab
+│   │   │       │       │           internal-name-to-source.tab.keystream
+│   │   │       │       │           internal-name-to-source.tab.keystream.len
+│   │   │       │       │           internal-name-to-source.tab.len
+│   │   │       │       │           internal-name-to-source.tab.values.at
+│   │   │       │       │           internal-name-to-source.tab_i
+│   │   │       │       │           internal-name-to-source.tab_i.len
+│   │   │       │       │           proto.tab
+│   │   │       │       │           proto.tab.keystream
+│   │   │       │       │           proto.tab.keystream.len
+│   │   │       │       │           proto.tab.len
+│   │   │       │       │           proto.tab.values.at
+│   │   │       │       │           proto.tab_i
+│   │   │       │       │           proto.tab_i.len
+│   │   │       │       │           source-to-classes.tab
+│   │   │       │       │           source-to-classes.tab.keystream
+│   │   │       │       │           source-to-classes.tab.keystream.len
+│   │   │       │       │           source-to-classes.tab.len
+│   │   │       │       │           source-to-classes.tab.values.at
+│   │   │       │       │           source-to-classes.tab_i
+│   │   │       │       │           source-to-classes.tab_i.len
+│   │   │       │       │           
+│   │   │       │       └───lookups
+│   │   │       │               counters.tab
+│   │   │       │               file-to-id.tab
+│   │   │       │               file-to-id.tab.keystream
+│   │   │       │               file-to-id.tab.keystream.len
+│   │   │       │               file-to-id.tab.len
+│   │   │       │               file-to-id.tab.values.at
+│   │   │       │               file-to-id.tab_i
+│   │   │       │               file-to-id.tab_i.len
+│   │   │       │               id-to-file.tab
+│   │   │       │               id-to-file.tab.keystream
+│   │   │       │               id-to-file.tab.keystream.len
+│   │   │       │               id-to-file.tab.len
+│   │   │       │               id-to-file.tab.values.at
+│   │   │       │               id-to-file.tab_i
+│   │   │       │               id-to-file.tab_i.len
+│   │   │       │               lookups.tab
+│   │   │       │               lookups.tab.keystream
+│   │   │       │               lookups.tab.keystream.len
+│   │   │       │               lookups.tab.len
+│   │   │       │               lookups.tab.values.at
+│   │   │       │               lookups.tab_i
+│   │   │       │               lookups.tab_i.len
+│   │   │       │               
+│   │   │       ├───classpath-snapshot
+│   │   │       │       shrunk-classpath-snapshot.bin
+│   │   │       │       
+│   │   │       └───local-state
+│   │   ├───kspCaches
+│   │   │   ├───debug
+│   │   │   │   │   ap-classpath-entries.bin
+│   │   │   │   │   caches.uptodate
+│   │   │   │   │   classpath-entries.bin
+│   │   │   │   │   classpath-structure.bin
+│   │   │   │   │   sealed
+│   │   │   │   │   sourceToOutputs
+│   │   │   │   │   symbols
+│   │   │   │   │   
+│   │   │   │   ├───backups
+│   │   │   │   │   └───kotlin
+│   │   │   │   │       └───com
+│   │   │   │   │           └───spotlog
+│   │   │   │   │               └───data
+│   │   │   │   │                   │   AppDatabase_Impl.kt
+│   │   │   │   │                   │   
+│   │   │   │   │                   └───dao
+│   │   │   │   │                           GeocodeCacheDao_Impl.kt
+│   │   │   │   │                           PhotoDao_Impl.kt
+│   │   │   │   │                           PlaceDao_Impl.kt
+│   │   │   │   │                           VisitDao_Impl.kt
+│   │   │   │   │                           
+│   │   │   │   ├───logs
+│   │   │   │   └───symbolLookups
+│   │   │   │           counters.tab
+│   │   │   │           file-to-id.tab
+│   │   │   │           file-to-id.tab.keystream
+│   │   │   │           file-to-id.tab.keystream.len
+│   │   │   │           file-to-id.tab.len
+│   │   │   │           file-to-id.tab.values.at
+│   │   │   │           file-to-id.tab_i
+│   │   │   │           file-to-id.tab_i.len
+│   │   │   │           id-to-file.tab
+│   │   │   │           id-to-file.tab.keystream
+│   │   │   │           id-to-file.tab.keystream.len
+│   │   │   │           id-to-file.tab.len
+│   │   │   │           id-to-file.tab.values.at
+│   │   │   │           id-to-file.tab_i
+│   │   │   │           id-to-file.tab_i.len
+│   │   │   │           lookups.tab
+│   │   │   │           lookups.tab.keystream
+│   │   │   │           lookups.tab.keystream.len
+│   │   │   │           lookups.tab.len
+│   │   │   │           lookups.tab.values.at
+│   │   │   │           lookups.tab_i
+│   │   │   │           lookups.tab_i.len
+│   │   │   │           
+│   │   │   ├───debugAndroidTest
+│   │   │   │   │   ap-classpath-entries.bin
+│   │   │   │   │   caches.uptodate
+│   │   │   │   │   classpath-entries.bin
+│   │   │   │   │   classpath-structure.bin
+│   │   │   │   │   sealed
+│   │   │   │   │   sourceToOutputs
+│   │   │   │   │   symbols
+│   │   │   │   │   
+│   │   │   │   ├───logs
+│   │   │   │   └───symbolLookups
+│   │   │   │           counters.tab
+│   │   │   │           file-to-id.tab
+│   │   │   │           file-to-id.tab.keystream
+│   │   │   │           file-to-id.tab.keystream.len
+│   │   │   │           file-to-id.tab.len
+│   │   │   │           file-to-id.tab.values.at
+│   │   │   │           file-to-id.tab_i
+│   │   │   │           file-to-id.tab_i.len
+│   │   │   │           id-to-file.tab
+│   │   │   │           id-to-file.tab.keystream
+│   │   │   │           id-to-file.tab.keystream.len
+│   │   │   │           id-to-file.tab.len
+│   │   │   │           id-to-file.tab.values.at
+│   │   │   │           id-to-file.tab_i.len
+│   │   │   │           lookups.tab
+│   │   │   │           lookups.tab.keystream
+│   │   │   │           lookups.tab.keystream.len
+│   │   │   │           lookups.tab.len
+│   │   │   │           lookups.tab.values.at
+│   │   │   │           lookups.tab_i
+│   │   │   │           lookups.tab_i.len
+│   │   │   │           
+│   │   │   └───debugUnitTest
+│   │   │       │   ap-classpath-entries.bin
+│   │   │       │   caches.uptodate
+│   │   │       │   classpath-entries.bin
+│   │   │       │   classpath-structure.bin
+│   │   │       │   sealed
+│   │   │       │   sourceToOutputs
+│   │   │       │   symbols
+│   │   │       │   
+│   │   │       ├───logs
+│   │   │       └───symbolLookups
+│   │   │               counters.tab
+│   │   │               file-to-id.tab
+│   │   │               file-to-id.tab.keystream
+│   │   │               file-to-id.tab.keystream.len
+│   │   │               file-to-id.tab.len
+│   │   │               file-to-id.tab.values.at
+│   │   │               file-to-id.tab_i
+│   │   │               file-to-id.tab_i.len
+│   │   │               id-to-file.tab
+│   │   │               id-to-file.tab.keystream
+│   │   │               id-to-file.tab.keystream.len
+│   │   │               id-to-file.tab.len
+│   │   │               id-to-file.tab.values.at
+│   │   │               id-to-file.tab_i
+│   │   │               id-to-file.tab_i.len
+│   │   │               lookups.tab
+│   │   │               lookups.tab.keystream
+│   │   │               lookups.tab.keystream.len
+│   │   │               lookups.tab.len
+│   │   │               lookups.tab.values.at
+│   │   │               lookups.tab_i
+│   │   │               lookups.tab_i.len
+│   │   │               
+│   │   ├───outputs
+│   │   │   ├───apk
+│   │   │   │   ├───androidTest
+│   │   │   │   │   └───debug
+│   │   │   │   │           app-debug-androidTest.apk
+│   │   │   │   │           output-metadata.json
+│   │   │   │   │           
+│   │   │   │   └───debug
+│   │   │   │           Chikipiki 1_0_3.apk
+│   │   │   │           output-metadata.json
+│   │   │   │           
+│   │   │   └───logs
+│   │   │           manifest-merger-debug-report.txt
+│   │   │           
+│   │   └───tmp
+│   │       └───kotlin-classes
+│   │           ├───debug
+│   │           │   ├───com
+│   │           │   │   └───spotlog
+│   │           │   │       │   ComposableSingletons$MainActivityKt.class
+│   │           │   │       │   MainActivity.class
+│   │           │   │       │   
+│   │           │   │       ├───config
+│   │           │   │       │       ConfigManager$Companion.class
+│   │           │   │       │       ConfigManager.class
+│   │           │   │       │       
+│   │           │   │       ├───data
+│   │           │   │       │   │   AppDatabase$Companion.class
+│   │           │   │       │   │   AppDatabase.class
+│   │           │   │       │   │   AppDatabaseKt$MIGRATION_3_4$1.class
+│   │           │   │       │   │   AppDatabaseKt$MIGRATION_4_5$1.class
+│   │           │   │       │   │   AppDatabaseKt$MIGRATION_5_6$1.class
+│   │           │   │       │   │   AppDatabaseKt.class
+│   │           │   │       │   │   AppDatabase_Impl$createOpenDelegate$_openDelegate$1.class
+│   │           │   │       │   │   AppDatabase_Impl.class
+│   │           │   │       │   │   ImportParser.class
+│   │           │   │       │   │   ImportResult$Error.class
+│   │           │   │       │   │   ImportResult$PartialSuccess.class
+│   │           │   │       │   │   ImportResult$Success.class
+│   │           │   │       │   │   ImportResult.class
+│   │           │   │       │   │   ImportValidationError$EmptyPlaceName.class
+│   │           │   │       │   │   ImportValidationError$InvalidCoordinates.class
+│   │           │   │       │   │   ImportValidationError$InvalidJson.class
+│   │           │   │       │   │   ImportValidationError$InvalidTimestamp.class
+│   │           │   │       │   │   ImportValidationError$UnsupportedVersion.class
+│   │           │   │       │   │   ImportValidationError.class
+│   │           │   │       │   │   ImportVisit.class
+│   │           │   │       │   │   NominatimGeocoder$fetchReverseGeocode$2.class
+│   │           │   │       │   │   NominatimGeocoder$reverseGeocode$1.class
+│   │           │   │       │   │   NominatimGeocoder.class
+│   │           │   │       │   │   PoiRepository$fetchPoiJson$2.class
+│   │           │   │       │   │   PoiRepository$getNearby$1.class
+│   │           │   │       │   │   PoiRepository$getNearby$json$1.class
+│   │           │   │       │   │   PoiRepository$logDebug$2.class
+│   │           │   │       │   │   PoiRepository.class
+│   │           │   │       │   │   SettingsDataStore$Companion.class
+│   │           │   │       │   │   SettingsDataStore$setAskPhotoOnVisit$2.class
+│   │           │   │       │   │   SettingsDataStore$special$$inlined$map$1$2$1.class
+│   │           │   │       │   │   SettingsDataStore$special$$inlined$map$1$2.class
+│   │           │   │       │   │   SettingsDataStore$special$$inlined$map$1.class
+│   │           │   │       │   │   SettingsDataStore.class
+│   │           │   │       │   │   SettingsDataStoreKt.class
+│   │           │   │       │   │   ValidatedImportPlace.class
+│   │           │   │       │   │   
+│   │           │   │       │   ├───dao
+│   │           │   │       │   │       CountryStatRaw.class
+│   │           │   │       │   │       GeocodeCacheDao.class
+│   │           │   │       │   │       GeocodeCacheDao_Impl$1.class
+│   │           │   │       │   │       GeocodeCacheDao_Impl$Companion.class
+│   │           │   │       │   │       GeocodeCacheDao_Impl.class
+│   │           │   │       │   │       PhotoDao.class
+│   │           │   │       │   │       PhotoDao_Impl$1.class
+│   │           │   │       │   │       PhotoDao_Impl$Companion.class
+│   │           │   │       │   │       PhotoDao_Impl$WhenMappings.class
+│   │           │   │       │   │       PhotoDao_Impl.class
+│   │           │   │       │   │       PlaceCardWithCover.class
+│   │           │   │       │   │       PlaceDao.class
+│   │           │   │       │   │       PlaceDao_Impl$1.class
+│   │           │   │       │   │       PlaceDao_Impl$Companion.class
+│   │           │   │       │   │       PlaceDao_Impl.class
+│   │           │   │       │   │       RegionStatRaw.class
+│   │           │   │       │   │       VisitDao.class
+│   │           │   │       │   │       VisitDao_Impl$1.class
+│   │           │   │       │   │       VisitDao_Impl$2.class
+│   │           │   │       │   │       VisitDao_Impl$Companion.class
+│   │           │   │       │   │       VisitDao_Impl$WhenMappings.class
+│   │           │   │       │   │       VisitDao_Impl.class
+│   │           │   │       │   │       VisitWithPlace.class
+│   │           │   │       │   │       
+│   │           │   │       │   ├───entity
+│   │           │   │       │   │       GeocodeCacheEntity.class
+│   │           │   │       │   │       PhotoEntity.class
+│   │           │   │       │   │       PhotoSource.class
+│   │           │   │       │   │       PlaceEntity.class
+│   │           │   │       │   │       VisitEntity.class
+│   │           │   │       │   │       VisitSource.class
+│   │           │   │       │   │       
+│   │           │   │       │   └───repository
+│   │           │   │       │           ImportRepository$importFromFile$2.class
+│   │           │   │       │           ImportRepository$importValidatedPlaces$2.class
+│   │           │   │       │           ImportRepository.class
+│   │           │   │       │           PlaceRepository$addHistoricalVisitToExistingPlace$2.class
+│   │           │   │       │           PlaceRepository$addManualCheckin$2$placeId$1.class
+│   │           │   │       │           PlaceRepository$addManualCheckin$2.class
+│   │           │   │       │           PlaceRepository$addPhotoToPlace$2.class
+│   │           │   │       │           PlaceRepository$addPhotoToVisit$2.class
+│   │           │   │       │           PlaceRepository$clearCoverPhoto$2.class
+│   │           │   │       │           PlaceRepository$deletePhoto$2.class
+│   │           │   │       │           PlaceRepository$deleteVisit$2.class
+│   │           │   │       │           PlaceRepository$ensureCountryForPlace$2.class
+│   │           │   │       │           PlaceRepository$fillAllMissingCountries$2.class
+│   │           │   │       │           PlaceRepository$getPlaceById$2.class
+│   │           │   │       │           PlaceRepository$getPlaceFlow$2.class
+│   │           │   │       │           PlaceRepository$setCoverPhoto$2$1.class
+│   │           │   │       │           PlaceRepository$setCoverPhoto$2.class
+│   │           │   │       │           PlaceRepository$updateCheckinDetails$2$1.class
+│   │           │   │       │           PlaceRepository$updateCheckinDetails$2.class
+│   │           │   │       │           PlaceRepository$updatePlaceCountry$2.class
+│   │           │   │       │           PlaceRepository$updatePlaceInfo$2$1.class
+│   │           │   │       │           PlaceRepository$updatePlaceInfo$2.class
+│   │           │   │       │           PlaceRepository.class
+│   │           │   │       │           
+│   │           │   │       ├───location
+│   │           │   │       │       LocationProvider$Companion.class
+│   │           │   │       │       LocationProvider$refresh$1.class
+│   │           │   │       │       LocationProvider$refreshInternal$2$location$1.class
+│   │           │   │       │       LocationProvider$refreshInternal$2.class
+│   │           │   │       │       LocationProvider.class
+│   │           │   │       │       
+│   │           │   │       ├───map
+│   │           │   │       │       MapUtilsKt.class
+│   │           │   │       │       MarkerFactory.class
+│   │           │   │       │       
+│   │           │   │       ├───model
+│   │           │   │       │       MarkerData.class
+│   │           │   │       │       PoiData.class
+│   │           │   │       │       
+│   │           │   │       ├───navigation
+│   │           │   │       │       BottomNavItem.class
+│   │           │   │       │       NavGraphKt.class
+│   │           │   │       │       Routes.class
+│   │           │   │       │       
+│   │           │   │       ├───premium
+│   │           │   │       │       Feature.class
+│   │           │   │       │       FeatureGate.class
+│   │           │   │       │       PremiumFeatureGate$WhenMappings.class
+│   │           │   │       │       PremiumFeatureGate.class
+│   │           │   │       │       PremiumManager$special$$inlined$map$1$2$1.class
+│   │           │   │       │       PremiumManager$special$$inlined$map$1$2.class
+│   │           │   │       │       PremiumManager$special$$inlined$map$1.class
+│   │           │   │       │       PremiumManager.class
+│   │           │   │       │       PremiumManagerKt.class
+│   │           │   │       │       
+│   │           │   │       ├───theme
+│   │           │   │       │       ColorKt.class
+│   │           │   │       │       ShapeKt.class
+│   │           │   │       │       Spacing.class
+│   │           │   │       │       ThemeKt.class
+│   │           │   │       │       TypeKt.class
+│   │           │   │       │       
+│   │           │   │       ├───ui
+│   │           │   │       │       AddHistoricalVisitDialogKt$WhenMappings.class
+│   │           │   │       │       AddHistoricalVisitDialogKt.class
+│   │           │   │       │       AddOldPlaceFormKt$AddOldPlaceForm$1$1.class
+│   │           │   │       │       AddOldPlaceFormKt$AddOldPlaceForm$2$4$1$2$1$1$1$1.class
+│   │           │   │       │       AddOldPlaceFormKt$AddOldPlaceForm$2$4$1$2$1.class
+│   │           │   │       │       AddOldPlaceFormKt$AddOldPlaceForm$lambda$57$lambda$46$lambda$45$$inlined$items$default$1.class
+│   │           │   │       │       AddOldPlaceFormKt$AddOldPlaceForm$lambda$57$lambda$46$lambda$45$$inlined$items$default$2.class
+│   │           │   │       │       AddOldPlaceFormKt$AddOldPlaceForm$lambda$57$lambda$46$lambda$45$$inlined$items$default$3.class
+│   │           │   │       │       AddOldPlaceFormKt$AddOldPlaceForm$lambda$57$lambda$46$lambda$45$$inlined$items$default$4.class
+│   │           │   │       │       AddOldPlaceFormKt.class
+│   │           │   │       │       AddVisitDialogKt.class
+│   │           │   │       │       ComposableSingletons$AddHistoricalVisitDialogKt.class
+│   │           │   │       │       ComposableSingletons$AddOldPlaceFormKt.class
+│   │           │   │       │       ComposableSingletons$AddVisitDialogKt.class
+│   │           │   │       │       ComposableSingletons$EditPlaceDialogKt.class
+│   │           │   │       │       ComposableSingletons$FullScreenPhotoViewerKt.class
+│   │           │   │       │       ComposableSingletons$ImportScreenKt.class
+│   │           │   │       │       ComposableSingletons$MapScreenKt.class
+│   │           │   │       │       ComposableSingletons$PhotoGalleryScreenKt.class
+│   │           │   │       │       ComposableSingletons$PlaceDetailScreenKt.class
+│   │           │   │       │       ComposableSingletons$PlacesScreenKt.class
+│   │           │   │       │       ComposableSingletons$SettingsScreenKt.class
+│   │           │   │       │       ComposableSingletons$StatisticsScreenKt.class
+│   │           │   │       │       EditPlaceDialogKt.class
+│   │           │   │       │       FullScreenPhotoViewerKt$ZoomableImage$2$1.class
+│   │           │   │       │       FullScreenPhotoViewerKt.class
+│   │           │   │       │       HistoricalVisitStep.class
+│   │           │   │       │       ImportScreenKt$ImportScreen$1$1.class
+│   │           │   │       │       ImportScreenKt.class
+│   │           │   │       │       MapScreenKt$MapScreen$10$1$1$2$1$2$1$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$10$1$1$2$1$2$2.class
+│   │           │   │       │       MapScreenKt$MapScreen$10$1$1$4$1$2$1$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$10$1$1$4$1$2$2.class
+│   │           │   │       │       MapScreenKt$MapScreen$14$1$1$1$1$eventsReceiver$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$3$1$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$3$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$5$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$6$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$7$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$8$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$lambda$33$lambda$32$$inlined$onDispose$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$52$lambda$51$$inlined$items$default$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$52$lambda$51$$inlined$items$default$2.class
+│   │           │   │       │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$52$lambda$51$$inlined$items$default$3.class
+│   │           │   │       │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$52$lambda$51$$inlined$items$default$4.class
+│   │           │   │       │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$58$lambda$57$$inlined$items$default$1.class
+│   │           │   │       │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$58$lambda$57$$inlined$items$default$2.class
+│   │           │   │       │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$58$lambda$57$$inlined$items$default$3.class
+│   │           │   │       │       MapScreenKt$MapScreen$lambda$64$lambda$63$lambda$62$lambda$58$lambda$57$$inlined$items$default$4.class
+│   │           │   │       │       MapScreenKt$WhenMappings.class
+│   │           │   │       │       MapScreenKt.class
+│   │           │   │       │       PendingVisit.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$1$1$1.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$1$1.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$4$1$1$2$1$1$1.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$4$1$1$2$1$2$1$1.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$4$1$1$2$1$2$2.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$4$1$1$2$1$2$3$1.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$lambda$27$lambda$17$lambda$16$$inlined$itemsIndexed$default$1.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$lambda$27$lambda$17$lambda$16$$inlined$itemsIndexed$default$2.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$lambda$27$lambda$17$lambda$16$$inlined$itemsIndexed$default$3.class
+│   │           │   │       │       PhotoGalleryScreenKt$PhotoGalleryScreen$lambda$27$lambda$17$lambda$16$$inlined$itemsIndexed$default$4.class
+│   │           │   │       │       PhotoGalleryScreenKt.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$1$1$1.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$1$1.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$2$1$1.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$2$1.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$3$1.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$8$1$1$5$1$3$1.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$8$1$1$5$1$4$1.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$lambda$87$lambda$86$lambda$85$$inlined$itemsIndexed$default$1.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$lambda$87$lambda$86$lambda$85$$inlined$itemsIndexed$default$2.class
+│   │           │   │       │       PlaceDetailScreenKt$PlaceDetailScreen$lambda$87$lambda$86$lambda$85$$inlined$itemsIndexed$default$3.class
+│   │           │   │       │       PlaceDetailScreenKt.class
+│   │           │   │       │       PlacesScreenKt$PlacesScreen$3$3$1$2$1$1.class
+│   │           │   │       │       PlacesScreenKt$PlacesScreen$lambda$25$lambda$24$lambda$23$$inlined$items$default$1.class
+│   │           │   │       │       PlacesScreenKt$PlacesScreen$lambda$25$lambda$24$lambda$23$$inlined$items$default$2.class
+│   │           │   │       │       PlacesScreenKt$PlacesScreen$lambda$25$lambda$24$lambda$23$$inlined$items$default$3.class
+│   │           │   │       │       PlacesScreenKt$PlacesScreen$lambda$25$lambda$24$lambda$23$$inlined$items$default$4.class
+│   │           │   │       │       PlacesScreenKt.class
+│   │           │   │       │       SettingsScreenKt$SettingsScreen$1$1$1.class
+│   │           │   │       │       SettingsScreenKt$SettingsScreen$1$1.class
+│   │           │   │       │       SettingsScreenKt$SettingsScreen$3$1$1$1$1$1$2$1$1.class
+│   │           │   │       │       SettingsScreenKt.class
+│   │           │   │       │       StatisticsScreenKt$StatisticsScreen$1$1$1.class
+│   │           │   │       │       StatisticsScreenKt$StatisticsScreen$1$1.class
+│   │           │   │       │       StatisticsScreenKt$StatisticsScreen$lambda$17$lambda$16$lambda$15$lambda$14$$inlined$items$default$1.class
+│   │           │   │       │       StatisticsScreenKt$StatisticsScreen$lambda$17$lambda$16$lambda$15$lambda$14$$inlined$items$default$2.class
+│   │           │   │       │       StatisticsScreenKt$StatisticsScreen$lambda$17$lambda$16$lambda$15$lambda$14$$inlined$items$default$3.class
+│   │           │   │       │       StatisticsScreenKt$StatisticsScreen$lambda$17$lambda$16$lambda$15$lambda$14$$inlined$items$default$4.class
+│   │           │   │       │       StatisticsScreenKt.class
+│   │           │   │       │       VisitDialogStep.class
+│   │           │   │       │       
+│   │           │   │       ├───util
+│   │           │   │       │       Categories.class
+│   │           │   │       │       Category.class
+│   │           │   │       │       ConstantsKt.class
+│   │           │   │       │       CrashLogger.class
+│   │           │   │       │       DistanceKt.class
+│   │           │   │       │       OsmInitializer.class
+│   │           │   │       │       PhotoProcessor$processAndStore$2.class
+│   │           │   │       │       PhotoProcessor.class
+│   │           │   │       │       PhotoStorage$copyToInternalStorage$2.class
+│   │           │   │       │       PhotoStorage.class
+│   │           │   │       │       SafeCallKt$safeCall$1.class
+│   │           │   │       │       SafeCallKt.class
+│   │           │   │       │       
+│   │           │   │       └───viewmodel
+│   │           │   │               CategoryFilter$Companion.class
+│   │           │   │               CategoryFilter.class
+│   │           │   │               CountryStat.class
+│   │           │   │               ImportViewModel$addManualOldPlace$1.class
+│   │           │   │               ImportViewModel$importFromFile$1$tempFile$1.class
+│   │           │   │               ImportViewModel$importFromFile$1.class
+│   │           │   │               ImportViewModel.class
+│   │           │   │               MapViewModel$1$1.class
+│   │           │   │               MapViewModel$1.class
+│   │           │   │               MapViewModel$2$1.class
+│   │           │   │               MapViewModel$2.class
+│   │           │   │               MapViewModel$addManualVisit$1.class
+│   │           │   │               MapViewModel$addPlaceFromPoi$1.class
+│   │           │   │               MapViewModel$fetchCurrentLocation$2$newFix$1$invokeSuspend$$inlined$filter$1$2$1.class
+│   │           │   │               MapViewModel$fetchCurrentLocation$2$newFix$1$invokeSuspend$$inlined$filter$1$2.class
+│   │           │   │               MapViewModel$fetchCurrentLocation$2$newFix$1$invokeSuspend$$inlined$filter$1.class
+│   │           │   │               MapViewModel$fetchCurrentLocation$2$newFix$1.class
+│   │           │   │               MapViewModel$fetchCurrentLocation$2.class
+│   │           │   │               MapViewModel$filteredSearchResults$1.class
+│   │           │   │               MapViewModel$searchNearby$1.class
+│   │           │   │               MapViewModel.class
+│   │           │   │               PhotoGalleryViewModel$deletePhoto$1.class
+│   │           │   │               PhotoGalleryViewModel$loadPhotos$1$1.class
+│   │           │   │               PhotoGalleryViewModel$loadPhotos$1.class
+│   │           │   │               PhotoGalleryViewModel$setCoverPhoto$1.class
+│   │           │   │               PhotoGalleryViewModel$toggleCoverPhoto$1.class
+│   │           │   │               PhotoGalleryViewModel.class
+│   │           │   │               PlaceCardUi.class
+│   │           │   │               PlaceDetailViewModel$addHistoricalVisit$1.class
+│   │           │   │               PlaceDetailViewModel$addPhotoToPlace$1.class
+│   │           │   │               PlaceDetailViewModel$addVisit$1.class
+│   │           │   │               PlaceDetailViewModel$canCheckin$1.class
+│   │           │   │               PlaceDetailViewModel$deletePhoto$1.class
+│   │           │   │               PlaceDetailViewModel$deleteVisit$1.class
+│   │           │   │               PlaceDetailViewModel$loadPhotos$1$1.class
+│   │           │   │               PlaceDetailViewModel$loadPhotos$1.class
+│   │           │   │               PlaceDetailViewModel$setCoverPhoto$1.class
+│   │           │   │               PlaceDetailViewModel$special$$inlined$flatMapLatest$1.class
+│   │           │   │               PlaceDetailViewModel$special$$inlined$flatMapLatest$2.class
+│   │           │   │               PlaceDetailViewModel$tickerFlow$1.class
+│   │           │   │               PlaceDetailViewModel$updatePlaceDetails$1.class
+│   │           │   │               PlaceDetailViewModel$updateVisitComment$1.class
+│   │           │   │               PlaceDetailViewModel.class
+│   │           │   │               PlacesViewModel$1.class
+│   │           │   │               PlacesViewModel$2.class
+│   │           │   │               PlacesViewModel$allCards$1.class
+│   │           │   │               PlacesViewModel$allCards$2.class
+│   │           │   │               PlacesViewModel$placeCards$1.class
+│   │           │   │               PlacesViewModel.class
+│   │           │   │               RegionStat.class
+│   │           │   │               StatisticsViewModel$countries$1.class
+│   │           │   │               StatisticsViewModel$countries$2.class
+│   │           │   │               StatisticsViewModel$countries$3.class
+│   │           │   │               StatisticsViewModel$retryMissingGeocoding$1.class
+│   │           │   │               StatisticsViewModel.class
+│   │           │   │               
+│   │           │   └───META-INF
+│   │           │           app_debug.kotlin_module
+│   │           │           
+│   │           ├───debugAndroidTest
+│   │           │   ├───com
+│   │           │   │   └───spotlog
+│   │           │   │           ExampleInstrumentedTest.class
+│   │           │   │           
+│   │           │   └───META-INF
+│   │           │           app_debugAndroidTest.kotlin_module
+│   │           │           
+│   │           └───debugUnitTest
+│   │               ├───com
+│   │               │   └───spotlog
+│   │               │           CategoriesTest.class
+│   │               │           ExampleUnitTest.class
+│   │               │           ImportParserTest.class
+│   │               │           
+│   │               └───META-INF
+│   │                       app_debugUnitTest.kotlin_module
+│   │                       
+│   └───src
+│       ├───androidTest
+│       │   └───java
+│       │       └───com
+│       │           └───spotlog
+│       │                   ExampleInstrumentedTest.kt
+│       │                   
+│       ├───main
+│       │   │   AndroidManifest.xml
+│       │   │   ic_launcher-playstore.png
+│       │   │   
+│       │   ├───assets
+│       │   │       moscow_poi.json
+│       │   │       spotlog_config.json
+│       │   │       
+│       │   ├───java
+│       │   │   └───com
+│       │   │       └───spotlog
+│       │   │           │   MainActivity.kt
+│       │   │           │   
+│       │   │           ├───config
+│       │   │           │       ConfigManager.kt
+│       │   │           │       
+│       │   │           ├───data
+│       │   │           │   │   AppDatabase.kt
+│       │   │           │   │   ImportParser.kt
+│       │   │           │   │   NominatimGeocoder.kt
+│       │   │           │   │   PoiRepository.kt
+│       │   │           │   │   SettingsDataStore.kt
+│       │   │           │   │   
+│       │   │           │   ├───dao
+│       │   │           │   │       GeocodeCacheDao.kt
+│       │   │           │   │       PhotoDao.kt
+│       │   │           │   │       PlaceDao.kt
+│       │   │           │   │       VisitDao.kt
+│       │   │           │   │       
+│       │   │           │   ├───entity
+│       │   │           │   │       GeocodeCacheEntity.kt
+│       │   │           │   │       PhotoEntity.kt
+│       │   │           │   │       PlaceEntity.kt
+│       │   │           │   │       VisitEntity.kt
+│       │   │           │   │       
+│       │   │           │   └───repository
+│       │   │           │           ImportRepository.kt
+│       │   │           │           PlaceRepository.kt
+│       │   │           │           
+│       │   │           ├───location
+│       │   │           │       LocationProvider.kt
+│       │   │           │       
+│       │   │           ├───map
+│       │   │           │       MapUtils.kt
+│       │   │           │       MarkerFactory.kt
+│       │   │           │       
+│       │   │           ├───model
+│       │   │           │       Models.kt
+│       │   │           │       
+│       │   │           ├───navigation
+│       │   │           │       NavGraph.kt
+│       │   │           │       
+│       │   │           ├───premium
+│       │   │           │       Feature.kt
+│       │   │           │       PremiumManager.kt
+│       │   │           │       
+│       │   │           ├───theme
+│       │   │           │       Color.kt
+│       │   │           │       Shape.kt
+│       │   │           │       Theme.kt
+│       │   │           │       Type.kt
+│       │   │           │       
+│       │   │           ├───ui
+│       │   │           │       AddHistoricalVisitDialog.kt
+│       │   │           │       AddOldPlaceForm.kt
+│       │   │           │       AddVisitDialog.kt
+│       │   │           │       EditPlaceDialog.kt
+│       │   │           │       FullScreenPhotoViewer.kt
+│       │   │           │       ImportScreen.kt
+│       │   │           │       MapScreen.kt
+│       │   │           │       PhotoGalleryScreen.kt
+│       │   │           │       PlaceDetailScreen.kt
+│       │   │           │       PlacesScreen.kt
+│       │   │           │       SettingsScreen.kt
+│       │   │           │       StatisticsScreen.kt
+│       │   │           │       
+│       │   │           ├───util
+│       │   │           │       Categories.kt
+│       │   │           │       Constants.kt
+│       │   │           │       CrashLogger.kt
+│       │   │           │       Distance.kt
+│       │   │           │       OsmInitializer.kt
+│       │   │           │       PhotoProcessor.kt
+│       │   │           │       PhotoStorage.kt
+│       │   │           │       SafeCall.kt
+│       │   │           │       
+│       │   │           └───viewmodel
+│       │   │                   ImportViewModel.kt
+│       │   │                   MapViewModel.kt
+│       │   │                   PhotoGalleryViewModel.kt
+│       │   │                   PlaceDetailViewModel.kt
+│       │   │                   PlacesViewModel.kt
+│       │   │                   StatisticsViewModel.kt
+│       │   │                   
+│       │   ├───keepRules
+│       │   │       rules.keep
+│       │   │       
+│       │   └───res
+│       │       ├───drawable
+│       │       │       ic_launcher_background.xml
+│       │       │       ic_launcher_foreground.xml
+│       │       │       ic_map_pin.xml
+│       │       │       splash_icon.xml
+│       │       │       splash_logo.png
+│       │       │       
+│       │       ├───font
+│       │       │       nunito_sans_bold.ttf
+│       │       │       nunito_sans_extrabold.ttf
+│       │       │       nunito_sans_light.ttf
+│       │       │       nunito_sans_regular.ttf
+│       │       │       nunito_sans_semibold.ttf
+│       │       │       
+│       │       ├───mipmap-anydpi
+│       │       ├───mipmap-anydpi-v26
+│       │       │       ic_launcher.xml
+│       │       │       ic_launcher_round.xml
+│       │       │       
+│       │       ├───mipmap-hdpi
+│       │       │       ic_launcher.webp
+│       │       │       ic_launcher_foreground.webp
+│       │       │       ic_launcher_round.webp
+│       │       │       
+│       │       ├───mipmap-mdpi
+│       │       │       ic_launcher.webp
+│       │       │       ic_launcher_foreground.webp
+│       │       │       ic_launcher_round.webp
+│       │       │       
+│       │       ├───mipmap-xhdpi
+│       │       │       ic_launcher.webp
+│       │       │       ic_launcher_foreground.webp
+│       │       │       ic_launcher_round.webp
+│       │       │       
+│       │       ├───mipmap-xxhdpi
+│       │       │       ic_launcher.webp
+│       │       │       ic_launcher_foreground.webp
+│       │       │       ic_launcher_round.webp
+│       │       │       
+│       │       ├───mipmap-xxxhdpi
+│       │       │       ic_launcher.webp
+│       │       │       ic_launcher_foreground.webp
+│       │       │       ic_launcher_round.webp
+│       │       │       
+│       │       ├───values
+│       │       │       colors.xml
+│       │       │       ic_launcher_background.xml
+│       │       │       strings.xml
+│       │       │       themes.xml
+│       │       │       
+│       │       └───xml
+│       │               backup_rules.xml
+│       │               data_extraction_rules.xml
+│       │               file_paths.xml
+│       │               
+│       └───test
+│           └───java
+│               └───com
+│                   └───spotlog
+│                           CategoriesTest.kt
+│                           ExampleUnitTest.kt
+│                           ImportParserTest.kt
+│                           
+├───build
+│   └───reports
+│       ├───configuration-cache
+│       │   ├───3bi1r781xju67lkxhhk2urj59
+│       │   │   ├───4nhdtxl52conqypokz6tguggc
+│       │   │   │       configuration-cache-report.html
+│       │   │   │       
+│       │   │   └───e8vbcnik9oizm6akm3wj5ygeb
+│       │   │           configuration-cache-report.html
+│       │   │           
+│       │   ├───dgzrenq9etv9qkomwku7r1vgx
+│       │   │   ├───5x835jw9i2ur39d77ojldr71r
+│       │   │   │       configuration-cache-report.html
+│       │   │   │       
+│       │   │   ├───9dfx5m1wfch600xvswy0ovc7k
+│       │   │   │       configuration-cache-report.html
+│       │   │   │       
+│       │   │   ├───amnrnv0u70t9x9ikuww9kwwzi
+│       │   │   │       configuration-cache-report.html
+│       │   │   │       
+│       │   │   ├───blxmdajjt6ivk6e26qh8d9s06
+│       │   │   │       configuration-cache-report.html
+│       │   │   │       
+│       │   │   ├───c9v22slrydimkx16vhv92n345
+│       │   │   │       configuration-cache-report.html
+│       │   │   │       
+│       │   │   ├───d1tmbpzq08qk8q1sl8kbcfs9e
+│       │   │   │       configuration-cache-report.html
+│       │   │   │       
+│       │   │   ├───dwbazilltkf8fnw8byabmenzy
+│       │   │   │       configuration-cache-report.html
+│       │   │   │       
+│       │   │   └───es1rib2fbw5t0w6v46ji63i1b
+│       │   │           configuration-cache-report.html
+│       │   │           
+│       │   └───dvnoyhbackyxtfrk01195an9p
+│       │       ├───14u9i8u75cvluygzit1wvgkqp
+│       │       │       configuration-cache-report.html
+│       │       │       
+│       │       ├───6obuacn7k2kmtugmjl2aqlby5
+│       │       │       configuration-cache-report.html
+│       │       │       
+│       │       ├───7fb2f57963db1wc6kt0d5svow
+│       │       │       configuration-cache-report.html
+│       │       │       
+│       │       ├───ab0sz6qv3f5ki22sbwc5k1ig8
+│       │       │       configuration-cache-report.html
+│       │       │       
+│       │       └───e1gwpp3byze22zs6e4osmf0k6
+│       │               configuration-cache-report.html
+│       │               
+│       └───problems
+│               problems-report.html
+│               
+└───gradle
+    │   gradle-daemon-jvm.properties
+    │   libs.versions.toml
+    │   
+    └───wrapper
+            gradle-wrapper.jar
+            gradle-wrapper.properties
+            
