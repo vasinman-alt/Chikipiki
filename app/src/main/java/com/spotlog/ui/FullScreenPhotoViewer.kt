@@ -1,9 +1,7 @@
-// ==== ФАЙЛ: FullScreenPhotoViewer.kt ====
 package com.spotlog.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.awaitEachGesture
-import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -17,12 +15,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.input.pointer.PointerEventPass
-import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -30,18 +24,7 @@ import coil.compose.AsyncImage
 import com.spotlog.data.entity.PhotoEntity
 import com.spotlog.theme.Spacing
 import java.io.File
-import kotlin.math.abs
 
-/**
- * Полноэкранный просмотрщик фото.
- *
- * Ключевая идея: HorizontalPager отвечает за свайп между фото, а ZoomableImage — за зум/пан
- * внутри увеличенного изображения. Чтобы оба работали одновременно, мы вручную разбираем
- * жесты: потребляем событие только когда нужно (реальный pinch‑to‑zoom или pan при scale>1).
- *
- * Когда пользователь делает один‑пальцевый горизонтальный свайп при scale==1f,
- * событие НЕ потребляется – оно всплывает к HorizontalPager и переключает страницу.
- */
 @Composable
 fun FullScreenPhotoViewer(
     photos: List<PhotoEntity>,
@@ -87,72 +70,28 @@ fun FullScreenPhotoViewer(
     }
 }
 
-/**
- * Изображение, которое умеет зум‑иться двумя пальцами и панорамироваться при увеличении.
- * Один‑пальцевый свайп при scale == 1f НЕ потребляется → передаётся родительскому HorizontalPager.
- */
 @Composable
 private fun ZoomableImage(photo: PhotoEntity) {
     var scale by remember { mutableStateOf(1f) }
     var offset by remember { mutableStateOf(Offset.Zero) }
-    var imageSize by remember { mutableStateOf(Offset.Zero) }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .onSizeChanged { size ->
-                imageSize = Offset(size.width.toFloat(), size.height.toFloat())
-            }
-            .pointerInput(Unit) {
-                // Ручная обработка жестов: реагируем только на pinch‑to‑zoom или pan при увеличении.
-                awaitEachGesture {
-                    awaitFirstDown(requireUnconsumed = false)
-                    do {
-                        val event = awaitPointerEvent(PointerEventPass.Main)
-                        val pointers = event.changes
-                        val pressedCount = pointers.count { it.pressed }
-
-                        if (pressedCount >= 2) {
-                            // ---- Двух‑пальцевый жест (pinch‑to‑zoom + pan) ----
-                            val zoomChange = event.calculateZoom()
-                            val panChange = event.calculatePan()
-
-                            // Применяем зум
-                            val newScale = (scale * zoomChange).coerceIn(1f, 5f)
-                            scale = newScale
-
-                            // Применяем pan только если изображение увеличено
-                            if (newScale > 1f) {
-                                val maxOffsetX = (imageSize.x * (newScale - 1f)) / 2f
-                                val maxOffsetY = (imageSize.y * (newScale - 1f)) / 2f
-                                offset = Offset(
-                                    x = (offset.x + panChange.x).coerceIn(-maxOffsetX, maxOffsetX),
-                                    y = (offset.y + panChange.y).coerceIn(-maxOffsetY, maxOffsetY)
-                                )
-                            } else {
-                                offset = Offset.Zero
-                            }
-
-                            // Помечаем все события как потреблённые — они не должны уйти в Pager
-                            pointers.forEach { it.consume() }
-                        } else if (pressedCount == 1 && scale > 1f) {
-                            // ---- Один палец при увеличенном изображении: pan внутри фото ----
-                            val panChange = event.calculatePan()
-                            val maxOffsetX = (imageSize.x * (scale - 1f)) / 2f
-                            val maxOffsetY = (imageSize.y * (scale - 1f)) / 2f
-                            offset = Offset(
-                                x = (offset.x + panChange.x).coerceIn(-maxOffsetX, maxOffsetX),
-                                y = (offset.y + panChange.y).coerceIn(-maxOffsetY, maxOffsetY)
-                            )
-                            // Потребляем только те изменения, которые относятся к pan‑у.
-                            // Горизонтальное смещение > вертикального → блокируем весь жест,
-                            // иначе Pager всё равно сработает и будет «рвать» картинку.
-                            if (abs(panChange.x) > 0.5f || abs(panChange.y) > 0.5f) {
-                                pointers.forEach { it.consume() }
-                            }
+            .pointerInput(scale) {
+                // Обрабатываем жесты только когда изображение увеличено.
+                // При scale == 1f все жесты уходят родительскому HorizontalPager,
+                // обеспечивая свайп между фото.
+                if (scale > 1f) {
+                    detectTransformGestures { _, pan, zoom, _ ->
+                        val newScale = (scale * zoom).coerceIn(1f, 5f)
+                        scale = newScale
+                        if (newScale > 1f) {
+                            offset += pan
+                        } else {
+                            offset = Offset.Zero
                         }
-                        // ---- Один палец при scale == 1f: НЕ потребляем → HorizontalPager сработает ----
-                    } while (event.changes.any { it.pressed })
+                    }
                 }
             }
     ) {

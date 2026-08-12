@@ -1,4 +1,3 @@
-// ==== ФАЙЛ: PlaceDetailScreen.kt ====
 package com.spotlog.ui
 
 import android.net.Uri
@@ -41,7 +40,6 @@ fun PlaceDetailScreen(
     navController: NavHostController,
     onShowOnMap: () -> Unit,
     onBack: () -> Unit,
-    // NEW: открыть диалог исторического визита сразу после захода на экран
     openHistoricalOnStart: Boolean = false
 ) {
     val context = LocalContext.current
@@ -58,8 +56,16 @@ fun PlaceDetailScreen(
         viewModel.error.collect { message -> snackbarHostState.showSnackbar(message) }
     }
 
-    // FIX: расширенный запуск – после init() открываем диалог исторического визита,
-    // если пришли через пункт «Добавить прошлый визит» в списке мест.
+    // Все состояния должны быть объявлены до их использования в LaunchedEffect
+    var editCommentDialog by remember { mutableStateOf<VisitWithPlace?>(null) }
+    var deleteVisitDialog by remember { mutableStateOf<Long?>(null) }
+    var showAddPhotoDialog by remember { mutableStateOf(false) }
+    var showEditPlaceDialog by remember { mutableStateOf(false) }
+    var selectedPhotoIndex by remember { mutableIntStateOf(0) }
+    var showFullScreenPhoto by remember { mutableStateOf(false) }
+    var showAddVisitDialog by remember { mutableStateOf(false) }
+    var showHistoricalVisitDialog by remember { mutableStateOf(false) }
+
     LaunchedEffect(placeId, openHistoricalOnStart) {
         viewModel.init(placeId)
         if (openHistoricalOnStart) {
@@ -82,15 +88,6 @@ fun PlaceDetailScreen(
 
     val currentPlace = place!!
     val dateFormat = remember { SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault()) }
-
-    var editCommentDialog by remember { mutableStateOf<VisitWithPlace?>(null) }
-    var deleteVisitDialog by remember { mutableStateOf<Long?>(null) }
-    var showAddPhotoDialog by remember { mutableStateOf(false) }
-    var showEditPlaceDialog by remember { mutableStateOf(false) }
-    var selectedPhotoIndex by remember { mutableIntStateOf(0) }
-    var showFullScreenPhoto by remember { mutableStateOf(false) }
-    var showAddVisitDialog by remember { mutableStateOf(false) }
-    var showHistoricalVisitDialog by remember { mutableStateOf(false) }
 
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
@@ -424,7 +421,7 @@ fun PlaceDetailScreen(
             AddHistoricalVisitDialog(
                 onDismiss = { showHistoricalVisitDialog = false },
                 onComplete = { timestamp, comment, photoUri ->
-                    viewModel.addHistoricalVisit(timestamp, comment, photoUri)
+                    viewModel.addVisit(timestamp, comment, photoUri?.let { Uri.parse(it) })
                     showHistoricalVisitDialog = false
                 }
             )

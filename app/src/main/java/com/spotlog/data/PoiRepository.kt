@@ -1,4 +1,3 @@
-// ==== ФАЙЛ: PoiRepository.kt ====
 package com.spotlog.data
 
 import android.content.Context
@@ -49,7 +48,6 @@ class PoiRepository(
 
     @Suppress("SameParameterValue")
     private fun regionKey(lat: Double, lon: Double): String {
-        // Округление до 3 знаков (~110м) — чтобы соседние поиски попадали в кэш
         val latR = (lat * 1000).toInt() / 1000.0
         val lonR = (lon * 1000).toInt() / 1000.0
         return "%.3f_%.3f".format(latR, lonR)
@@ -129,7 +127,6 @@ class PoiRepository(
             } catch (e: Exception) {
                 Log.w("PoiRepository", "Mirror #${index + 1} failed: ${e.message}")
                 lastError = e
-                // Продолжаем со следующим зеркалом
             }
         }
         throw lastError ?: IOException("All Overpass mirrors failed")
@@ -153,10 +150,10 @@ class PoiRepository(
                     }
 
                     val code = conn.responseCode
-                    // Считаем «успешным» только HTTP_OK. 429/5xx — повод перейти к другому зеркалу.
                     if (code != HttpURLConnection.HTTP_OK) {
                         val body = runCatching { conn.errorStream?.bufferedReader()?.readText() }
-                            .getOrDefault("")
+                            .getOrNull()
+                            ?: ""
                         conn.disconnect()
                         throw IOException("HTTP $code: ${body.take(200)}")
                     }
