@@ -1,3 +1,4 @@
+// ==== ФАЙЛ: NominatimGeocoder.kt ====
 package com.spotlog.data
 
 import android.content.Context
@@ -17,8 +18,23 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Locale
 
+/**
+ * Обратное геокодирование через Nominatim.
+ *
+ * Реализует два важных требования их usage policy:
+ *  1. Rate‑limit: не более 1 запроса в секунду (через Mutex‑slot).
+ *  2. Корректный HTTP User-Agent (Nominatim требует идентификацию приложения).
+ */
 object NominatimGeocoder {
     private const val MIN_INTERVAL_MS = 1000L
+
+    /**
+     * Идентификатор приложения, который видит Nominatim.
+     * Без User-Agent зеркала могут возвращать 403/429.
+     */
+    private const val USER_AGENT =
+        "Chikipiki/1.0 (Android; contact: dev@example.com)"
+
     private val mutex = Mutex()
     private var lastRequestTime = 0L
 
@@ -35,13 +51,8 @@ object NominatimGeocoder {
         }
 
         // Мьютекс держит ТОЛЬКО резервирование временного слота (быстрая операция,
-        // без сети) — не сам HTTP-запрос. Раньше mutex.withLock оборачивал весь
-        // fetchReverseGeocode(), из-за чего один медленный/зависший фоновый запрос
-        // (например, при fillAllMissingCountries) мог заблокировать интерактивный
-        // чекин пользователя на все время readTimeout (до 15 сек). Теперь запросы
-        // выполняются параллельно, а гарантируется только минимальный интервал
-        // МЕЖДУ СТАРТАМИ запросов — этого достаточно для соблюдения usage policy
-        // Nominatim (не более 1 запроса/сек).
+        // без сети) — не сам HTTP-запрос. Так медленный/зависший фоновый запрос
+        // не блокирует интерактивный чекин пользователя.
         val slotTime = mutex.withLock {
             val now = System.currentTimeMillis()
             val next = maxOf(now, lastRequestTime + MIN_INTERVAL_MS)
@@ -75,6 +86,10 @@ object NominatimGeocoder {
                 conn.connectTimeout = 10_000
                 conn.readTimeout = 15_000
                 conn.requestMethod = "GET"
+
+                // FIX: Nominatim usage policy требует идентификации клиента
+                conn.setRequestProperty("User-Agent", USER_AGENT)
+                conn.setRequestProperty("Accept", "application/json")
                 conn.setRequestProperty("Accept-Language", "ru")
 
                 val responseCode = conn.responseCode

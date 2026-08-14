@@ -1,3 +1,4 @@
+// ==== ФАЙЛ: PlaceDetailScreen.kt ====
 package com.spotlog.ui
 
 import android.net.Uri
@@ -421,7 +422,9 @@ fun PlaceDetailScreen(
             AddHistoricalVisitDialog(
                 onDismiss = { showHistoricalVisitDialog = false },
                 onComplete = { timestamp, comment, photoUri ->
-                    viewModel.addVisit(timestamp, comment, photoUri?.let { Uri.parse(it) })
+                    // FIX: используем правильный метод, который проставляет systemNote
+                    // и VisitSource.IMPORTED_MANUAL_OLD. Без лишнего Uri.parse.
+                    viewModel.addHistoricalVisit(timestamp, comment, photoUri)
                     showHistoricalVisitDialog = false
                 }
             )

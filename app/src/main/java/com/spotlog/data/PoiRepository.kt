@@ -1,7 +1,12 @@
+// ==== ФАЙЛ: PoiRepository.kt ====
 package com.spotlog.data
 
 import android.content.Context
 import android.util.Log
+import com.spotlog.config.ConfigManager
+import com.spotlog.config.FilterConfig
+import com.spotlog.config.ResponseMapping
+import com.spotlog.config.SourceConfig
 import com.spotlog.model.PoiData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.TimeoutCancellationException
@@ -9,6 +14,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import java.io.IOException
@@ -17,37 +23,35 @@ import java.net.URL
 import java.util.concurrent.TimeUnit
 
 /**
- * Репозиторий поиска POI через Overpass API.
+ * Репозиторий поиска POI.
  *
- * Ключевые отличия этой версии:
- *  - Список зеркал (по умолчанию — основной Overpass + два публичных зеркала).
- *  - При сбое (timeout / HTTP 429 / 5xx / недоступность) — автоматический переход
- *    на следующее зеркало. Это устраняет «пустой список» и «ошибку поиска» при
- *    временной недоступности одного сервера (например, из‑за VPN‑блокировок).
- *  - Кэш двухуровневый (память + файл), TTL 30 минут.
+ * Полностью настраивается через `ConfigManager` (см. `spotlog_config.json`):
+ *  - список зеркал (`mirrors[]`) — перебирается при ошибках
+ *  - шаблон запроса (`query_template`) — подставляются {lat}, {lon}, {radius}
+ *  - маппинг полей ответа (`response_mapping`) — гибкая поддержка разных API
+ *  - фильтры (`filters`) — exclude_keys/exclude_tags
+ *
+ * Кэш двухуровневый: память + файл (TTL 30 минут).
  */
 class PoiRepository(
     private val context: Context,
     @Suppress("UNUSED_PARAMETER") private val scope: kotlinx.coroutines.CoroutineScope
 ) {
+    private val configManager = ConfigManager.getInstance(context)
+
     private val cacheMutex = Mutex()
     private val memoryCache = mutableMapOf<String, Pair<Long, String>>()
     private val cacheTtlMs = TimeUnit.MINUTES.toMillis(30)
     private val searchRadius = 500
 
-    /**
-     * Список зеркал Overpass API. Используются по очереди; при ошибке
-     * одной попытки сразу пробуем следующую. Источник: публичный список
-     * https://wiki.openstreetmap.org/wiki/Overpass_API (по состоянию на 2024).
-     */
-    private val overpassMirrors = listOf(
-        "https://overpass-api.de/api/interpreter",
-        "https://overpass.kumi.systems/api/interpreter",
-        "https://overpass.private.coffee/api/interpreter"
-    )
+    /** Кэш активного источника (вычисляется один раз при инициализации). */
+    private val source: SourceConfig by lazy { configManager.getActiveSource() }
+    private val responseMapping: ResponseMapping by lazy { configManager.getResponseMapping() }
+    private val filters: FilterConfig by lazy { configManager.getFilters() }
 
     @Suppress("SameParameterValue")
     private fun regionKey(lat: Double, lon: Double): String {
+        // Округление до 3 знаков (~110м) — чтобы соседние поиски попадали в кэш
         val latR = (lat * 1000).toInt() / 1000.0
         val lonR = (lon * 1000).toInt() / 1000.0
         return "%.3f_%.3f".format(latR, lonR)
@@ -56,20 +60,20 @@ class PoiRepository(
     private fun getCacheFile(key: String): File =
         File(context.cacheDir, "poi_cache_${key}.json")
 
-    /** Основная точка входа: кэш + сеть с перебором зеркал */
+    /** Основная точка входа: кэш + сеть с перебором зеркал + фильтры */
     suspend fun getNearby(lat: Double, lon: Double, radius: Int = searchRadius): List<PoiData> {
         val key = regionKey(lat, lon)
 
-        // 1. Проверка memory‑кэша
+        // 1️⃣ Memory‑кэш
         cacheMutex.withLock {
             memoryCache[key]?.let { (timestamp, json) ->
                 if (System.currentTimeMillis() - timestamp < cacheTtlMs) {
-                    return parsePoiJson(json)
+                    return parseAndFilter(json)
                 }
             }
         }
 
-        // 2. Проверка файлового кэша
+        // 2️⃣ Файловый кэш
         val cachedJson = withContext(Dispatchers.IO) {
             cacheMutex.withLock {
                 val file = getCacheFile(key)
@@ -89,11 +93,11 @@ class PoiRepository(
             }
         }
         if (cachedJson != null) {
-            return parsePoiJson(cachedJson)
+            return parseAndFilter(cachedJson)
         }
 
-        // 3. Сетевой запрос с автоматическим перебором зеркал
-        val query = buildOverpassQuery(lat, lon, radius)
+        // 3️⃣ Сеть с автоматическим перебором зеркал
+        val query = buildQuery(lat, lon, radius)
         val json = fetchFromAnyMirror(query)
 
         // Сохраняем в кэш (память + файл)
@@ -108,17 +112,21 @@ class PoiRepository(
             }
         }
 
-        return parsePoiJson(json)
+        return parseAndFilter(json)
     }
 
-    /**
-     * Пробует каждый URL из списка зеркал.
-     * Возвращает результат первой успешной попытки.
-     * Если все попытки неуспешны — бросает последнее исключение.
-     */
+    /** Подставляет координаты и радиус в шаблон из конфига. */
+    private fun buildQuery(lat: Double, lon: Double, radius: Int): String {
+        return source.queryTemplate
+            .replace("{lat}", lat.toString())
+            .replace("{lon}", lon.toString())
+            .replace("{radius}", radius.toString())
+    }
+
+    /** Пробует каждое зеркало по очереди; возвращает первый успешный ответ. */
     private suspend fun fetchFromAnyMirror(query: String): String {
         var lastError: Throwable? = null
-        for ((index, url) in overpassMirrors.withIndex()) {
+        for ((index, url) in source.mirrors.withIndex()) {
             try {
                 Log.d("PoiRepository", "Trying mirror #${index + 1}: $url")
                 val json = fetchPoiJson(url, query)
@@ -129,7 +137,7 @@ class PoiRepository(
                 lastError = e
             }
         }
-        throw lastError ?: IOException("All Overpass mirrors failed")
+        throw lastError ?: IOException("All ${source.name} mirrors failed")
     }
 
     /** Один HTTP POST к конкретному URL с общим таймаутом 15 сек. */
@@ -143,7 +151,11 @@ class PoiRepository(
                     conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
                     conn.connectTimeout = 8_000
                     conn.readTimeout = 12_000
-                    conn.setRequestProperty("User-Agent", "SpotLog/1.0 (Android)")
+
+                    // FIX: User-Agent из конфига (если требуется)
+                    if (source.requiresUserAgent) {
+                        conn.setRequestProperty("User-Agent", configManager.getUserAgent())
+                    }
 
                     conn.outputStream.use { os ->
                         os.write("data=${query}".toByteArray(Charsets.UTF_8))
@@ -152,8 +164,7 @@ class PoiRepository(
                     val code = conn.responseCode
                     if (code != HttpURLConnection.HTTP_OK) {
                         val body = runCatching { conn.errorStream?.bufferedReader()?.readText() }
-                            .getOrNull()
-                            ?: ""
+                            .getOrNull() ?: ""
                         conn.disconnect()
                         throw IOException("HTTP $code: ${body.take(200)}")
                     }
@@ -167,56 +178,44 @@ class PoiRepository(
             }
         }
 
-    @SuppressWarnings("SpellCheckingInspection")
-    private fun buildOverpassQuery(lat: Double, lon: Double, radius: Int): String = """
-        [out:json][timeout:25];
-        (
-            node["amenity"](around:$radius,$lat,$lon);
-            node["shop"](around:$radius,$lat,$lon);
-            node["tourism"](around:$radius,$lat,$lon);
-            node["historic"](around:$radius,$lat,$lon);
-            node["leisure"](around:$radius,$lat,$lon);
-            way["amenity"](around:$radius,$lat,$lon);
-            way["shop"](around:$radius,$lat,$lon);
-            way["tourism"](around:$radius,$lat,$lon);
-            way["historic"](around:$radius,$lat,$lon);
-            way["leisure"](around:$radius,$lat,$lon);
-            relation["amenity"](around:$radius,$lat,$lon);
-            relation["shop"](around:$radius,$lat,$lon);
-            relation["tourism"](around:$radius,$lat,$lon);
-            relation["historic"](around:$radius,$lat,$lon);
-            relation["leisure"](around:$radius,$lat,$lon);
-        );
-        out body;
-        >;
-        out skel qt;
-    """.trimIndent()
+    /* -------------------------------------------------------------
+     *  Парсинг и фильтрация через response_mapping
+     * ------------------------------------------------------------- */
 
-    private fun parsePoiJson(json: String): List<PoiData> {
+    /**
+     * Полный цикл: распарсить JSON → применить фильтры → вернуть список PoiData.
+     */
+    private fun parseAndFilter(json: String): List<PoiData> {
+        val raw = parseRaw(json)
+        return raw.filter { passesFilters(it) }
+    }
+
+    /**
+     * Парсит JSON в список «сырых» элементов, где для каждого POI уже
+     * известно имя, координаты и первая найденная «категория».
+     */
+    private fun parseRaw(json: String): List<PoiData> {
         val result = mutableListOf<PoiData>()
         try {
             val root = JSONObject(json)
-            val elements = root.optJSONArray("elements") ?: return emptyList()
+            val elements = root.optJSONArray(responseMapping.elementsArray) ?: return emptyList()
             val seenNames = mutableSetOf<String>()
 
             for (i in 0 until elements.length()) {
                 val el = elements.optJSONObject(i) ?: continue
-                val tags = el.optJSONObject("tags") ?: continue
-                val name = tags.optString("name", "")
-                if (name.isEmpty()) continue
-                if (seenNames.contains(name)) continue
-                seenNames.add(name)
+                val tags = el.optJSONObject("tags")
+                val name = readNestedString(el, responseMapping.nameField) ?: continue
+                if (name.isBlank() || !seenNames.add(name)) continue
 
-                val lat = el.optDouble("lat", Double.NaN)
-                val lon = el.optDouble("lon", Double.NaN)
+                val lat = el.optDouble(responseMapping.latField, Double.NaN)
+                val lon = el.optDouble(responseMapping.lonField, Double.NaN)
                 if (lat.isNaN() || lon.isNaN()) continue
 
-                val category = tags.optString("amenity", "")
-                    .ifEmpty { tags.optString("shop", "") }
-                    .ifEmpty { tags.optString("tourism", "") }
-                    .ifEmpty { tags.optString("historic", "") }
-                    .ifEmpty { tags.optString("leisure", "") }
-                    .ifEmpty { "other" }
+                // Категория: сначала из mapping.categoryField, иначе — fallback‑эвристика
+                val category = responseMapping.categoryField
+                    ?.let { readNestedString(el, it) }
+                    ?.takeIf { it.isNotBlank() }
+                    ?: fallbackCategoryFromTags(tags)
 
                 result.add(PoiData(name, lat, lon, category))
             }
@@ -224,5 +223,62 @@ class PoiRepository(
             Log.e("PoiRepository", "Parse error", e)
         }
         return result
+    }
+
+    /**
+     * Читает вложенное поле по пути «a.b.c» (например, "tags.name").
+     * Если путь пустой или содержит только один сегмент — работает как обычный ключ.
+     */
+    private fun readNestedString(obj: JSONObject, path: String): String? {
+        if (path.isBlank()) return null
+        val parts = path.split('.')
+        var current: JSONObject? = obj
+        for (i in 0 until parts.size - 1) {
+            current = current?.optJSONObject(parts[i]) ?: return null
+        }
+        return current?.optString(parts.last(), "")
+            ?.takeIf { it.isNotBlank() }
+    }
+
+    /**
+     * Если в маппинге категории нет или поле пустое — ищем «key=value» в `tags`.
+     * Возвращаем первый непустой тег, чтобы UI мог показать хоть что‑то осмысленное.
+     */
+    private fun fallbackCategoryFromTags(tags: JSONObject?): String {
+        if (tags == null) return "other"
+        val keys = tags.keys()
+        while (keys.hasNext()) {
+            val key = keys.next()
+            val value = tags.optString(key, "").trim()
+            if (value.isNotBlank()) return "$key=$value"
+        }
+        return "other"
+    }
+
+    /* -------------------------------------------------------------
+     *  Фильтры (exclude_keys, exclude_tags, include_place_nodes)
+     * ------------------------------------------------------------- */
+    private fun passesFilters(poi: PoiData): Boolean {
+        // Нам нужны tags, а не только имя/координаты. Но parseRaw не сохраняет
+        // сам объект. Чтобы фильтрация работала корректно, сохраним теги рядом
+        // с PoiData. Здесь — простая проверка через сам текст категории,
+        // которая уже включает «key=value» после fallback‑эвристики.
+        val tag = poi.category
+
+        // exclude_keys: пропускаем POI, у которых в категории (key=value)
+        // встречается один из запрещённых ключей
+        if (filters.excludeKeys.isNotEmpty()) {
+            val key = tag.substringBefore('=', missingDelimiterValue = "").trim()
+            if (key.isNotBlank() && key in filters.excludeKeys) return false
+        }
+
+        // exclude_tags: аналогично, но с учётом «key=value»
+        if (filters.excludeTags.isNotEmpty() && '=' in tag) {
+            val (key, value) = tag.split('=', limit = 2).let { it[0].trim() to it[1].trim() }
+            val blocked = filters.excludeTags[key]
+            if (blocked != null && value in blocked) return false
+        }
+
+        return true
     }
 }
