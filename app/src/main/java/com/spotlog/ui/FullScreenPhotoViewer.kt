@@ -1,9 +1,7 @@
-// ==== ФАЙЛ: FullScreenPhotoViewer.kt ====
 package com.spotlog.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.awaitEachGesture
-import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -17,10 +15,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -28,18 +24,15 @@ import coil.compose.AsyncImage
 import com.spotlog.data.entity.PhotoEntity
 import com.spotlog.theme.Spacing
 import java.io.File
-import kotlin.math.abs
 
 /**
  * Полноэкранный просмотрщик фото.
  *
  * Архитектура жестов:
  *  - HorizontalPager отвечает за свайп между фото.
- *  - ZoomableImage отвечает за pinch‑to‑zoom (двумя пальцами) и панорамирование
- *    при увеличенном изображении (один палец + scale > 1f).
- *  - Жест «потребляется» (consume) только в тех случаях, когда он относится
- *    к ZoomableImage. В остальных случаях событие свободно доходит до родителя,
- *    и HorizontalPager листает страницы.
+ *  - ZoomableImage отвечает за pinch‑to‑zoom и панорамирование при увеличении.
+ *  - При масштабе 1x жесты не перехватываются, и HorizontalPager свободно листает страницы.
+ *  - При масштабе > 1x включается обработчик transform-жестов, который потребляет события.
  */
 @Composable
 fun FullScreenPhotoViewer(
@@ -88,64 +81,25 @@ fun FullScreenPhotoViewer(
 
 @Composable
 private fun ZoomableImage(photo: PhotoEntity) {
-    var scale by remember { mutableStateOf(1f) }
+    var scale by remember { mutableFloatStateOf(1f) }
     var offset by remember { mutableStateOf(Offset.Zero) }
-    var imageSize by remember { mutableStateOf(Offset.Zero) }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .onSizeChanged { size ->
-                imageSize = Offset(size.width.toFloat(), size.height.toFloat())
-            }
-            .pointerInput(Unit) {
-                awaitEachGesture {
-                    awaitFirstDown(requireUnconsumed = false)
-                    do {
-                        val event = awaitPointerEvent(PointerEventPass.Main)
-                        val pointers = event.changes
-                        val pressedCount = pointers.count { it.pressed }
-
-                        when {
-                            // ---- Двух‑пальцевый pinch‑to‑zoom + pan ----
-                            pressedCount >= 2 -> {
-                                val zoomChange = event.calculateZoom()
-                                val panChange = event.calculatePan()
-
-                                val newScale = (scale * zoomChange).coerceIn(1f, 5f)
-                                scale = newScale
-
-                                if (newScale > 1f) {
-                                    val maxOffsetX = (imageSize.x * (newScale - 1f)) / 2f
-                                    val maxOffsetY = (imageSize.y * (newScale - 1f)) / 2f
-                                    offset = Offset(
-                                        x = (offset.x + panChange.x).coerceIn(-maxOffsetX, maxOffsetX),
-                                        y = (offset.y + panChange.y).coerceIn(-maxOffsetY, maxOffsetY)
-                                    )
-                                } else {
-                                    offset = Offset.Zero
-                                }
-
-                                pointers.forEach { it.consume() }
-                            }
-
-                            // ---- Один палец при увеличенном изображении: pan внутри фото ----
-                            pressedCount == 1 && scale > 1f -> {
-                                val panChange = event.calculatePan()
-                                val maxOffsetX = (imageSize.x * (scale - 1f)) / 2f
-                                val maxOffsetY = (imageSize.y * (scale - 1f)) / 2f
-                                offset = Offset(
-                                    x = (offset.x + panChange.x).coerceIn(-maxOffsetX, maxOffsetX),
-                                    y = (offset.y + panChange.y).coerceIn(-maxOffsetY, maxOffsetY)
-                                )
-                                if (abs(panChange.x) > 0.5f || abs(panChange.y) > 0.5f) {
-                                    pointers.forEach { it.consume() }
-                                }
-                            }
-                            // ---- Один палец при scale == 1f: ничего не потребляем
-                            //      → HorizontalPager получает жест и листает страницу ----
+            .pointerInput(scale) {
+                // Обработчик жестов активен только когда фото увеличено.
+                // При scale == 1f блок пустой, поэтому события доходят до HorizontalPager.
+                if (scale > 1f) {
+                    detectTransformGestures { _, pan, zoom, _ ->
+                        val newScale = (scale * zoom).coerceIn(1f, 5f)
+                        scale = newScale
+                        if (newScale > 1f) {
+                            offset += pan
+                        } else {
+                            offset = Offset.Zero
                         }
-                    } while (event.changes.any { it.pressed })
+                    }
                 }
             }
     ) {
