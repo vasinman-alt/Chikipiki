@@ -34,7 +34,6 @@ fun AddOldPlaceForm(
     var name by remember { mutableStateOf("") }
     var category by remember { mutableStateOf("custom") }
     var showCategoryMenu by remember { mutableStateOf(false) }
-
     var manualLat by remember { mutableStateOf(pickedLat?.toString() ?: "") }
     var manualLon by remember { mutableStateOf(pickedLon?.toString() ?: "") }
 
@@ -81,6 +80,7 @@ fun AddOldPlaceForm(
                 Text("На карте")
             }
         }
+
         Spacer(Modifier.height(Spacing.sm))
 
         Box {
@@ -97,6 +97,7 @@ fun AddOldPlaceForm(
                 }
             }
         }
+
         Spacer(Modifier.height(Spacing.md))
 
         Text("Визиты (${visits.size})", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
@@ -147,8 +148,8 @@ fun AddOldPlaceForm(
         if (showVisitDialog) {
             AddHistoricalVisitDialog(
                 onDismiss = { showVisitDialog = false },
-                onComplete = { timestamp, comment, photoUri ->
-                    visits.add(PendingVisit(timestamp = timestamp, comment = comment, photoUri = photoUri))
+                onComplete = { timestamp, comment -> // ИСПРАВЛЕНО: убран photoUri
+                    visits.add(PendingVisit(timestamp = timestamp, comment = comment, photoUri = null))
                     showVisitDialog = false
                 }
             )

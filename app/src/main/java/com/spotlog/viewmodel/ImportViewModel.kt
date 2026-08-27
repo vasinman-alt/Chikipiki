@@ -16,7 +16,6 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class ImportViewModel(application: Application) : AndroidViewModel(application) {
-
     private val importRepository = ImportRepository(application)
     private val placeRepository = PlaceRepository(application, viewModelScope)
 
@@ -69,8 +68,8 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
                     placeRepository.addHistoricalVisitToExistingPlace(
                         placeId = placeId,
                         timestamp = visit.timestamp,
-                        comment = visit.comment,
-                        photoUri = visit.photoUri
+                        comment = visit.comment
+                        // ИСПРАВЛЕНО: убран photoUri, так как метод в PlaceRepository его не принимает
                     )
                 }
                 _importResult.value = ImportResult.Success(emptyList())
