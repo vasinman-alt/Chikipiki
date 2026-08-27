@@ -11,6 +11,7 @@ import com.spotlog.data.entity.PhotoEntity
 import com.spotlog.data.entity.PhotoSource
 import com.spotlog.data.entity.PlaceEntity
 import com.spotlog.data.entity.VisitEntity
+import com.spotlog.data.entity.VisitSource
 import com.spotlog.data.repository.PlaceRepository
 import com.spotlog.location.LocationProvider
 import com.spotlog.premium.Feature
@@ -25,6 +26,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class PlaceDetailViewModel(application: Application) : AndroidViewModel(application) {
@@ -36,12 +39,10 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
 
     private val _placeId = MutableStateFlow<Long?>(null)
 
-    /** Текущее место (Flow) */
     val place: StateFlow<PlaceEntity?> = _placeId.flatMapLatest { id ->
         if (id != null) repository.getPlaceFlow(id) else flowOf(null)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
-    /** Визиты для текущего места */
     val visits: StateFlow<List<VisitWithPlace>> = _placeId.flatMapLatest { id ->
         if (id != null) repository.getVisitsForPlace(id) else flowOf(emptyList())
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
@@ -62,7 +63,6 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    /** Объединяем место, текущую локацию и тикер, чтобы получался «можно чек‑инить?». */
     val canCheckin: StateFlow<Boolean> = combine(
         place.filterNotNull(),
         locationProvider.currentLocation.filterNotNull(),
@@ -83,8 +83,6 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         withinRadius && isFresh && locationProvider.hasPermission()
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
-    /** ---------- API ----------  */
-
     fun init(placeId: Long) {
         _placeId.value = placeId
         if (locationProvider.hasPermission()) {
@@ -101,7 +99,7 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    /** Добавление фото к месту */
+    /** Фото к месту (из галереи) */
     fun addPhotoToPlace(uri: Uri) {
         val p = place.value ?: return
         viewModelScope.launch {
@@ -120,7 +118,6 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    /** Удаление фото */
     fun deletePhoto(photoId: Long) {
         viewModelScope.launch {
             safeCall(
@@ -132,7 +129,6 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    /** Установка обложки */
     fun setCoverPhoto(photoId: Long) {
         val p = place.value ?: return
         viewModelScope.launch {
@@ -145,7 +141,6 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    /** Обновление данных места */
     fun updatePlaceDetails(newName: String, newCategory: String, newComment: String) {
         val p = place.value ?: return
         viewModelScope.launch {
@@ -158,48 +153,42 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    /** Добавление обычного визита (через диалог) */
-    fun addVisit(timestamp: Long = System.currentTimeMillis(), comment: String = "", photoUri: Uri? = null) {
+    /** «Отметиться» = мгновенное создание визита */
+    fun addVisit(timestamp: Long = System.currentTimeMillis(), comment: String = "") {
         val p = place.value ?: return
         viewModelScope.launch {
             safeCall(
                 onError = { msg -> _error.emit(msg) },
-                errorMessage = "Ошибка добавления визита"
+                errorMessage = "Ошибка отметки"
             ) {
-                // Прямо через репозиторий, потому что нам нужен кастомный ID визита
-                val visitId = db.visitDao().insertVisit(
-                    VisitEntity(
-                        placeId = p.id,
-                        timestamp = timestamp,
-                        comment = comment
-                    )
+                repository.addManualCheckin(
+                    name = p.name,
+                    lat = p.latitude,
+                    lon = p.longitude,
+                    category = p.category,
+                    timestamp = timestamp,
+                    comment = comment
                 )
-
-                if (photoUri != null && featureGate.isEnabled(Feature.PHOTOS)) {
-                    val keepOriginalSize = featureGate.isEnabled(Feature.ORIGINAL_PHOTO_QUALITY)
-                    val path = PhotoProcessor.processAndStore(getApplication(), photoUri, keepOriginalSize)
-                    if (path != null) {
-                        repository.addPhotoToVisit(visitId, p.id, path, featureGate)
-                    }
-                }
             }
         }
     }
 
-    /** Добавление исторического визита (из диалога) */
-    fun addHistoricalVisit(timestamp: Long, comment: String, photoUri: String?) {
+    /**
+     * FIX: добавление исторического визита — без photoUri.
+     * Фото для исторических визитов запрещено бизнес‑правилом.
+     */
+    fun addHistoricalVisit(timestamp: Long, comment: String) {
         val placeId = _placeId.value ?: return
         viewModelScope.launch {
             safeCall(
                 onError = { msg -> _error.emit(msg) },
                 errorMessage = "Ошибка добавления исторического визита"
             ) {
-                repository.addHistoricalVisitToExistingPlace(placeId, timestamp, comment, photoUri)
+                repository.addHistoricalVisitToExistingPlace(placeId, timestamp, comment)
             }
         }
     }
 
-    /** Обновление комментария визита */
     fun updateVisitComment(visitId: Long, newComment: String) {
         viewModelScope.launch {
             safeCall(
@@ -211,7 +200,6 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    /** Удаление визита (с авто‑удалением места, если оно пустое) */
     fun deleteVisit(visitId: Long) {
         viewModelScope.launch {
             safeCall(
@@ -223,7 +211,75 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    /** Обновление гео‑данных (при желании) */
+    fun addPhotoToVisit(visitId: Long, uri: Uri) {
+        val p = place.value ?: return
+        viewModelScope.launch {
+            safeCall(
+                onError = { msg -> _error.emit(msg) },
+                errorMessage = "Ошибка прикрепления фото"
+            ) {
+                val keepOriginalSize = featureGate.isEnabled(Feature.ORIGINAL_PHOTO_QUALITY)
+                val path = PhotoProcessor.processAndStore(getApplication(), uri, keepOriginalSize)
+                if (path == null) {
+                    _error.emit("Не удалось обработать фото")
+                    return@safeCall
+                }
+                val loc = locationProvider.currentLocation.value
+                repository.addPhotoToVisitValidated(
+                    visitId = visitId,
+                    placeId = p.id,
+                    photoPath = path,
+                    currentLat = loc?.latitude,
+                    currentLon = loc?.longitude,
+                    featureGate = featureGate
+                )
+            }
+        }
+    }
+
+    /** UI‑уровневая проверка (для задизейбливания кнопки). */
+    fun canAttachPhotoToVisit(
+        visitTimestamp: Long,
+        placeLat: Double,
+        placeLon: Double
+    ): Boolean {
+        val loc = locationProvider.currentLocation.value ?: return false
+        if (!locationProvider.hasPermission()) return false
+        val dist = calculateDistance(loc.latitude, loc.longitude, placeLat, placeLon)
+        if (dist > CHECKIN_RADIUS_METERS) return false
+        return isSameDay(visitTimestamp, System.currentTimeMillis())
+    }
+
+    /** Пояснение, почему кнопка фото не активна. */
+    fun photoBlockedReason(
+        visitTimestamp: Long,
+        placeLat: Double,
+        placeLon: Double
+    ): String? {
+        if (!locationProvider.hasPermission()) return "Нужен доступ к геолокации"
+        val loc = locationProvider.currentLocation.value ?: return "Определяем местоположение…"
+        val dist = calculateDistance(loc.latitude, loc.longitude, placeLat, placeLon)
+        if (dist > CHECKIN_RADIUS_METERS) {
+            val distStr = if (dist >= 1000) "%.1f км".format(dist / 1000) else "${dist.toInt()} м"
+            return "Слишком далеко (~$distStr)"
+        }
+        if (!isSameDay(visitTimestamp, System.currentTimeMillis())) {
+            return "Фото можно прикрепить только в день визита"
+        }
+        return null
+    }
+
+    /** Возвращает true, если к визиту можно прикрепить фото (только для MANUAL). */
+    fun visitAllowsPhoto(visit: VisitWithPlace): Boolean {
+        // FIX: проверяем именно source, а не только ручной тип
+        return visit.source == VisitSource.MANUAL.name
+    }
+
+    private fun isSameDay(t1: Long, t2: Long): Boolean {
+        val fmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return fmt.format(java.util.Date(t1)) == fmt.format(java.util.Date(t2))
+    }
+
     fun refreshLocation() {
         if (locationProvider.hasPermission()) {
             locationProvider.refresh(viewModelScope)

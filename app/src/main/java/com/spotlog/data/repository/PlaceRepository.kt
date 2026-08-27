@@ -2,7 +2,6 @@
 package com.spotlog.data.repository
 
 import android.content.Context
-import android.net.Uri
 import android.util.Log
 import androidx.room.withTransaction
 import com.spotlog.data.AppDatabase
@@ -11,7 +10,8 @@ import com.spotlog.data.dao.VisitWithPlace
 import com.spotlog.data.entity.*
 import com.spotlog.premium.Feature
 import com.spotlog.premium.FeatureGate
-import com.spotlog.util.PhotoProcessor
+import com.spotlog.util.CHECKIN_RADIUS_METERS
+import com.spotlog.util.calculateDistance
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.io.File
@@ -28,31 +28,24 @@ class PlaceRepository(
     private val geocodeCacheDao = db.geocodeCacheDao()
     private val photoDao = db.photoDao()
 
-    /** Поток всех мест – нужен только для UI‑списков */
     val places: StateFlow<List<PlaceEntity>> = placeDao.getAllPlaces()
         .stateIn(repositoryScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    /** Поток всех визитов (Place+Visit) */
     val visits: StateFlow<List<VisitWithPlace>> = visitDao.getAllVisitsWithPlace()
         .stateIn(repositoryScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    /** Получить место по id (однократный запрос) */
     suspend fun getPlaceById(placeId: Long): PlaceEntity? = withContext(Dispatchers.IO) {
         placeDao.getPlaceById(placeId)
     }
 
-    /** Поток места (для DetailView) */
     suspend fun getPlaceFlow(placeId: Long): Flow<PlaceEntity?> = flow {
         emit(getPlaceById(placeId))
     }
 
-    /** Поток визитов конкретного места */
     suspend fun getVisitsForPlace(placeId: Long): Flow<List<VisitWithPlace>> =
         visitDao.getVisitsForPlace(placeId)
 
-    /** -----------------------------------------------------------------
-     *  1️⃣ Добавление обычного (текущего) чек‑ина
-     *  ----------------------------------------------------------------- */
+    /** 1️⃣ Добавление обычного (текущего) чек‑ина */
     suspend fun addManualCheckin(
         name: String,
         lat: Double,
@@ -61,19 +54,15 @@ class PlaceRepository(
         timestamp: Long,
         comment: String
     ): Long = withContext(Dispatchers.IO) {
-        // Ищем уже существующее место рядом с тем же именем
         val existing = placeDao.findNearby(lat, lon)
             .firstOrNull { it.name.equals(name, ignoreCase = true) }
 
         val placeId = if (existing != null) {
-            // Если у найденного места ещё нет country/region – пытаемся дозаполнить асинхронно
             if (existing.country.isNullOrBlank()) {
                 repositoryScope.launch { ensureCountryForPlace(existing.id) }
             }
             existing.id
         } else {
-            // Новое место – сразу делаем запрос геокодинга (это блокирующий запрос,
-            // но происходит в Dispatchers.IO, поэтому UI не «зависает»)
             val (country, region) = NominatimGeocoder.reverseGeocode(context, lat, lon, geocodeCacheDao)
             placeDao.insertPlace(
                 PlaceEntity(
@@ -87,7 +76,6 @@ class PlaceRepository(
             )
         }
 
-        // Сохраняем визит
         visitDao.insertVisit(
             VisitEntity(
                 placeId = placeId,
@@ -98,9 +86,7 @@ class PlaceRepository(
         placeId
     }
 
-    /** -----------------------------------------------------------------
-     *  2️⃣ Быстрый чек‑ин без диалога (используется в DetailScreen)
-     *  ----------------------------------------------------------------- */
+    /** 2️⃣ Быстрый чек‑ин (используется в DetailScreen) */
     suspend fun quickCheckin(placeId: Long) = withContext(Dispatchers.IO) {
         visitDao.insertVisit(
             VisitEntity(
@@ -111,14 +97,14 @@ class PlaceRepository(
         )
     }
 
-    /** -----------------------------------------------------------------
-     *  3️⃣ Добавление исторического визита к уже существующему месту
-     *  ----------------------------------------------------------------- */
+    /**
+     * FIX 1: добавление исторического визита — без photoUri.
+     * Исторические визиты не могут иметь фото (бизнес‑правило).
+     */
     suspend fun addHistoricalVisitToExistingPlace(
         placeId: Long,
         timestamp: Long,
-        comment: String,
-        photoUri: String?
+        comment: String
     ): Long = withContext(Dispatchers.IO) {
         val visitId = visitDao.insertVisit(
             VisitEntity(
@@ -130,29 +116,11 @@ class PlaceRepository(
             )
         )
 
-        if (!photoUri.isNullOrBlank()) {
-            val processedPath = PhotoProcessor.processAndStore(context, Uri.parse(photoUri), keepOriginalSize = false)
-            if (processedPath != null) {
-                photoDao.insertPhoto(
-                    PhotoEntity(
-                        placeId = placeId,
-                        visitId = visitId,
-                        filePath = processedPath,
-                        source = PhotoSource.GALLERY
-                    )
-                )
-            }
-        }
-
-        // После импорта сразу пытаемся заполнить country/region (может занять время)
         ensureCountryForPlace(placeId)
-
         visitId
     }
 
-    /** -----------------------------------------------------------------
-     *  4️⃣ Обновление данных визита/места
-     *  ----------------------------------------------------------------- */
+    /** 3️⃣ Обновление данных визита/места */
     suspend fun updateCheckinDetails(
         visitId: Long,
         newName: String,
@@ -166,24 +134,18 @@ class PlaceRepository(
         }
     }
 
-    /** -----------------------------------------------------------------
-     *  5️⃣ Удаление визита (и авто‑удаление места, если оно стало пустым)
-     *  ----------------------------------------------------------------- */
+    /** 4️⃣ Удаление визита (с авто‑удалением места) */
     suspend fun deleteVisit(visitId: Long) = withContext(Dispatchers.IO) {
         val visit = visitDao.getVisitById(visitId) ?: return@withContext
         visitDao.deleteVisit(visitId)
 
-        // После удаления проверяем, осталось ли у места хотя бы один визит.
-        // Если нет – удаляем само место (каскадно удалятся фото и т.д.).
         val remaining = visitDao.getVisitsForPlace(visit.placeId).firstOrNull()?.size ?: 0
         if (remaining == 0) {
             deletePlace(visit.placeId)
         }
     }
 
-    /** -----------------------------------------------------------------
-     *  6️⃣ Обновление информации о месте
-     *  ----------------------------------------------------------------- */
+    /** 5️⃣ Обновление информации о месте */
     suspend fun updatePlaceInfo(placeId: Long, newName: String, newCategory: String, newComment: String) = withContext(Dispatchers.IO) {
         db.withTransaction {
             placeDao.updatePlaceInfo(placeId, newName, newCategory)
@@ -191,9 +153,7 @@ class PlaceRepository(
         }
     }
 
-    /** -----------------------------------------------------------------
-     *  7️⃣ Фото‑операции
-     *  ----------------------------------------------------------------- */
+    /** 6️⃣ Фото‑операции (для МЕСТА, не для визита) */
     suspend fun addPhotoToPlace(
         placeId: Long,
         photoPath: String,
@@ -211,13 +171,46 @@ class PlaceRepository(
         )
     }
 
-    suspend fun addPhotoToVisit(
+    /**
+     * Прикрепить фото (с камеры) к визиту — со вторым уровнем валидации.
+     * Только для ручных визитов сегодняшней даты в пределах радиуса чекина.
+     */
+    suspend fun addPhotoToVisitValidated(
         visitId: Long,
         placeId: Long,
         photoPath: String,
+        currentLat: Double?,
+        currentLon: Double?,
         featureGate: FeatureGate
     ) = withContext(Dispatchers.IO) {
         require(featureGate.isEnabled(Feature.PHOTOS)) { "Photos require premium" }
+
+        val visit = visitDao.getVisitById(visitId)
+            ?: throw IllegalStateException("Визит не найден")
+        if (visit.placeId != placeId) {
+            throw IllegalStateException("Визит не принадлежит этому месту")
+        }
+        if (visit.source != VisitSource.MANUAL) {
+            throw IllegalStateException("Фото можно добавлять только к ручным визитам")
+        }
+
+        val place = placeDao.getPlaceById(placeId)
+        if (place != null && currentLat != null && currentLon != null) {
+            val dist = calculateDistance(currentLat, currentLon, place.latitude, place.longitude)
+            if (dist > CHECKIN_RADIUS_METERS) {
+                throw IllegalStateException("Слишком далеко от места (${dist.toInt()} м)")
+            }
+        }
+
+        if (!isSameDay(visit.timestamp, System.currentTimeMillis())) {
+            throw IllegalStateException("Фото можно прикрепить только в день визита")
+        }
+
+        val existingPhotos = photoDao.getPhotosForPlace(placeId).first()
+        if (existingPhotos.any { it.visitId == visitId }) {
+            throw IllegalStateException("К этому визиту уже прикреплено фото")
+        }
+
         photoDao.insertPhoto(
             PhotoEntity(
                 placeId = placeId,
@@ -228,18 +221,14 @@ class PlaceRepository(
         )
     }
 
-    /** -----------------------------------------------------------------
-     *  8️⃣ Удаление фото (физический файл тоже удаляется)
-     *  ----------------------------------------------------------------- */
+    /** 7️⃣ Удаление фото */
     suspend fun deletePhoto(photoId: Long) = withContext(Dispatchers.IO) {
         val photo = photoDao.getPhotoById(photoId) ?: return@withContext
         photoDao.deletePhoto(photoId)
         File(photo.filePath).delete()
     }
 
-    /** -----------------------------------------------------------------
-     *  9️⃣ Управление обложкой
-     *  ----------------------------------------------------------------- */
+    /** 8️⃣ Управление обложкой */
     suspend fun setCoverPhoto(placeId: Long, photoId: Long) = withContext(Dispatchers.IO) {
         db.withTransaction {
             photoDao.clearCover(placeId)
@@ -251,9 +240,7 @@ class PlaceRepository(
         photoDao.clearCoverForPhoto(photoId)
     }
 
-    /** -----------------------------------------------------------------
-     * 10️⃣ Геокодинг (получаем country/region для места)
-     *  ----------------------------------------------------------------- */
+    /** 9️⃣ Геокодинг */
     suspend fun updatePlaceCountry(placeId: Long, country: String?, region: String?) = withContext(Dispatchers.IO) {
         placeDao.updatePlaceCountry(placeId, country, region)
     }
@@ -271,30 +258,32 @@ class PlaceRepository(
         }
     }
 
-    /** -----------------------------------------------------------------
-     * 11️⃣ Запуск фонового «заполнения» всех недостающих country/region
-     *  ----------------------------------------------------------------- */
     suspend fun fillAllMissingCountries(limit: Int = 100) = withContext(Dispatchers.IO) {
         val allPlaces = placeDao.getAllPlaces().first()
         val missing = allPlaces.filter { it.country.isNullOrBlank() }.take(limit)
         missing.forEachIndexed { index, place ->
-            if (index > 0) delay(2000)          // небольшая пауза – не превышаем лимит Nominatim
+            if (index > 0) delay(2000)
             ensureCountryForPlace(place.id)
         }
     }
 
-    /** -----------------------------------------------------------------
-     * 12️⃣ Удаление места (используется в карте и в репозитории)
-     *  ----------------------------------------------------------------- */
+    /** 🔟 Удаление места */
     suspend fun deletePlace(placeId: Long) = withContext(Dispatchers.IO) {
-        placeDao.deletePlace(placeId) // ON DELETE CASCADE уберёт визиты и фото автоматически
+        placeDao.deletePlace(placeId)
     }
 
-    /** -----------------------------------------------------------------
-     * 13️⃣ Внутренняя утилита для формата системной заметки импорта
-     *  ----------------------------------------------------------------- */
+    /** Сравнение по yyyy-MM-dd в локальной TZ. */
+    private fun isSameDay(t1: Long, t2: Long): Boolean {
+        val fmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return fmt.format(Date(t1)) == fmt.format(Date(t2))
+    }
+
+    /**
+     * FIX 2: формулировка системной пометки — "Добавлен ДД.ММ.ГГГГ"
+     * (мужской род, согласуется с "визит", а не "место").
+     */
     private fun buildImportNote(): String {
         val today = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date())
-        return "Добавлено $today"
+        return "Добавлен $today"
     }
 }

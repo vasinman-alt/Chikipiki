@@ -22,9 +22,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.core.content.FileProvider
 import coil.compose.AsyncImage
 import com.spotlog.data.SettingsDataStore
 import com.spotlog.data.dao.VisitWithPlace
+import com.spotlog.data.entity.VisitSource
 import com.spotlog.premium.PremiumManager
 import com.spotlog.theme.Spacing
 import com.spotlog.util.Categories
@@ -46,8 +48,8 @@ fun PlaceDetailScreen(
     val context = LocalContext.current
     val settingsDataStore = remember { SettingsDataStore.getInstance(context) }
     val canUsePhotos by PremiumManager(context).isPremiumFlow.collectAsState(initial = true)
-
     var askPhotoOnVisit by remember { mutableStateOf(true) }
+
     LaunchedEffect(Unit) {
         settingsDataStore.askPhotoOnVisit.collect { value -> askPhotoOnVisit = value }
     }
@@ -57,15 +59,18 @@ fun PlaceDetailScreen(
         viewModel.error.collect { message -> snackbarHostState.showSnackbar(message) }
     }
 
-    // Все состояния должны быть объявлены до их использования в LaunchedEffect
+    // Состояния диалогов
     var editCommentDialog by remember { mutableStateOf<VisitWithPlace?>(null) }
     var deleteVisitDialog by remember { mutableStateOf<Long?>(null) }
     var showAddPhotoDialog by remember { mutableStateOf(false) }
     var showEditPlaceDialog by remember { mutableStateOf(false) }
     var selectedPhotoIndex by remember { mutableIntStateOf(0) }
     var showFullScreenPhoto by remember { mutableStateOf(false) }
-    var showAddVisitDialog by remember { mutableStateOf(false) }
     var showHistoricalVisitDialog by remember { mutableStateOf(false) }
+
+    // Состояние камеры для конкретного визита
+    var pendingCameraVisitId by remember { mutableStateOf<Long?>(null) }
+    var pendingCameraFile by remember { mutableStateOf<File?>(null) }
 
     LaunchedEffect(placeId, openHistoricalOnStart) {
         viewModel.init(placeId)
@@ -90,10 +95,29 @@ fun PlaceDetailScreen(
     val currentPlace = place!!
     val dateFormat = remember { SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault()) }
 
+    // Галерея (для блока «Фото»)
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let { viewModel.addPhotoToPlace(it) }
+    }
+
+    // Камера (для визита)
+    val cameraLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.TakePicture()
+    ) { success ->
+        val visitId = pendingCameraVisitId
+        val file = pendingCameraFile
+        if (success && visitId != null && file != null) {
+            val uri = FileProvider.getUriForFile(
+                context,
+                "${context.packageName}.fileprovider",
+                file
+            )
+            viewModel.addPhotoToVisit(visitId, uri)
+        }
+        pendingCameraVisitId = null
+        pendingCameraFile = null
     }
 
     Scaffold(
@@ -176,7 +200,7 @@ fun PlaceDetailScreen(
             item {
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     Button(
-                        onClick = { showAddVisitDialog = true },
+                        onClick = { viewModel.addVisit() },
                         enabled = canCheckin,
                         shape = MaterialTheme.shapes.small,
                         modifier = Modifier.weight(1f)
@@ -185,7 +209,6 @@ fun PlaceDetailScreen(
                         Spacer(Modifier.width(6.dp))
                         Text(canCheckinReason ?: "Отметиться")
                     }
-
                     IconButton(
                         onClick = { showHistoricalVisitDialog = true },
                         modifier = Modifier.size(48.dp)
@@ -196,7 +219,6 @@ fun PlaceDetailScreen(
                             tint = MaterialTheme.colorScheme.primary
                         )
                     }
-
                     OutlinedButton(
                         onClick = onShowOnMap,
                         shape = MaterialTheme.shapes.small,
@@ -307,200 +329,40 @@ fun PlaceDetailScreen(
                     )
                 }
             } else {
-                itemsIndexed(visits, key = { _, visit -> visit.visitId }) { index, visit ->
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.width(20.dp)
-                        ) {
-                            Box(
-                                Modifier
-                                    .size(8.dp)
-                                    .clip(CircleShape)
-                                    .background(MaterialTheme.colorScheme.primary)
-                            )
-                            if (index != visits.lastIndex) {
-                                Box(
-                                    Modifier
-                                        .width(1.dp)
-                                        .weight(1f)
-                                        .heightIn(min = 32.dp)
-                                        .background(MaterialTheme.colorScheme.outline)
-                                )
-                            }
-                        }
-                        Spacer(Modifier.width(Spacing.sm))
-                        Column(Modifier.weight(1f).padding(bottom = Spacing.md)) {
+                itemsIndexed(
+                    items = visits,
+                    key = { _, visit -> visit.visitId }
+                ) { _, visit ->
+                    ListItem(
+                        headlineContent = {
                             Text(
                                 dateFormat.format(Date(visit.timestamp)),
-                                style = MaterialTheme.typography.titleSmall,
-                                color = MaterialTheme.colorScheme.onSurface
+                                style = MaterialTheme.typography.bodyLarge
                             )
-                            if (visit.comment.isNotEmpty()) {
-                                Spacer(Modifier.height(2.dp))
+                        },
+                        supportingContent = {
+                            if (visit.comment.isNotBlank()) {
                                 Text(
                                     visit.comment,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurface
+                                    style = MaterialTheme.typography.bodyMedium
                                 )
                             }
-                            visit.systemNote?.let {
-                                Spacer(Modifier.height(2.dp))
-                                Text(
-                                    it,
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    fontStyle = FontStyle.Italic
+                        },
+                        trailingContent = {
+                            IconButton(
+                                onClick = {
+                                    editCommentDialog = visit
+                                }
+                            ) {
+                                Icon(
+                                    Icons.Filled.Edit,
+                                    contentDescription = "Редактировать"
                                 )
                             }
                         }
-                        IconButton(
-                            onClick = { editCommentDialog = visit },
-                            modifier = Modifier.size(32.dp)
-                        ) {
-                            Icon(
-                                Icons.Filled.Edit,
-                                contentDescription = "Редактировать",
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.size(16.dp)
-                            )
-                        }
-                        Spacer(Modifier.width(4.dp))
-                        IconButton(
-                            onClick = { deleteVisitDialog = visit.visitId },
-                            modifier = Modifier.size(32.dp)
-                        ) {
-                            Icon(
-                                Icons.Filled.DeleteForever,
-                                contentDescription = "Удалить",
-                                tint = MaterialTheme.colorScheme.error,
-                                modifier = Modifier.size(16.dp)
-                            )
-                        }
-                    }
-                }
-            }
-        }
-
-        // ---------- Диалог добавления фото ----------
-        if (showAddPhotoDialog) {
-            AlertDialog(
-                shape = MaterialTheme.shapes.medium,
-                onDismissRequest = { showAddPhotoDialog = false },
-                title = { Text("Добавить фото") },
-                text = { Text("Выберите фотографию из галереи.") },
-                confirmButton = {
-                    TextButton(onClick = {
-                        imagePickerLauncher.launch("image/*")
-                        showAddPhotoDialog = false
-                    }) { Text("Выбрать") }
-                },
-                dismissButton = {
-                    TextButton(onClick = { showAddPhotoDialog = false }) { Text("Отмена") }
-                }
-            )
-        }
-
-        // ---------- Диалог добавления визита ----------
-        if (showAddVisitDialog) {
-            AddVisitDialog(
-                onDismiss = { showAddVisitDialog = false },
-                onComplete = { timestamp, comment, photoUri ->
-                    viewModel.addVisit(timestamp, comment, photoUri)
-                    showAddVisitDialog = false
-                },
-                showPhotoOption = askPhotoOnVisit && canUsePhotos,
-                initialName = currentPlace.name,
-                initialCategory = currentPlace.category,
-                initialLat = currentPlace.latitude,
-                initialLon = currentPlace.longitude
-            )
-        }
-
-        // ---------- Диалог добавления исторического визита ----------
-        if (showHistoricalVisitDialog) {
-            AddHistoricalVisitDialog(
-                onDismiss = { showHistoricalVisitDialog = false },
-                onComplete = { timestamp, comment, photoUri ->
-                    // FIX: используем правильный метод, который проставляет systemNote
-                    // и VisitSource.IMPORTED_MANUAL_OLD. Без лишнего Uri.parse.
-                    viewModel.addHistoricalVisit(timestamp, comment, photoUri)
-                    showHistoricalVisitDialog = false
-                }
-            )
-        }
-
-        // ---------- Диалог редактирования места ----------
-        if (showEditPlaceDialog) {
-            val firstVisit = visits.firstOrNull()
-            if (firstVisit != null) {
-                EditPlaceDialog(
-                    place = currentPlace,
-                    visit = firstVisit,
-                    onDismiss = { showEditPlaceDialog = false },
-                    onSave = { newName, newCategory, newComment ->
-                        viewModel.updatePlaceDetails(newName, newCategory, newComment)
-                        showEditPlaceDialog = false
-                    }
-                )
-            } else {
-                showEditPlaceDialog = false
-            }
-        }
-
-        // ---------- Полноэкранный просмотр фото ----------
-        if (showFullScreenPhoto && photos.isNotEmpty()) {
-            FullScreenPhotoViewer(
-                photos = photos,
-                initialIndex = selectedPhotoIndex,
-                onDismiss = { showFullScreenPhoto = false }
-            )
-        }
-
-        // ---------- Удаление визита ----------
-        deleteVisitDialog?.let { visitId ->
-            AlertDialog(
-                shape = MaterialTheme.shapes.medium,
-                onDismissRequest = { deleteVisitDialog = null },
-                title = { Text("Удалить визит?") },
-                text = { Text("Это действие нельзя отменить.") },
-                confirmButton = {
-                    TextButton(onClick = {
-                        viewModel.deleteVisit(visitId)
-                        deleteVisitDialog = null
-                    }) { Text("Удалить") }
-                },
-                dismissButton = {
-                    TextButton(onClick = { deleteVisitDialog = null }) { Text("Отмена") }
-                }
-            )
-        }
-
-        // ---------- Редактирование комментария визита ----------
-        editCommentDialog?.let { visit ->
-            var comment by remember { mutableStateOf(visit.comment) }
-            AlertDialog(
-                shape = MaterialTheme.shapes.medium,
-                onDismissRequest = { editCommentDialog = null },
-                title = { Text("Комментарий") },
-                text = {
-                    OutlinedTextField(
-                        value = comment,
-                        onValueChange = { comment = it },
-                        label = { Text("Комментарий") },
-                        modifier = Modifier.fillMaxWidth()
                     )
-                },
-                confirmButton = {
-                    TextButton(onClick = {
-                        viewModel.updateVisitComment(visit.visitId, comment)
-                        editCommentDialog = null
-                    }) { Text("Сохранить") }
-                },
-                dismissButton = {
-                    TextButton(onClick = { editCommentDialog = null }) { Text("Отмена") }
                 }
-            )
-        }
-    }
-}
+            }
+        } // <-- Закрытие LazyColumn
+    } // <-- Закрытие Scaffold
+} // <-- Закрытие PlaceDetailScreen

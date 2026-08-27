@@ -1,36 +1,28 @@
+// ==== ФАЙЛ: AddHistoricalVisitDialog.kt ====
 package com.spotlog.ui
 
-import android.net.Uri
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.spotlog.theme.Spacing
 import java.util.*
 
-enum class HistoricalVisitStep { DATE, TIME, COMMENT, PHOTO }
+// FIX: шаг PHOTO убран. Исторические визиты не могут иметь фото.
+enum class HistoricalVisitStep { DATE, TIME, COMMENT }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddHistoricalVisitDialog(
     onDismiss: () -> Unit,
-    onComplete: (timestamp: Long, comment: String, photoUri: String?) -> Unit
+    // FIX: убрали photoUri из сигнатуры, т.к. фото для исторических визитов запрещено
+    onComplete: (timestamp: Long, comment: String) -> Unit
 ) {
     var step by remember { mutableStateOf(HistoricalVisitStep.DATE) }
     var pendingDate by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var comment by remember { mutableStateOf("") }
-
     var isTimeValid by remember { mutableStateOf(true) }
-
-    val imagePickerLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()
-    ) { uri: Uri? ->
-        onComplete(pendingDate, comment, uri?.toString())
-    }
 
     when (step) {
         HistoricalVisitStep.DATE -> {
@@ -85,7 +77,11 @@ fun AddHistoricalVisitDialog(
             Dialog(onDismissRequest = onDismiss) {
                 Surface(shape = MaterialTheme.shapes.extraLarge, color = MaterialTheme.colorScheme.surface) {
                     Column(modifier = Modifier.padding(Spacing.md)) {
-                        Text("Время посещения", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
+                        Text(
+                            "Время посещения",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
                         Spacer(Modifier.height(Spacing.md))
                         TimePicker(state = timeState)
                         if (!isTimeValid) {
@@ -125,9 +121,11 @@ fun AddHistoricalVisitDialog(
             }
         }
 
+        // FIX: кнопка «Сохранить» вызывает onComplete сразу, без шага фото
         HistoricalVisitStep.COMMENT -> {
             AlertDialog(
                 onDismissRequest = onDismiss,
+                shape = MaterialTheme.shapes.medium,
                 title = { Text("Комментарий") },
                 text = {
                     OutlinedTextField(
@@ -139,23 +137,11 @@ fun AddHistoricalVisitDialog(
                     )
                 },
                 confirmButton = {
-                    TextButton(onClick = { step = HistoricalVisitStep.PHOTO }) { Text("Далее") }
+                    TextButton(onClick = { onComplete(pendingDate, comment) }) {
+                        Text("Сохранить")
+                    }
                 },
                 dismissButton = { TextButton(onClick = onDismiss) { Text("Отмена") } }
-            )
-        }
-
-        HistoricalVisitStep.PHOTO -> {
-            AlertDialog(
-                onDismissRequest = { },
-                title = { Text("Фото визита") },
-                text = { Text("Прикрепить фото к этому посещению? После сохранения добавить фото будет нельзя.") },
-                confirmButton = {
-                    TextButton(onClick = { imagePickerLauncher.launch("image/*") }) { Text("Выбрать фото") }
-                },
-                dismissButton = {
-                    TextButton(onClick = { onComplete(pendingDate, comment, null) }) { Text("Без фото") }
-                }
             )
         }
     }

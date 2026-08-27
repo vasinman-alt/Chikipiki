@@ -1,1 +1,27 @@
-/build
+# Gradle & Build artifacts
+.gradle/
+build/
+*/build/
+*.apk
+*.aab
+*.dex
+*.class
+*.log
+
+# Android Studio & IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+captures/
+
+# Local environment
+local.properties
+
+# Native C++
+.externalNativeBuild/
+.cxx/
+
+# OS generated
+.DS_Store
+Thumbs.dbbuild
