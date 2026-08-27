@@ -15,13 +15,17 @@ enum class VisitSource { MANUAL, IMPORTED_FILE, IMPORTED_MANUAL_OLD }
         childColumns = ["placeId"],
         onDelete = ForeignKey.CASCADE
     )],
-    indices = [Index("placeId")]
+    indices = [
+        Index("placeId"),
+        Index("timestamp"), // Добавлен индекс для сортировки по времени
+        Index(value = ["placeId", "timestamp"]) // Композитный индекс для частых запросов
+    ]
 )
 data class VisitEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val placeId: Long,
     val timestamp: Long,
     val comment: String = "",
-    val systemNote: String? = null,          // неизменяемая системная пометка (напр. "Добавлено 15.03.2024")
-    val source: VisitSource = VisitSource.MANUAL   // откуда визит
+    val systemNote: String? = null,
+    val source: VisitSource = VisitSource.MANUAL
 )

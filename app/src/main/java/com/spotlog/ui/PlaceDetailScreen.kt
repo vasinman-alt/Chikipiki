@@ -1,4 +1,3 @@
-// ==== ФАЙЛ: PlaceDetailScreen.kt ====
 package com.spotlog.ui
 
 import android.net.Uri
@@ -47,7 +46,7 @@ fun PlaceDetailScreen(
 ) {
     val context = LocalContext.current
     val settingsDataStore = remember { SettingsDataStore.getInstance(context) }
-    val canUsePhotos by PremiumManager(context).isPremiumFlow.collectAsState(initial = true)
+    val canUsePhotos by PremiumManager.isPremiumFlow(context).collectAsState(initial = true)
     var askPhotoOnVisit by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
@@ -363,6 +362,6 @@ fun PlaceDetailScreen(
                     )
                 }
             }
-        } // <-- Закрытие LazyColumn
-    } // <-- Закрытие Scaffold
-} // <-- Закрытие PlaceDetailScreen
+        }
+    }
+}

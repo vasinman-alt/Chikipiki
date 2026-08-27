@@ -59,9 +59,25 @@ val MIGRATION_5_6 = object : Migration(5, 6) {
     }
 }
 
+val MIGRATION_6_7 = object : Migration(6, 7) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("PRAGMA foreign_keys = ON;")
+        
+        // Добавляем индексы для VisitEntity
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_visits_timestamp ON visits(timestamp)")
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_visits_placeId_timestamp ON visits(placeId, timestamp)")
+        
+        // Добавляем индексы для PlaceEntity
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_places_category ON places(category)")
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_places_country ON places(country)")
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_places_region ON places(region)")
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_places_latitude_longitude ON places(latitude, longitude)")
+    }
+}
+
 @Database(
     entities = [PlaceEntity::class, VisitEntity::class, PhotoEntity::class, GeocodeCacheEntity::class],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -72,12 +88,13 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         @Volatile private var instance: AppDatabase? = null
+
         fun getDatabase(context: Context): AppDatabase =
             instance ?: synchronized(this) {
                 instance ?: Room.databaseBuilder(
                     context.applicationContext, AppDatabase::class.java, "chikipiki_database"
                 )
-                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
                     .build()
                     .also { instance = it }
             }

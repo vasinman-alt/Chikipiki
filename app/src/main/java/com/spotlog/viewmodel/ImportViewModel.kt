@@ -30,12 +30,9 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
             _isLoading.value = true
             try {
                 val tempFile = withContext(Dispatchers.IO) {
-                    val inputStream = getApplication<Application>().contentResolver.openInputStream(uri)
-                        ?: return@withContext null
+                    val inputStream = getApplication<Application>().contentResolver.openInputStream(uri) ?: return@withContext null
                     val file = File(getApplication<Application>().cacheDir, "import_temp.json")
-                    file.outputStream().use { output ->
-                        inputStream.copyTo(output)
-                    }
+                    file.outputStream().use { output -> inputStream.copyTo(output) }
                     file
                 }
                 if (tempFile != null) {
@@ -69,7 +66,6 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
                         placeId = placeId,
                         timestamp = visit.timestamp,
                         comment = visit.comment
-                        // ИСПРАВЛЕНО: убран photoUri, так как метод в PlaceRepository его не принимает
                     )
                 }
                 _importResult.value = ImportResult.Success(emptyList())
