@@ -1,4 +1,3 @@
-// ==== ФАЙЛ: LocationProvider.kt ====
 package com.spotlog.location
 
 import android.Manifest
@@ -15,13 +14,6 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.tasks.await
 import org.osmdroid.util.GeoPoint
 
-/**
- * Единый singleton, отвечающий за получение текущей геопозиции.
- *
- * Главная цель — дать пользователю **мгновенный** ответ: сначала пробуем
- * `lastLocation` (кэшированное значение, без задержки), параллельно
- * запрашиваем более точный GPS‑фикс.
- */
 class LocationProvider private constructor(context: Application) {
 
     private val locationClient: FusedLocationProviderClient =
@@ -32,6 +24,8 @@ class LocationProvider private constructor(context: Application) {
     val currentLocation: StateFlow<GeoPoint?> = _currentLocation.asStateFlow()
 
     private var lastFixTimeMs = 0L
+
+    private val internalScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
     private var locationJob: Job? = null
 
     companion object {
@@ -62,11 +56,6 @@ class LocationProvider private constructor(context: Application) {
 
     fun getLastFixTimeMs(): Long = lastFixTimeMs
 
-    /**
-     * Возвращает последнее известное местоположение из кэша Google Play Services
-     * (может быть null, если устройство никогда не сообщало координаты).
-     * Метод НЕ блокирует UI — выполняется очень быстро (обычно < 50 мс).
-     */
     @SuppressLint("MissingPermission")
     suspend fun lastKnownLocation(): GeoPoint? {
         if (!hasPermission()) return null
@@ -79,12 +68,13 @@ class LocationProvider private constructor(context: Application) {
     }
 
     /**
-     * Принудительно обновляет координаты: сначала возвращает `lastLocation`
-     * (если оно свежее), затем параллельно запрашивает более точный GPS‑фикс.
-     * При успехе обновляет `_currentLocation` и `lastFixTimeMs`.
+     * Обновляет координаты.
+     * @param scope Опциональный scope для корутины. Если не передан — используется внутренний.
+     *              Если передан viewModelScope — корутина будет отменена вместе с ViewModel.
      */
-    fun refresh(scope: CoroutineScope = CoroutineScope(Dispatchers.Main)) {
-        scope.launch {
+    fun refresh(scope: CoroutineScope? = null) {
+        val effectiveScope = scope ?: internalScope
+        effectiveScope.launch {
             refreshInternal()
         }
     }
@@ -93,20 +83,16 @@ class LocationProvider private constructor(context: Application) {
     private suspend fun refreshInternal() {
         if (!hasPermission()) return
 
-        // 1️⃣ Мгновенно пробуем отдать последнюю известную точку
         try {
             val last = locationClient.lastLocation.await()
             if (last != null) {
                 _currentLocation.value = GeoPoint(last.latitude, last.longitude)
                 lastFixTimeMs = System.currentTimeMillis()
             }
-        } catch (_: Exception) {
-            // Игнорируем – основной фикс ниже попробует ещё раз
-        }
+        } catch (_: Exception) { }
 
-        // 2️⃣ Запускаем «точный» запрос с таймаутом 10 сек
         locationJob?.cancel()
-        locationJob = CoroutineScope(Dispatchers.Main).launch {
+        locationJob = internalScope.launch {
             val cts = CancellationTokenSource()
             try {
                 val location = withTimeout(10_000L) {
@@ -120,9 +106,7 @@ class LocationProvider private constructor(context: Application) {
                     lastFixTimeMs = System.currentTimeMillis()
                 }
             } catch (_: CancellationException) {
-                // корутину отменили – ничего не делаем
             } catch (_: Exception) {
-                // сеть/GPS недоступны – пользователь останется с last known
             } finally {
                 cts.cancel()
             }

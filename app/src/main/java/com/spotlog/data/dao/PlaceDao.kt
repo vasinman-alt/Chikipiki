@@ -1,4 +1,3 @@
-// ==== ФАЙЛ: PlaceDao.kt ====
 package com.spotlog.data.dao
 
 import androidx.room.Dao
@@ -37,11 +36,15 @@ data class PlaceCardWithCover(
 
 @Dao
 interface PlaceDao {
+
     @Query("SELECT * FROM places ORDER BY id DESC")
     fun getAllPlaces(): Flow<List<PlaceEntity>>
 
     @Query("SELECT * FROM places WHERE id = :placeId")
     suspend fun getPlaceById(placeId: Long): PlaceEntity?
+
+    @Query("SELECT * FROM places WHERE id = :placeId")
+    fun getPlaceFlow(placeId: Long): Flow<PlaceEntity?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPlace(place: PlaceEntity): Long
@@ -61,11 +64,9 @@ interface PlaceDao {
     @Query("UPDATE places SET country = :country, region = :region WHERE id = :placeId")
     suspend fun updatePlaceCountry(placeId: Long, country: String?, region: String?)
 
-    // NEW: удаляем место (каскадно удаляются все визиты и фото)
     @Query("DELETE FROM places WHERE id = :placeId")
     suspend fun deletePlace(placeId: Long)
 
-    // ----- Статистика (Flow, а не suspend) -----
     @Query("""
         SELECT places.country AS country, COUNT(visits.id) AS visitCount, MAX(visits.timestamp) AS lastVisit
         FROM places

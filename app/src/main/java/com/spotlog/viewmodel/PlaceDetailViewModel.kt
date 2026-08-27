@@ -32,11 +32,36 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
     private val _photos = MutableStateFlow<List<PhotoEntity>>(emptyList())
     val photos: StateFlow<List<PhotoEntity>> = _photos.asStateFlow()
 
-    private val _canCheckin = MutableStateFlow(false)
-    val canCheckin: StateFlow<Boolean> = _canCheckin.asStateFlow()
+    private val checkinState = combine(
+        _place,
+        locationProvider.currentLocation
+    ) { place, loc ->
+        when {
+            place == null -> Pair(false, null)
+            loc == null -> Pair(false, "Нет геолокации")
+            else -> {
+                val distance = calculateDistance(place.latitude, place.longitude, loc.latitude, loc.longitude)
+                val maxDistance = 100.0
+                if (distance <= maxDistance) {
+                    Pair(true, "Отметиться")
+                } else {
+                    Pair(false, "Слишком далеко (${distance.toInt()} м)")
+                }
+            }
+        }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = Pair(false, null)
+    )
 
-    private val _canCheckinReason = MutableStateFlow<String?>(null)
-    val canCheckinReason: StateFlow<String?> = _canCheckinReason.asStateFlow()
+    val canCheckin: StateFlow<Boolean> = checkinState
+        .map { it.first }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
+    val canCheckinReason: StateFlow<String?> = checkinState
+        .map { it.second }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     private val _error = MutableSharedFlow<String>()
     val error: SharedFlow<String> = _error.asSharedFlow()
@@ -55,28 +80,6 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
         viewModelScope.launch {
             repository.getPhotosForPlaceFlow(placeId).collect { p ->
                 _photos.value = p
-            }
-        }
-        checkCanCheckin()
-    }
-
-    private fun checkCanCheckin() {
-        viewModelScope.launch {
-            val p = _place.value ?: return@launch
-            val loc = locationProvider.currentLocation.value
-            if (loc == null) {
-                _canCheckin.value = false
-                _canCheckinReason.value = "Нет геолокации"
-                return@launch
-            }
-            val distance = calculateDistance(p.latitude, p.longitude, loc.latitude, loc.longitude)
-            val maxDistance = 100.0
-            if (distance <= maxDistance) {
-                _canCheckin.value = true
-                _canCheckinReason.value = "Отметиться"
-            } else {
-                _canCheckin.value = false
-                _canCheckinReason.value = "Слишком далеко (${distance.toInt()} м)"
             }
         }
     }
