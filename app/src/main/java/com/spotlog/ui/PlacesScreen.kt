@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.spotlog.theme.Spacing
 import com.spotlog.util.Categories
+import com.spotlog.util.formatDistance
 import com.spotlog.viewmodel.PlaceCardUi
 import com.spotlog.viewmodel.PlacesViewModel
 import com.spotlog.viewmodel.SortMode
@@ -33,7 +34,7 @@ fun PlacesScreen(
     viewModel: PlacesViewModel,
     onPlaceClick: (Long) -> Unit,
     onAddClick: () -> Unit,
-    onAddHistoricalVisit: (Long) -> Unit = {}  // новый колбэк для добавления прошлого визита
+    onAddHistoricalVisit: (Long) -> Unit = {}
 ) {
     val cards by viewModel.placeCards.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -172,7 +173,7 @@ fun PlacesScreen(
                                     text = { Text("Редактировать") },
                                     onClick = {
                                         contextMenuPlaceId = null
-                                        onPlaceClick(card.placeId) // переход в детали места
+                                        onPlaceClick(card.placeId)
                                     }
                                 )
                                 DropdownMenuItem(
@@ -219,6 +220,7 @@ fun PlacesScreen(
 }
 
 /* ------------------------------- карточка места ------------------------------- */
+
 @Composable
 private fun PlaceCard(
     card: PlaceCardUi,
@@ -285,15 +287,14 @@ private fun PlaceCard(
                 )
             }
 
-            // Показ расстояния (если рассчитано)
+            // ИСПРАВЛЕНО: форматирование расстояния через formatDistance
             card.distanceMeters?.let { distance ->
                 Surface(
                     color = MaterialTheme.colorScheme.primaryContainer,
                     shape = MaterialTheme.shapes.extraSmall
                 ) {
                     Text(
-                        if (distance < 1000) "${distance.toInt()} м"
-                        else "%.1f км".format(Locale.US, distance / 1000),
+                        formatDistance(distance),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(horizontal = Spacing.sm, vertical = 4.dp)

@@ -8,7 +8,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -18,8 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import androidx.core.content.FileProvider
 import coil.compose.AsyncImage
@@ -60,12 +59,18 @@ fun PlaceDetailScreen(
 
     // Состояния диалогов
     var editCommentDialog by remember { mutableStateOf<VisitWithPlace?>(null) }
+    var editCommentText by remember { mutableStateOf("") }
     var deleteVisitDialog by remember { mutableStateOf<Long?>(null) }
     var showAddPhotoDialog by remember { mutableStateOf(false) }
     var showEditPlaceDialog by remember { mutableStateOf(false) }
     var selectedPhotoIndex by remember { mutableIntStateOf(0) }
     var showFullScreenPhoto by remember { mutableStateOf(false) }
     var showHistoricalVisitDialog by remember { mutableStateOf(false) }
+
+    // Состояния для диалога редактирования места
+    var editPlaceName by remember { mutableStateOf("") }
+    var editPlaceCategory by remember { mutableStateOf("") }
+    var editPlaceComment by remember { mutableStateOf("") }
 
     // Состояние камеры для конкретного визита
     var pendingCameraVisitId by remember { mutableStateOf<Long?>(null) }
@@ -94,14 +99,12 @@ fun PlaceDetailScreen(
     val currentPlace = place!!
     val dateFormat = remember { SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault()) }
 
-    // Галерея (для блока «Фото»)
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let { viewModel.addPhotoToPlace(it) }
     }
 
-    // Камера (для визита)
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicture()
     ) { success ->
@@ -114,6 +117,13 @@ fun PlaceDetailScreen(
                 file
             )
             viewModel.addPhotoToVisit(visitId, uri)
+        } else if (success && visitId == null && file != null) {
+            val uri = FileProvider.getUriForFile(
+                context,
+                "${context.packageName}.fileprovider",
+                file
+            )
+            viewModel.addPhotoToPlace(uri)
         }
         pendingCameraVisitId = null
         pendingCameraFile = null
@@ -131,11 +141,18 @@ fun PlaceDetailScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { showEditPlaceDialog = true }) {
+                    IconButton(onClick = {
+                        editPlaceName = currentPlace.name
+                        editPlaceCategory = currentPlace.category
+                        editPlaceComment = currentPlace.comment
+                        showEditPlaceDialog = true
+                    }) {
                         Icon(Icons.Filled.Edit, contentDescription = "Редактировать место")
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background)
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.background
+                )
             )
         }
     ) { padding ->
@@ -249,7 +266,9 @@ fun PlaceDetailScreen(
                     }
                     Spacer(Modifier.weight(1f))
                     if (photos.isNotEmpty()) {
-                        TextButton(onClick = { navController.navigate("photo_gallery/${currentPlace.id}") }) {
+                        TextButton(onClick = {
+                            navController.navigate("photo_gallery/${currentPlace.id}")
+                        }) {
                             Text("Все фото (${photos.size})")
                         }
                     }
@@ -296,7 +315,9 @@ fun PlaceDetailScreen(
                                     .size(72.dp)
                                     .clip(MaterialTheme.shapes.small)
                                     .background(MaterialTheme.colorScheme.surfaceVariant)
-                                    .clickable { navController.navigate("photo_gallery/${currentPlace.id}") },
+                                    .clickable {
+                                        navController.navigate("photo_gallery/${currentPlace.id}")
+                                    },
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
@@ -332,6 +353,7 @@ fun PlaceDetailScreen(
                     items = visits,
                     key = { _, visit -> visit.visitId }
                 ) { _, visit ->
+                    val isManual = visit.source == VisitSource.MANUAL.name
                     ListItem(
                         headlineContent = {
                             Text(
@@ -340,28 +362,306 @@ fun PlaceDetailScreen(
                             )
                         },
                         supportingContent = {
-                            if (visit.comment.isNotBlank()) {
-                                Text(
-                                    visit.comment,
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
+                            Column {
+                                if (visit.comment.isNotBlank()) {
+                                    Text(
+                                        visit.comment,
+                                        style = MaterialTheme.typography.bodyMedium
+                                    )
+                                }
+                                if (visit.systemNote != null) {
+                                    Text(
+                                        visit.systemNote,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
                             }
                         },
                         trailingContent = {
-                            IconButton(
-                                onClick = {
-                                    editCommentDialog = visit
+                            Row {
+                                if (canUsePhotos && isManual) {
+                                    IconButton(onClick = {
+                                        val file = createTempImageFile(context)
+                                        if (file != null) {
+                                            pendingCameraVisitId = visit.visitId
+                                            pendingCameraFile = file
+                                            val uri = FileProvider.getUriForFile(
+                                                context,
+                                                "${context.packageName}.fileprovider",
+                                                file
+                                            )
+                                            cameraLauncher.launch(uri)
+                                        }
+                                    }) {
+                                        Icon(
+                                            Icons.Filled.PhotoCamera,
+                                            contentDescription = "Фото к визиту",
+                                            tint = MaterialTheme.colorScheme.primary
+                                        )
+                                    }
                                 }
-                            ) {
-                                Icon(
-                                    Icons.Filled.Edit,
-                                    contentDescription = "Редактировать"
-                                )
+                                IconButton(onClick = {
+                                    editCommentText = visit.comment
+                                    editCommentDialog = visit
+                                }) {
+                                    Icon(
+                                        Icons.Filled.Edit,
+                                        contentDescription = "Редактировать"
+                                    )
+                                }
+                                IconButton(onClick = {
+                                    deleteVisitDialog = visit.visitId
+                                }) {
+                                    Icon(
+                                        Icons.Filled.Delete,
+                                        contentDescription = "Удалить визит",
+                                        tint = MaterialTheme.colorScheme.error
+                                    )
+                                }
                             }
                         }
                     )
                 }
             }
         }
+    }
+
+    // ==================== ДИАЛОГИ ====================
+
+    // 1. Редактирование комментария визита
+    if (editCommentDialog != null) {
+        AlertDialog(
+            onDismissRequest = { editCommentDialog = null },
+            title = { Text("Редактировать комментарий") },
+            text = {
+                OutlinedTextField(
+                    value = editCommentText,
+                    onValueChange = { editCommentText = it },
+                    label = { Text("Комментарий") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.small
+                )
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    editCommentDialog?.let { visit ->
+                        viewModel.updateVisitComment(visit.visitId, editCommentText)
+                    }
+                    editCommentDialog = null
+                }) {
+                    Text("Сохранить")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { editCommentDialog = null }) {
+                    Text("Отмена")
+                }
+            }
+        )
+    }
+
+    // 2. Подтверждение удаления визита
+    if (deleteVisitDialog != null) {
+        AlertDialog(
+            onDismissRequest = { deleteVisitDialog = null },
+            title = { Text("Удалить визит") },
+            text = { Text("Удалить этот визит? Если это единственный визит, место тоже будет удалено.") },
+            confirmButton = {
+                TextButton(onClick = {
+                    deleteVisitDialog?.let { visitId ->
+                        viewModel.deleteVisit(visitId)
+                    }
+                    deleteVisitDialog = null
+                }) {
+                    Text("Удалить", color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { deleteVisitDialog = null }) {
+                    Text("Отмена")
+                }
+            }
+        )
+    }
+
+    // 3. Добавление фото к месту (выбор: галерея или камера)
+    if (showAddPhotoDialog) {
+        AlertDialog(
+            onDismissRequest = { showAddPhotoDialog = false },
+            title = { Text("Добавить фото") },
+            text = {
+                Column {
+                    TextButton(
+                        onClick = {
+                            showAddPhotoDialog = false
+                            imagePickerLauncher.launch("image/*")
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Icon(Icons.Filled.PhotoLibrary, null, Modifier.size(20.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text("Из галереи")
+                    }
+                    TextButton(
+                        onClick = {
+                            showAddPhotoDialog = false
+                            val file = createTempImageFile(context)
+                            if (file != null) {
+                                pendingCameraVisitId = null
+                                pendingCameraFile = file
+                                val uri = FileProvider.getUriForFile(
+                                    context,
+                                    "${context.packageName}.fileprovider",
+                                    file
+                                )
+                                cameraLauncher.launch(uri)
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Icon(Icons.Filled.PhotoCamera, null, Modifier.size(20.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text("Сделать фото")
+                    }
+                }
+            },
+            confirmButton = {},
+            dismissButton = {
+                TextButton(onClick = { showAddPhotoDialog = false }) {
+                    Text("Отмена")
+                }
+            }
+        )
+    }
+
+    // 4. Редактирование места
+    if (showEditPlaceDialog) {
+        AlertDialog(
+            onDismissRequest = { showEditPlaceDialog = false },
+            title = { Text("Редактировать место") },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    OutlinedTextField(
+                        value = editPlaceName,
+                        onValueChange = { editPlaceName = it },
+                        label = { Text("Название") },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = MaterialTheme.shapes.small
+                    )
+                    OutlinedTextField(
+                        value = editPlaceCategory,
+                        onValueChange = { editPlaceCategory = it },
+                        label = { Text("Категория") },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = MaterialTheme.shapes.small
+                    )
+                    OutlinedTextField(
+                        value = editPlaceComment,
+                        onValueChange = { editPlaceComment = it },
+                        label = { Text("Комментарий") },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = MaterialTheme.shapes.small
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    viewModel.updatePlaceDetails(
+                        editPlaceName,
+                        editPlaceCategory,
+                        editPlaceComment
+                    )
+                    showEditPlaceDialog = false
+                }) {
+                    Text("Сохранить")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showEditPlaceDialog = false }) {
+                    Text("Отмена")
+                }
+            }
+        )
+    }
+
+    // 5. Полноэкранный просмотр фото
+    if (showFullScreenPhoto && photos.isNotEmpty()) {
+        val photo = photos.getOrElse(selectedPhotoIndex) { null }
+        if (photo != null) {
+            Dialog(onDismissRequest = { showFullScreenPhoto = false }) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.background)
+                ) {
+                    AsyncImage(
+                        model = File(photo.filePath),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Fit
+                    )
+                    Row(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(Spacing.sm),
+                        horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
+                    ) {
+                        if (!photo.isCover) {
+                            IconButton(onClick = {
+                                viewModel.setCoverPhoto(photo.id)
+                            }) {
+                                Icon(
+                                    Icons.Filled.Star,
+                                    contentDescription = "Сделать обложкой",
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
+                        IconButton(onClick = {
+                            viewModel.deletePhoto(photo.id)
+                            showFullScreenPhoto = false
+                        }) {
+                            Icon(
+                                Icons.Filled.Delete,
+                                contentDescription = "Удалить фото",
+                                tint = MaterialTheme.colorScheme.error
+                            )
+                        }
+                        IconButton(onClick = { showFullScreenPhoto = false }) {
+                            Icon(
+                                Icons.Filled.Close,
+                                contentDescription = "Закрыть"
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 6. Диалог добавления исторического визита
+    if (showHistoricalVisitDialog) {
+        AddHistoricalVisitDialog(
+            onDismiss = { showHistoricalVisitDialog = false },
+            onComplete = { timestamp, comment ->
+                viewModel.addHistoricalVisit(timestamp, comment)
+                showHistoricalVisitDialog = false
+            }
+        )
+    }
+}
+
+private fun createTempImageFile(context: android.content.Context): File? {
+    val storageDir = File(context.cacheDir, "camera_photos")
+    storageDir.mkdirs()
+    return try {
+        File.createTempFile(
+            "IMG_${System.currentTimeMillis()}_",
+            ".jpg",
+            storageDir
+        )
+    } catch (e: Exception) {
+        null
     }
 }

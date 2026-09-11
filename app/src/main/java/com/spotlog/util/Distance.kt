@@ -11,3 +11,21 @@ fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): D
             sin(dLon / 2).pow(2)
     return r * 2 * atan2(sqrt(a), sqrt(1 - a))
 }
+
+/**
+ * Форматирует расстояние в человекочитаемый вид.
+ * - до 1000 м: "850 м"
+ * - от 1000 м до 10 км: "1.5 км" (с десятой долей)
+ * - от 10 км: "12 км" (целые километры)
+ */
+fun formatDistance(meters: Double): String {
+    return when {
+        meters < 1000 -> "${meters.toInt()} м"
+        meters < 10000 -> {
+            val km = meters / 1000.0
+            val formatted = String.format("%.1f", km)
+            "$formatted км"
+        }
+        else -> "${(meters / 1000.0).toInt()} км"
+    }
+}

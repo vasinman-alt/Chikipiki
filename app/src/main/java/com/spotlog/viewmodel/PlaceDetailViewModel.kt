@@ -14,6 +14,7 @@ import com.spotlog.premium.Feature
 import com.spotlog.premium.FeatureGate
 import com.spotlog.premium.PremiumFeatureGate
 import com.spotlog.util.calculateDistance
+import com.spotlog.util.formatDistance
 import com.spotlog.util.safeCall
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -45,7 +46,8 @@ class PlaceDetailViewModel(application: Application) : AndroidViewModel(applicat
                 if (distance <= maxDistance) {
                     Pair(true, "Отметиться")
                 } else {
-                    Pair(false, "Слишком далеко (${distance.toInt()} м)")
+                    // ИСПРАВЛЕНО: форматирование расстояния
+                    Pair(false, "Слишком далеко (${formatDistance(distance)})")
                 }
             }
         }

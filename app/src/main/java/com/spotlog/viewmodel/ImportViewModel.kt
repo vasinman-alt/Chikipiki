@@ -30,14 +30,23 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
             _isLoading.value = true
             try {
                 val tempFile = withContext(Dispatchers.IO) {
-                    val inputStream = getApplication<Application>().contentResolver.openInputStream(uri) ?: return@withContext null
+                    val inputStream = getApplication<Application>().contentResolver.openInputStream(uri)
+                        ?: return@withContext null
                     val file = File(getApplication<Application>().cacheDir, "import_temp.json")
-                    file.outputStream().use { output -> inputStream.copyTo(output) }
+                    file.outputStream().use { output ->
+                        inputStream.copyTo(output)
+                    }
                     file
                 }
                 if (tempFile != null) {
-                    val result = importRepository.importFromFile(tempFile)
+                    // Автоопределение формата: приложение или Foursquare
+                    val result = importRepository.importAutoDetect(tempFile)
                     _importResult.value = result
+
+                    // Фоновое геокодирование для мест без страны
+                    if (result is ImportResult.Success || result is ImportResult.PartialSuccess) {
+                        startBackgroundGeocoding()
+                    }
                 } else {
                     _importResult.value = ImportResult.Error(ImportValidationError.InvalidJson)
                 }
@@ -45,6 +54,21 @@ class ImportViewModel(application: Application) : AndroidViewModel(application) 
                 _importResult.value = ImportResult.Error(ImportValidationError.InvalidJson)
             } finally {
                 _isLoading.value = false
+            }
+        }
+    }
+
+    /**
+     * Фоновое геокодирование стран для мест без country.
+     * NominatimGeocoder с задержкой 2 сек между запросами (лимиты Nominatim).
+     * Работает пока жив ImportViewModel.
+     */
+    private fun startBackgroundGeocoding() {
+        viewModelScope.launch {
+            try {
+                placeRepository.fillAllMissingCountries(limit = 100)
+            } catch (_: Exception) {
+                // Геокодирование не критично для импорта
             }
         }
     }
