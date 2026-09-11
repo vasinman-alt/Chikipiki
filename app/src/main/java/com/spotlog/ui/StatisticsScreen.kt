@@ -27,6 +27,7 @@ fun StatisticsScreen(
     onNavigateBack: () -> Unit
 ) {
     val countries by viewModel.countries.collectAsState()
+    val visitsByYear by viewModel.visitsByYear.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -48,10 +49,6 @@ fun StatisticsScreen(
                     }
                 },
                 actions = {
-                    // Список стран/регионов теперь реактивен и обновляется сам —
-                    // кнопка нужна только чтобы форсировать повторную попытку
-                    // геокодирования для мест, у которых country/region всё ещё null
-                    // (например, из-за временной недоступности Nominatim).
                     IconButton(onClick = { viewModel.retryMissingGeocoding() }) {
                         Icon(Icons.Filled.Refresh, contentDescription = "Обновить геоданные")
                     }
@@ -68,7 +65,7 @@ fun StatisticsScreen(
             } else if (countries.isEmpty()) {
                 Box(Modifier.fillMaxSize(), Alignment.Center) {
                     Text(
-                        "Нет данных для отображения",
+                        "Нет данных для отображения. Добавьте места с визитами.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -79,8 +76,33 @@ fun StatisticsScreen(
                     contentPadding = PaddingValues(Spacing.md),
                     verticalArrangement = Arrangement.spacedBy(Spacing.sm)
                 ) {
+                    item {
+                        Text(
+                            "По странам",
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.padding(bottom = Spacing.sm)
+                        )
+                    }
+
                     items(countries, key = { it.country }) { countryStat ->
                         CountryCard(countryStat = countryStat)
+                    }
+
+                    if (visitsByYear.isNotEmpty()) {
+                        item {
+                            Spacer(Modifier.height(Spacing.lg))
+                            Text(
+                                "По годам",
+                                style = MaterialTheme.typography.titleLarge,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.padding(bottom = Spacing.sm)
+                            )
+                        }
+
+                        items(visitsByYear, key = { it.year }) { yearStat ->
+                            YearCard(yearStat = yearStat)
+                        }
                     }
                 }
             }
@@ -106,7 +128,12 @@ private fun CountryCard(countryStat: CountryStat) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(countryStat.country, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
                     Text(
-                        "${countryStat.visitCount} визит(ов)",
+                        "${countryStat.visitCount} ${pluralizeVisits(countryStat.visitCount)}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Text(
+                        "Первый: ${dateFormat.format(Date(countryStat.firstVisit))}",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -122,8 +149,7 @@ private fun CountryCard(countryStat: CountryStat) {
                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
-
-            if (expanded) {
+            if (expanded && countryStat.regions.isNotEmpty()) {
                 Spacer(Modifier.height(Spacing.sm))
                 HorizontalDivider(color = MaterialTheme.colorScheme.outline)
                 Spacer(Modifier.height(Spacing.sm))
@@ -135,11 +161,23 @@ private fun CountryCard(countryStat: CountryStat) {
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(Modifier.weight(1f))
-                        Text(
-                            "${region.visitCount} визит(ов)",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                        Column(horizontalAlignment = Alignment.End) {
+                            Text(
+                                "${region.visitCount} ${pluralizeVisits(region.visitCount)}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Text(
+                                dateFormat.format(Date(region.firstVisit)),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Text(
+                                dateFormat.format(Date(region.lastVisit)),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
                     }
                 }
             }
@@ -147,13 +185,64 @@ private fun CountryCard(countryStat: CountryStat) {
     }
 }
 
+@Composable
+private fun YearCard(yearStat: com.spotlog.viewmodel.YearStat) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = MaterialTheme.shapes.large,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(Spacing.md),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                yearStat.year.toString(),
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            Spacer(Modifier.weight(1f))
+            Text(
+                "${yearStat.visitCount} ${pluralizeVisits(yearStat.visitCount)}",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
 private fun getCountryFlag(country: String): String {
     val map = mapOf(
-        "Россия" to "🇷🇺", "США" to "🇺🇸", "Великобритания" to "🇬🇧", "Германия" to "🇩🇪",
-        "Франция" to "🇫🇷", "Италия" to "🇮🇹", "Испания" to "🇪🇸", "Турция" to "🇹🇷",
-        "Египет" to "🇪🇬", "Таиланд" to "🇹🇭", "Индия" to "🇮🇳", "Китай" to "🇨🇳",
-        "Япония" to "🇯🇵", "Южная Корея" to "🇰🇷", "Бразилия" to "🇧🇷", "Австралия" to "🇦🇺",
-        "Канада" to "🇨🇦", "Мексика" to "🇲🇽"
+        "Россия" to "🇷🇺",
+        "США" to "🇺🇸",
+        "Великобритания" to "🇬🇧",
+        "Германия" to "🇩🇪",
+        "Франция" to "🇫🇷",
+        "Италия" to "🇮🇹",
+        "Испания" to "🇪🇸",
+        "Турция" to "🇹🇷",
+        "Египет" to "🇪🇬",
+        "Таиланд" to "🇹🇭",
+        "Индия" to "🇮🇳",
+        "Китай" to "🇨🇳",
+        "Япония" to "🇯🇵",
+        "Южная Корея" to "🇰🇷",
+        "Бразилия" to "🇧🇷",
+        "Австралия" to "🇦🇺",
+        "Канада" to "🇨🇦",
+        "Мексика" to "🇲🇽",
+        "Беларусь" to "🇧🇾"
     )
     return map[country] ?: "🌍"
+}
+
+private fun pluralizeVisits(count: Int): String {
+    val mod10 = count % 10
+    val mod100 = count % 100
+    return when {
+        mod10 == 1 && mod100 != 11 -> "визит"
+        mod10 in 2..4 && mod100 !in 12..14 -> "визита"
+        else -> "визитов"
+    }
 }

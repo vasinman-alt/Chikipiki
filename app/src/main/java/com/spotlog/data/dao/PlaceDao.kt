@@ -5,11 +5,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.spotlog.data.entity.PlaceEntity
+import com.spotlog.data.entity.VisitEntity
+import com.spotlog.data.entity.PhotoEntity
 import kotlinx.coroutines.flow.Flow
 
 data class CountryStatRaw(
     val country: String,
     val visitCount: Int,
+    val firstVisit: Long,
     val lastVisit: Long
 )
 
@@ -17,7 +20,13 @@ data class RegionStatRaw(
     val country: String,
     val region: String,
     val visitCount: Int,
+    val firstVisit: Long,
     val lastVisit: Long
+)
+
+data class YearStatRaw(
+    val year: Int,
+    val visitCount: Int
 )
 
 data class PlaceCardWithCover(
@@ -68,7 +77,10 @@ interface PlaceDao {
     suspend fun deletePlace(placeId: Long)
 
     @Query("""
-        SELECT places.country AS country, COUNT(visits.id) AS visitCount, MAX(visits.timestamp) AS lastVisit
+        SELECT places.country AS country, 
+               COUNT(visits.id) AS visitCount, 
+               MIN(visits.timestamp) AS firstVisit,
+               MAX(visits.timestamp) AS lastVisit
         FROM places
         INNER JOIN visits ON visits.placeId = places.id
         WHERE places.country IS NOT NULL AND places.country != ''
@@ -78,10 +90,15 @@ interface PlaceDao {
     fun getCountryStats(): Flow<List<CountryStatRaw>>
 
     @Query("""
-        SELECT places.country AS country, places.region AS region, COUNT(visits.id) AS visitCount, MAX(visits.timestamp) AS lastVisit
+        SELECT places.country AS country, 
+               places.region AS region, 
+               COUNT(visits.id) AS visitCount, 
+               MIN(visits.timestamp) AS firstVisit,
+               MAX(visits.timestamp) AS lastVisit
         FROM places
         INNER JOIN visits ON visits.placeId = places.id
-        WHERE places.country IS NOT NULL AND places.country != '' AND places.region IS NOT NULL AND places.region != ''
+        WHERE places.country IS NOT NULL AND places.country != '' 
+              AND places.region IS NOT NULL AND places.region != ''
         GROUP BY places.country, places.region
         ORDER BY lastVisit DESC
     """)
@@ -106,4 +123,16 @@ interface PlaceDao {
         ORDER BY lastVisitTimestamp DESC
     """)
     fun getPlaceCardsWithCover(): Flow<List<PlaceCardWithCover>>
+
+    @Query("""
+        SELECT 
+            strftime('%Y', datetime(visits.timestamp / 1000, 'unixepoch')) AS year,
+            COUNT(visits.id) AS visitCount
+        FROM visits
+        INNER JOIN places ON visits.placeId = places.id
+        WHERE places.country IS NOT NULL AND places.country != ''
+        GROUP BY year
+        ORDER BY year DESC
+    """)
+    fun getVisitsByYear(): Flow<List<YearStatRaw>>
 }
