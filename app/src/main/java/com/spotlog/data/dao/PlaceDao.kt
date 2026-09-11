@@ -5,8 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.spotlog.data.entity.PlaceEntity
-import com.spotlog.data.entity.VisitEntity
-import com.spotlog.data.entity.PhotoEntity
 import kotlinx.coroutines.flow.Flow
 
 data class CountryStatRaw(
@@ -52,9 +50,6 @@ interface PlaceDao {
     @Query("SELECT * FROM places WHERE id = :placeId")
     suspend fun getPlaceById(placeId: Long): PlaceEntity?
 
-    @Query("SELECT * FROM places WHERE id = :placeId")
-    fun getPlaceFlow(placeId: Long): Flow<PlaceEntity?>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPlace(place: PlaceEntity): Long
 
@@ -76,6 +71,7 @@ interface PlaceDao {
     @Query("DELETE FROM places WHERE id = :placeId")
     suspend fun deletePlace(placeId: Long)
 
+    // ----- Статистика (Flow, а не suspend) -----
     @Query("""
         SELECT places.country AS country, 
                COUNT(visits.id) AS visitCount, 
@@ -106,6 +102,18 @@ interface PlaceDao {
 
     @Query("""
         SELECT 
+            CAST(strftime('%Y', datetime(visits.timestamp / 1000, 'unixepoch', 'localtime')) AS INTEGER) AS year,
+            COUNT(visits.id) AS visitCount
+        FROM visits
+        INNER JOIN places ON visits.placeId = places.id
+        WHERE places.country IS NOT NULL AND places.country != ''
+        GROUP BY year
+        ORDER BY year DESC
+    """)
+    fun getVisitsByYear(): Flow<List<YearStatRaw>>
+
+    @Query("""
+        SELECT 
             places.id AS placeId,
             places.name,
             places.latitude,
@@ -123,16 +131,4 @@ interface PlaceDao {
         ORDER BY lastVisitTimestamp DESC
     """)
     fun getPlaceCardsWithCover(): Flow<List<PlaceCardWithCover>>
-
-    @Query("""
-        SELECT 
-            strftime('%Y', datetime(visits.timestamp / 1000, 'unixepoch')) AS year,
-            COUNT(visits.id) AS visitCount
-        FROM visits
-        INNER JOIN places ON visits.placeId = places.id
-        WHERE places.country IS NOT NULL AND places.country != ''
-        GROUP BY year
-        ORDER BY year DESC
-    """)
-    fun getVisitsByYear(): Flow<List<YearStatRaw>>
 }

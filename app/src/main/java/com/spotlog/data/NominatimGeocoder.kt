@@ -1,4 +1,3 @@
-// ==== ФАЙЛ: NominatimGeocoder.kt ====
 package com.spotlog.data
 
 import android.content.Context
@@ -18,20 +17,10 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Locale
 
-/**
- * Обратное геокодирование через Nominatim.
- *
- * Реализует два важных требования их usage policy:
- *  1. Rate‑limit: не более 1 запроса в секунду (через Mutex‑slot).
- *  2. Корректный HTTP User-Agent (Nominatim требует идентификацию приложения).
- */
 object NominatimGeocoder {
     private const val MIN_INTERVAL_MS = 1000L
+    private const val TAG = "NominatimGeocoder"
 
-    /**
-     * Идентификатор приложения, который видит Nominatim.
-     * Без User-Agent зеркала могут возвращать 403/429.
-     */
     private const val USER_AGENT =
         "Chikipiki/1.0 (Android; contact: dev@example.com)"
 
@@ -47,12 +36,10 @@ object NominatimGeocoder {
         val cellKey = geocodeCellKey(lat, lon)
         val cached = cacheDao.getByCellKey(cellKey)
         if (cached != null) {
+            Log.d(TAG, "Cache hit for ($lat, $lon): ${cached.country}, ${cached.region}")
             return cached.country to cached.region
         }
 
-        // Мьютекс держит ТОЛЬКО резервирование временного слота (быстрая операция,
-        // без сети) — не сам HTTP-запрос. Так медленный/зависший фоновый запрос
-        // не блокирует интерактивный чекин пользователя.
         val slotTime = mutex.withLock {
             val now = System.currentTimeMillis()
             val next = maxOf(now, lastRequestTime + MIN_INTERVAL_MS)
@@ -63,6 +50,7 @@ object NominatimGeocoder {
         if (waitMs > 0) delay(waitMs)
 
         val (country, region) = fetchReverseGeocode(lat, lon)
+        Log.d(TAG, "Geocode result for ($lat, $lon): country=$country, region=$region")
 
         if (country != null) {
             cacheDao.insert(
@@ -80,20 +68,20 @@ object NominatimGeocoder {
     private suspend fun fetchReverseGeocode(lat: Double, lon: Double): Pair<String?, String?> =
         withContext(Dispatchers.IO) {
             val url = buildNominatimUrl(lat, lon)
+            Log.d(TAG, "Request: $url")
             var conn: HttpURLConnection? = null
             try {
                 conn = URL(url).openConnection() as HttpURLConnection
                 conn.connectTimeout = 10_000
                 conn.readTimeout = 15_000
                 conn.requestMethod = "GET"
-
-                // FIX: Nominatim usage policy требует идентификации клиента
                 conn.setRequestProperty("User-Agent", USER_AGENT)
                 conn.setRequestProperty("Accept", "application/json")
                 conn.setRequestProperty("Accept-Language", "ru")
 
                 val responseCode = conn.responseCode
                 if (responseCode != HttpURLConnection.HTTP_OK) {
+                    Log.e(TAG, "HTTP error $responseCode for ($lat, $lon)")
                     throw IOException("HTTP error $responseCode")
                 }
 
@@ -106,8 +94,8 @@ object NominatimGeocoder {
                 }
                 val json = stringBuilder.toString()
                 val obj = JSONObject(json)
-
                 val address = obj.optJSONObject("address")
+
                 val country = address?.optString("country")?.takeIf { it.isNotEmpty() }
                 val region = address?.optString("state")?.takeIf { it.isNotEmpty() }
                     ?: address?.optString("region")?.takeIf { it.isNotEmpty() }
@@ -115,21 +103,20 @@ object NominatimGeocoder {
 
                 country to region
             } catch (e: Exception) {
-                Log.e("NominatimGeocoder", "Geocoding error", e)
+                Log.e(TAG, "Geocoding error for ($lat, $lon)", e)
                 null to null
             } finally {
                 conn?.disconnect()
             }
         }
 
+    // ИСПРАВЛЕНО: zoom=5 вместо zoom=18
+    // zoom=18 ищет конкретное здание — часто не находит country
+    // zoom=5 ищет регион/страну — надёжнее для статистики
     private fun buildNominatimUrl(lat: Double, lon: Double): String {
-        return "https://nominatim.openstreetmap.org/reverse?format=json&lat=$lat&lon=$lon&zoom=18&addressdetails=1&accept-language=ru"
+        return "https://nominatim.openstreetmap.org/reverse?format=json&lat=$lat&lon=$lon&zoom=5&addressdetails=1&accept-language=ru"
     }
 
-    // %.2f сам корректно округляет — ручное усечение через .toInt() было лишним
-    // и вдобавок асимметричным для отрицательных координат. Locale.US обязателен:
-    // это ключ кэша (PK GeocodeCacheEntity), и без явной локали десятичный
-    // разделитель зависит от локали устройства (может быть "," вместо ".").
     private fun geocodeCellKey(lat: Double, lon: Double): String =
         "%.2f_%.2f".format(Locale.US, lat, lon)
 }

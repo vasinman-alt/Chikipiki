@@ -1,6 +1,5 @@
 package com.spotlog.ui
 
-import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,9 +13,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.spotlog.theme.Spacing
 import com.spotlog.viewmodel.CountryStat
 import com.spotlog.viewmodel.StatisticsViewModel
+import com.spotlog.viewmodel.YearStat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -65,7 +66,7 @@ fun StatisticsScreen(
             } else if (countries.isEmpty()) {
                 Box(Modifier.fillMaxSize(), Alignment.Center) {
                     Text(
-                        "Нет данных для отображения. Добавьте места с визитами.",
+                        "Нет данных для отображения",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -76,22 +77,13 @@ fun StatisticsScreen(
                     contentPadding = PaddingValues(Spacing.md),
                     verticalArrangement = Arrangement.spacedBy(Spacing.sm)
                 ) {
-                    item {
-                        Text(
-                            "По странам",
-                            style = MaterialTheme.typography.titleLarge,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.padding(bottom = Spacing.sm)
-                        )
-                    }
-
                     items(countries, key = { it.country }) { countryStat ->
                         CountryCard(countryStat = countryStat)
                     }
 
                     if (visitsByYear.isNotEmpty()) {
                         item {
-                            Spacer(Modifier.height(Spacing.lg))
+                            Spacer(Modifier.height(Spacing.md))
                             Text(
                                 "По годам",
                                 style = MaterialTheme.typography.titleLarge,
@@ -99,7 +91,6 @@ fun StatisticsScreen(
                                 modifier = Modifier.padding(bottom = Spacing.sm)
                             )
                         }
-
                         items(visitsByYear, key = { it.year }) { yearStat ->
                             YearCard(yearStat = yearStat)
                         }
@@ -149,12 +140,15 @@ private fun CountryCard(countryStat: CountryStat) {
                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
-            if (expanded && countryStat.regions.isNotEmpty()) {
+            if (expanded) {
                 Spacer(Modifier.height(Spacing.sm))
                 HorizontalDivider(color = MaterialTheme.colorScheme.outline)
                 Spacer(Modifier.height(Spacing.sm))
                 countryStat.regions.forEach { region ->
-                    Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+                        verticalAlignment = Alignment.Top
+                    ) {
                         Text(
                             "▸ ${region.region}",
                             style = MaterialTheme.typography.bodyMedium,
@@ -168,12 +162,7 @@ private fun CountryCard(countryStat: CountryStat) {
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             Text(
-                                dateFormat.format(Date(region.firstVisit)),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            Text(
-                                dateFormat.format(Date(region.lastVisit)),
+                                "${dateFormat.format(Date(region.firstVisit))} — ${dateFormat.format(Date(region.lastVisit))}",
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -186,7 +175,7 @@ private fun CountryCard(countryStat: CountryStat) {
 }
 
 @Composable
-private fun YearCard(yearStat: com.spotlog.viewmodel.YearStat) {
+private fun YearCard(yearStat: YearStat) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,

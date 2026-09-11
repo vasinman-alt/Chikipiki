@@ -74,18 +74,6 @@ class StatisticsViewModel(application: Application) : AndroidViewModel(applicati
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    init {
-        // Автоматически запускаем геокодирование для мест без страны
-        viewModelScope.launch {
-            safeCall(
-                onError = { msg -> _error.emit(msg) },
-                errorMessage = "Не удалось обновить геоданные"
-            ) {
-                repository.fillAllMissingCountries()
-            }
-        }
-    }
-
     fun retryMissingGeocoding() {
         viewModelScope.launch {
             safeCall(
