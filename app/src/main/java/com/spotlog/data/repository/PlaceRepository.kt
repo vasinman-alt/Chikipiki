@@ -37,8 +37,12 @@ class PlaceRepository(
         placeDao.getPlaceById(placeId)
     }
 
-    fun getPlaceFlow(placeId: Long): Flow<PlaceEntity?> =
-        placeDao.getPlaceFlow(placeId)
+    // ДОБАВЛЕНО: реактивный поток одного места.
+    // Используется в PlaceDetailViewModel.init().
+    // Без 'suspend' — flow{} сам по себе холодный и не требует suspend.
+    fun getPlaceFlow(placeId: Long): Flow<PlaceEntity?> = flow {
+        emit(getPlaceById(placeId))
+    }
 
     suspend fun getVisitsForPlace(placeId: Long): Flow<List<VisitWithPlace>> =
         visitDao.getVisitsForPlace(placeId)
@@ -190,31 +194,20 @@ class PlaceRepository(
         featureGate: FeatureGate
     ) = withContext(Dispatchers.IO) {
         require(featureGate.isEnabled(Feature.PHOTOS)) { "Photos require premium" }
-        val visit = visitDao.getVisitById(visitId)
-            ?: throw IllegalStateException("Визит не найден")
-        if (visit.placeId != placeId) {
-            throw IllegalStateException("Визит не принадлежит этому месту")
-        }
-        if (visit.source != VisitSource.MANUAL) {
-            throw IllegalStateException("Фото можно добавлять только к ручным визитам")
-        }
+        val visit = visitDao.getVisitById(visitId) ?: throw IllegalStateException("Визит не найден")
+        if (visit.placeId != placeId) throw IllegalStateException("Визит не принадлежит этому месту")
+        if (visit.source != VisitSource.MANUAL) throw IllegalStateException("Фото можно добавлять только к ручным визитам")
 
         val place = placeDao.getPlaceById(placeId)
         if (place != null && currentLat != null && currentLon != null) {
             val dist = calculateDistance(currentLat, currentLon, place.latitude, place.longitude)
-            if (dist > CHECKIN_RADIUS_METERS) {
-                throw IllegalStateException("Слишком далеко от места (${dist.toInt()} м)")
-            }
+            if (dist > CHECKIN_RADIUS_METERS) throw IllegalStateException("Слишком далеко от места (${dist.toInt()} м)")
         }
 
-        if (!isSameDay(visit.timestamp, System.currentTimeMillis())) {
-            throw IllegalStateException("Фото можно прикрепить только в день визита")
-        }
+        if (!isSameDay(visit.timestamp, System.currentTimeMillis())) throw IllegalStateException("Фото можно прикрепить только в день визита")
 
         val existingPhotos = photoDao.getPhotosForPlace(placeId).first()
-        if (existingPhotos.any { it.visitId == visitId }) {
-            throw IllegalStateException("К этому визиту уже прикреплено фото")
-        }
+        if (existingPhotos.any { it.visitId == visitId }) throw IllegalStateException("К этому визиту уже прикреплено фото")
 
         photoDao.insertPhoto(
             PhotoEntity(
